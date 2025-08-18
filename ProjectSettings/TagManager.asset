@@ -13,11 +13,11 @@ TagManager:
   - UI
   - Ground
   - Projectile
-  - EnemyTrain
+  - Train
   - Object
   - PlayerBase
-  - 
-  - 
+  - GroundEnemy
+  - AerialEnemy
   - 
   - 
   - 
