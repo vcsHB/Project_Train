@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Core.Attribute
+namespace Project_Train.Core.Attribute
 {
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public class ConditionAttribute : PropertyAttribute

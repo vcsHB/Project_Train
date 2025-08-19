@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Core.Attribute
+namespace Project_Train.Core.Attribute
 {
 
     public class ShowIfAttribute : PropertyAttribute

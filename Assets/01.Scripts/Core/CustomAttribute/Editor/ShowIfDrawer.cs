@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Core.Attribute
+namespace Project_Train.Core.Attribute
 {
 
     [CustomPropertyDrawer(typeof(ShowIfAttribute))]
