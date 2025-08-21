@@ -58,6 +58,7 @@ namespace Project_Train.DataManage.CoreDataBaseSystem
             {
                 case DataDetailType.Subject: return typeof(SubjectDetailSO);
                 case DataDetailType.Function: return typeof(FunctionDetailSO);
+                case DataDetailType.Build: return typeof(BuildDetailSO);
             }
             return null;
         }

@@ -1,5 +1,6 @@
 using System;
 using Project_Train.DataManage.CoreDataBaseSystem;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 namespace Project_Train.UIManage.InGameSceneUI
@@ -10,6 +11,7 @@ namespace Project_Train.UIManage.InGameSceneUI
 
         public Action<DataSO> OnSlotSelectEvent;
         [SerializeField] private Image _dataIconImage;
+
         [SerializeField] private CanvasGroup _lockPanel;
         private DataSO _data;
         private Button _button;

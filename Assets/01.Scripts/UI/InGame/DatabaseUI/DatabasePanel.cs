@@ -1,36 +1,29 @@
 using System;
-using System.Collections.Generic;
 using Project_Train.DataManage.CoreDataBaseSystem;
 using UnityEngine;
 namespace Project_Train.UIManage.InGameSceneUI
 {
 
-    public class DatabasePanel : MonoBehaviour
+    public class DatabasePanel : FadePanel
     {
-        [SerializeField] private DataGroupSO _dataGroup;
-        [SerializeField] private Transform _contentTrm;
+        [SerializeField] private DatabaseListPanel _listPanel;
+        [SerializeField] private DatabaseDetailPanel _detailPanel;
 
-        [SerializeField] private DatabaseSlot _slotPrefab;
-        private List<DatabaseSlot> _slotList = new();
 
-        private void Awake()
+        protected override void Awake()
         {
-            Initialize();
+            base.Awake();
+            _listPanel.OnDataSelectedEvent += HandleRefreshDetail;
         }
 
-        private void Initialize()
+        private void HandleRefreshDetail(DataSO data)
         {
-            for (int i = 0; i < _dataGroup.datas.Length; i++)
-            {
-                DatabaseSlot newSlot = Instantiate(_slotPrefab, _contentTrm);
-                newSlot.SetData(_dataGroup.datas[i], true); // TODO //  DataLoad
-                _slotList.Add(newSlot);
-                newSlot.OnSlotSelectEvent += HandleSelect;
-            }
+            _detailPanel.SetData(data);
         }
 
-        private void HandleSelect(DataSO SO)
+        public override void Open()
         {
+            base.Open();
         }
     }
 }
