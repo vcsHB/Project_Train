@@ -1,0 +1,71 @@
+using DG.Tweening;
+using UnityEngine;
+using UnityEngine.Events;
+namespace Project_Train.UIManage
+{
+    [RequireComponent(typeof(CanvasGroup))]
+    public class FadePanel : MonoBehaviour, IWindowPanel
+    {
+        public UnityEvent OnPanelOpenEvent;
+        public UnityEvent OnPanelCloseEvent;
+        [SerializeField] protected float _openDuration = 0.4f;
+        [SerializeField] protected float _closeDuration = 0.4f;
+        [SerializeField] protected bool _useUnscaledTime;
+
+        protected CanvasGroup _canvasGroup;
+        
+        [field: SerializeField] public bool IsPanelEnabled { get; protected set; } = true;
+
+        protected virtual void Awake()
+        {
+            _canvasGroup = GetComponent<CanvasGroup>();
+        }
+
+        #region External Functions
+
+        public virtual void Open()
+        {
+            IsPanelEnabled = true;
+            OnPanelOpenEvent?.Invoke();
+            _canvasGroup.DOFade(1f, _openDuration).OnComplete(() =>
+            {
+
+
+            }).SetUpdate(_useUnscaledTime);
+        }
+        public virtual void Close()
+        {
+            _canvasGroup.DOFade(0f, _closeDuration).OnComplete(() =>
+            {
+                IsPanelEnabled = false;
+                OnPanelCloseEvent?.Invoke();
+            }).SetUpdate(_useUnscaledTime); ;
+        }
+
+        #endregion
+        protected void SetInteractable(bool value)
+        {
+            _canvasGroup.interactable = value;
+            _canvasGroup.blocksRaycasts = value;
+        }
+
+#if UNITY_EDITOR
+
+        protected virtual void OnValidate()
+        {
+            if (_canvasGroup == null)
+                _canvasGroup = GetComponent<CanvasGroup>();
+            // Check one more time for SAFE
+            if (_canvasGroup == null)
+            {
+                Debug.LogWarning("CanvasGroup is not Attached");
+                return;
+            }
+            SetInteractable(IsPanelEnabled);
+            _canvasGroup.alpha = IsPanelEnabled ? 1f : 0f;
+        }
+#endif
+
+
+    }
+}
