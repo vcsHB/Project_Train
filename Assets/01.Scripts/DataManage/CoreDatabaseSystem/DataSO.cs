@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Project_Train.DataManage.CoreDataBaseSystem
 {
 
-    [CreateAssetMenu(menuName = "SO/Data")]
+    [CreateAssetMenu(menuName = "SO/Data/StandardData")]
     public class DataSO : ScriptableObject
     {
         [field: SerializeField, ReadOnly] public int Id { get; private set; }
