@@ -16,22 +16,13 @@ namespace  Project_Train.Core.Input
 
 		public static InputEvents Events { get; private set; }
 		public static void AddListener(string key, Action action)			=> Events.AddListener(key, action);
-		public static void AddListener(string key, Action<float> action)	=> Events.AddListener(key, action);
-		public static void AddListener(string key, Action<bool> action)		=> Events.AddListener(key, action);
-		public static void AddListener(string key, Action<Vector2> action)	=> Events.AddListener(key, action);
-		public static void AddListener(string key, Action<Vector3> action)	=> Events.AddListener(key, action);
+		public static void AddListener<T>(string key, Action<T> action)	=> Events.AddListener(key, action);
 
 		public static void RemoveListener(string key, Action action)			=> Events.RemoveListener(key, action);
-		public static void RemoveListener(string key, Action<float> action)		=> Events.RemoveListener(key, action);
-		public static void RemoveListener(string key, Action<bool> action)		=> Events.RemoveListener(key, action);
-		public static void RemoveListener(string key, Action<Vector2> action)	=> Events.RemoveListener(key, action);
-		public static void RemoveListener(string key, Action<Vector3> action)	=> Events.RemoveListener(key, action);
+		public static void RemoveListener<T>(string key, Action<T> action)	=> Events.RemoveListener(key, action);
 
 		public static void Invoke(string key)					=> Events.Invoke(key);
-		public static void Invoke(string key, float value)		=> Events.Invoke(key, value);
-		public static void Invoke(string key, bool value)		=> Events.Invoke(key, value);
-		public static void Invoke(string key, Vector2 value)	=> Events.Invoke(key, value);
-		public static void Invoke(string key, Vector3 value)	=> Events.Invoke(key, value);
+		public static void Invoke<T>(string key, T value)	=> Events.Invoke(key, value);
 
 		#endregion
 
