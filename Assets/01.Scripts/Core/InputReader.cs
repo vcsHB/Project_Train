@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,7 @@ namespace  Project_Train.Core
 		#region Actions
 
 		// 이벤트는 여기에 작성
+		public static event Action<Vector2> OnMoveEvent;
 
 		#endregion
 
@@ -43,6 +45,8 @@ namespace  Project_Train.Core
 			// 인터페이스 구현은 여기에
 			public void OnMove(InputAction.CallbackContext context)
 			{
+				if (context.performed)
+					OnMoveEvent.Invoke(context.ReadValue<Vector2>());
 			}
 		}
 
