@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
 using Project_Train.Core.Input;
-using UnityEditor;
+using Project_Train.TerrainSystem;
 using UnityEngine;
-using UnityEngine.Rendering;
 namespace Project_Train.BuildSystem
 {
 
@@ -36,10 +33,13 @@ namespace Project_Train.BuildSystem
             bool isDetected = Physics.Raycast(ray, out RaycastHit hitInfo, _detectMaxDistance, _buildPointLayer);
             if (isDetected)
             {
+                if (hitInfo.collider.TryGetComponent(out BuildPoint buildPoint))
+                {
+                    _buildSelector.SetPosition(buildPoint.PointPosition);
 
+                }
             }
 
-            _buildSelector.SetPosition(hitInfo.point);
         }
     }
 }

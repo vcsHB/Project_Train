@@ -1,10 +1,9 @@
-using System;
-using UnityEngine;
 namespace Project_Train.TerrainSystem
 {
-
-    public class TerrainStatus
+    [System.Serializable]
+    public struct TerrainStatus
     {
+        // TODO : MORE?
         public float height;
         
     }

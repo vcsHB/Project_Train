@@ -16,6 +16,7 @@ namespace Project_Train.TerrainSystem
 
         // TODO
         [Header("Terrain Benefit Setting")]
+        public float heightMultipleier = 1f;
         public float rangeBenefitByheight = 1f;
         [Range(-10f, 10f)] public float rangeBenefitRandomize;
 
