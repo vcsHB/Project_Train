@@ -19,7 +19,7 @@ namespace Project_Train.LevelSystem
         [SerializeField] private Transform _buildPointGroupParentTrm;
         private Vector3 _bakeStartEdge;
         private Vector3 _bakeEndEdge;
-        private List<BuildPoint> _buildPointList = new();
+        [SerializeField] private List<BuildPoint> _buildPointList = new();
 
         [ContextMenu("BakeTerrain")]
         public void BakeTerrain()
