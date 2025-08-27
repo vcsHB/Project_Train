@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 namespace Project_Train.DataManage.CoreDataBaseSystem
 {
-    [CustomEditor(typeof(DataSO))]
+    [CustomEditor(typeof(DataSO), true)]
     public class DataSOEditor : Editor
     {
         private DataDetailType newType;
