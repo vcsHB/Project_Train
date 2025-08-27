@@ -16,19 +16,17 @@ namespace  Project_Train.Core.Input
 
 		public static InputEvents Events { get; private set; }
 		public static void AddListener(string key, Action action)			=> Events.AddListener(key, action);
-		public static void AddListener<T>(string key, Action<T> action)	=> Events.AddListener(key, action);
+		public static void AddListener<T>(string key, Action<T> action)		=> Events.AddListener(key, action);
 
-		public static void RemoveListener(string key, Action action)			=> Events.RemoveListener(key, action);
+		public static void RemoveListener(string key, Action action)		=> Events.RemoveListener(key, action);
 		public static void RemoveListener<T>(string key, Action<T> action)	=> Events.RemoveListener(key, action);
 
-		public static void Invoke(string key)					=> Events.Invoke(key);
-		public static void Invoke<T>(string key, T value)	=> Events.Invoke(key, value);
+		public static void Invoke(string key)								=> Events.Invoke(key);
+		public static void Invoke<T>(string key, T value)					=> Events.Invoke(key, value);
 
 		#endregion
 
 		#region Values
-
-		// 프로퍼티는 여기에 작성
 
 		#endregion
 
@@ -62,7 +60,6 @@ namespace  Project_Train.Core.Input
 
 		private class PlayerCallback : Controls.IPlayerActions
 		{
-			// 인터페이스 구현은 여기에
 			public void OnMove(InputAction.CallbackContext context)
 			{
 				if (context.performed)
