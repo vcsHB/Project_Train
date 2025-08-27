@@ -328,7 +328,7 @@ Transform:
   m_GameObject: {fileID: 394014450}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.24, y: 0, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2499,7 +2499,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.34, z: 0.5}
+  m_LocalScale: {x: 0.53, y: 0.34, z: 0.53}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 619496033}
@@ -4291,13 +4291,34 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7388072448293326970, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6038652323260186911, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
     - {fileID: 5849766658364723687, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3198454138900338988, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6768868688879479031}
   m_SourcePrefab: {fileID: 100100000, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
+--- !u!1 &6768868688879479030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3198454138900338988, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
+  m_PrefabInstance: {fileID: 6768868688879479029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6768868688879479031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6768868688879479030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3e1cf1b8502f1247a2e2fced19c9b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

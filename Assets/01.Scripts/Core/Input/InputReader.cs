@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-namespace  Project_Train.Core.Input
+namespace Project_Train.Core.Input
 {
 	public static class InputReader
 	{
@@ -15,20 +15,20 @@ namespace  Project_Train.Core.Input
 		#region events
 
 		public static InputEvents Events { get; private set; }
-		public static void AddListener(string key, Action action)			=> Events.AddListener(key, action);
-		public static void AddListener<T>(string key, Action<T> action)	=> Events.AddListener(key, action);
+		public static void AddListener(string key, Action action) => Events.AddListener(key, action);
+		public static void AddListener<T>(string key, Action<T> action) => Events.AddListener(key, action);
 
-		public static void RemoveListener(string key, Action action)			=> Events.RemoveListener(key, action);
-		public static void RemoveListener<T>(string key, Action<T> action)	=> Events.RemoveListener(key, action);
+		public static void RemoveListener(string key, Action action) => Events.RemoveListener(key, action);
+		public static void RemoveListener<T>(string key, Action<T> action) => Events.RemoveListener(key, action);
 
-		public static void Invoke(string key)					=> Events.Invoke(key);
-		public static void Invoke<T>(string key, T value)	=> Events.Invoke(key, value);
+		public static void Invoke(string key) => Events.Invoke(key);
+		public static void Invoke<T>(string key, T value) => Events.Invoke(key, value);
 
 		#endregion
 
 		#region Values
 
-		// ÇÁ·ÎÆÛÆ¼´Â ¿©±â¿¡ ÀÛ¼º
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½Û¼ï¿½
 
 		#endregion
 
@@ -62,11 +62,23 @@ namespace  Project_Train.Core.Input
 
 		private class PlayerCallback : Controls.IPlayerActions
 		{
-			// ÀÎÅÍÆäÀÌ½º ±¸ÇöÀº ¿©±â¿¡
+			public void OnMouse(InputAction.CallbackContext context)
+			{
+				if (context.performed)
+					Events.Invoke("OnMousePositionEvent", context.ReadValue<Vector2>());
+			}
+
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡
 			public void OnMove(InputAction.CallbackContext context)
 			{
 				if (context.performed)
 					Events.Invoke("OnMoveEvent", context.ReadValue<Vector2>());
+			}
+
+			public void OnSelect(InputAction.CallbackContext context)
+			{
+				if (context.performed)
+					Events.Invoke("OnSelectEvent");
 			}
 		}
 
