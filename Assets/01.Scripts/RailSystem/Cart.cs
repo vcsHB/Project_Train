@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Project_Train.RailSystem
 {
@@ -10,7 +11,7 @@ namespace Project_Train.RailSystem
 
 		void Update()
 		{
-			ERailType currentRailType = RailManager.Instance.railGrid[currentRailPos];
+			ERailType currentRailType = RailManager.Instance.GetRailType(currentRailPos);
 
 			// 1. 진행도 업데이트
 			// 레일 길이에 따라 속도를 조절해야 하지만, 일단은 간단하게!
@@ -31,6 +32,16 @@ namespace Project_Train.RailSystem
 				progress = 0f;
 				currentRailPos = GetNextRailPos(currentRailPos, currentRailType);
 			}
+		}
+
+		private Vector3Int GetNextRailPos(Vector3Int currentRailPos, ERailType currentRailType)
+		{
+			return default;
+		}
+
+		private float GetRailLength(ERailType currentRailType)
+		{
+			return default;
 		}
 
 		// 이게 바로 실시간 방향을 구하는 핵심 함수!

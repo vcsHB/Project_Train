@@ -4,7 +4,7 @@ using UnityEngine;
 namespace  Project_Train.RailSystem
 {
     // Singleton
-    public class RailManager : MonoBehaviour
+    public class RailManager : MonoSingleton<RailManager>
     {
         private Dictionary<Vector3Int, ERailType> _railGrid = new();
 
