@@ -84,22 +84,22 @@ namespace Project_Train.RailSystem
 				case ERailType.Ascending_N:
 					p0 = new Vector3(0, 0, -0.5f);
 					p1 = new Vector3(0, 0.25f, 0);
-					p1 = new Vector3(0, 0.5f, 0.5f);
+					p2 = new Vector3(0, 0.5f, 0.5f);
 					break;
 				case ERailType.Ascending_E:
 					p0 = new Vector3(-0.5f, 0, 0);
 					p1 = new Vector3(0, 0.25f, 0);
-					p1 = new Vector3(0.5f, 0.5f, 0);
+					p2 = new Vector3(0.5f, 0.5f, 0);
 					break;
 				case ERailType.Ascending_S:
 					p0 = new Vector3(0, 0, 0.5f);
 					p1 = new Vector3(0, 0.25f, 0);
-					p1 = new Vector3(0, 0.5f, -0.5f);
+					p2 = new Vector3(0, 0.5f, -0.5f);
 					break;
 				case ERailType.Ascending_W:
 					p0 = new Vector3(0.5f, 0, 0);
 					p1 = new Vector3(0, 0.25f, 0);
-					p1 = new Vector3(-0.5f, 0.5f, 0);
+					p2 = new Vector3(-0.5f, 0.5f, 0);
 					break;
 			}
 
