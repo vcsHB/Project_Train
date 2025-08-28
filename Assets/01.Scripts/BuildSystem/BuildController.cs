@@ -1,3 +1,4 @@
+using System;
 using Project_Train.Core.Input;
 using Project_Train.TerrainSystem;
 using UnityEngine;
@@ -6,6 +7,7 @@ namespace Project_Train.BuildSystem
 
     public class BuildController : MonoBehaviour
     {
+        public event Action<BuildPoint> OnSelectEvent;
         [SerializeField] private BuildSelector _buildSelector;
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private LayerMask _buildPointLayer;
@@ -36,7 +38,7 @@ namespace Project_Train.BuildSystem
                 if (hitInfo.collider.TryGetComponent(out BuildPoint buildPoint))
                 {
                     _buildSelector.SetPosition(buildPoint.PointPosition);
-
+                    OnSelectEvent?.Invoke(buildPoint);
                 }
             }
 

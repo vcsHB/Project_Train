@@ -66,9 +66,12 @@ namespace Project_Train.LevelSystem
             newPoint.transform.position = position;
             _buildPointList.Add(newPoint);
 
+            float height = Mathf.Round(position.y) * _terrainSetDataSO.heightMultipleier;
             newPoint.SetTerrainData(new TerrainStatus()
             {
-                height = position.y + _terrainSetDataSO.heightMultipleier
+                height = height,
+                rangeBenefit = (float)Math.Round((double)_terrainSetDataSO.GetRangeBenefit(height), 1)
+
             });
 
         }

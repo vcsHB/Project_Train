@@ -5,6 +5,7 @@ namespace Project_Train.TerrainSystem
     {
         // TODO : MORE?
         public float height;
+        public float rangeBenefit;
         
     }
 }

@@ -7,7 +7,7 @@ namespace Project_Train.TerrainSystem
         [Header("General Setting")]
         public string terrainName = "TERRAIN_";
         [TextArea] public string terrainDescription;
-        
+
         // 
         [Header("Environment Setting")]
         [Range(0.1f, 10f)] public float visibility = 1f;
@@ -17,9 +17,14 @@ namespace Project_Train.TerrainSystem
         // TODO
         [Header("Terrain Benefit Setting")]
         public float heightMultipleier = 1f;
-        public float rangeBenefitByheight = 1f;
+        public float rangeBenefitByHeight = 1f;
         [Range(-10f, 10f)] public float rangeBenefitRandomize;
 
+
+        public float GetRangeBenefit(float height)
+        {
+            return ((height / heightMultipleier) * rangeBenefitByHeight) + Random.Range(0f, rangeBenefitRandomize);
+        }
 
 
     }
