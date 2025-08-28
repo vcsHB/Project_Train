@@ -68,6 +68,16 @@ namespace Project_Train.Core.Input
 					Events.Invoke("OnMousePositionEvent", context.ReadValue<Vector2>());
 			}
 
+			public void OnMouseMove(InputAction.CallbackContext context)
+			{
+				if (context.performed)
+					Events.Invoke("OnMouseMoveClickEvent");
+				else if (context.canceled)
+					Events.Invoke("OnMouseMoveReleaseEvent");
+
+
+			}
+
 			// �������̽� ������ ���⿡
 			public void OnMove(InputAction.CallbackContext context)
 			{
@@ -79,6 +89,11 @@ namespace Project_Train.Core.Input
 			{
 				if (context.performed)
 					Events.Invoke("OnSelectEvent");
+			}
+
+			public void OnZoomScroll(InputAction.CallbackContext context)
+			{
+				Events.Invoke("OnZoomScrollEvent", context.ReadValue<float>());
 			}
 		}
 
