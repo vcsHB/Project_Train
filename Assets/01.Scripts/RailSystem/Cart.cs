@@ -6,7 +6,7 @@ namespace Project_Train.RailSystem
 	public class Cart : MonoBehaviour
 	{
 		public float speed = 5f;
-		private Vector3Int currentRailPos;
+		private Vector3Int currentRailPos = default;
 		private float progress = 0f;
 
 		void Update()
@@ -14,14 +14,13 @@ namespace Project_Train.RailSystem
 			ERailType currentRailType = RailManager.Instance.GetRailType(currentRailPos);
 
 			// 1. 진행도 업데이트
-			// 레일 길이에 따라 속도를 조절해야 하지만, 일단은 간단하게!
 			float railLength = GetRailLength(currentRailType); // 레일 타입별 길이 미리 계산
 			progress += (speed / railLength) * Time.deltaTime;
 
 			// 2. 위치와 방향 계산
-			Vector3 worldPosition;
-			Vector3 direction;
-			CalculatePositionAndDirection(currentRailType, progress, out worldPosition, out direction);
+			Vector3 worldPosition = default;
+			Vector3 direction = default;
+			CalculateNextPosition(currentRailType, progress);
 
 			transform.position = worldPosition;
 			transform.rotation = Quaternion.LookRotation(direction);
@@ -44,27 +43,73 @@ namespace Project_Train.RailSystem
 			return default;
 		}
 
-		// 이게 바로 실시간 방향을 구하는 핵심 함수!
-		void CalculatePositionAndDirection(ERailType type, float t, out Vector3 pos, out Vector3 dir)
+		Vector3 CalculateNextPosition(ERailType railType, float t)
 		{
-			Vector3 p0, p1, p2, p3; // 레일 경로를 정의하는 제어점들
+			Vector3 p0 = Vector3.zero, p1 = Vector3.zero, p2 = Vector3.zero;
 
-			// 현재 레일 타입(type)에 따라 제어점(p0, p1, p2, p3)을 설정
-			// 예를 들어 Curve_NE 라면,
-			// p0 = 남쪽 끝, p1,p2 = 곡선을 만드는 제어점, p3 = 동쪽 끝
+			switch (railType)
+			{
+				case ERailType.Straight_NS:
+					p0 = new Vector3(0, 0, 0.5f);
+					p1 = Vector3.zero;
+					p2 = new Vector3(0, 0, -0.5f);
+					break;
+				case ERailType.Straight_EW:
+					p0 = new Vector3(0.5f, 0, 0);
+					p1 = Vector3.zero;
+					p2 = new Vector3(-0.5f, 0, 0);
+					break;
 
-			// 베지어 곡선 공식으로 위치(pos)와 접선(dir) 계산
-			// 2차 베지어 (제어점 3개: P0, P1, P2)
-			// pos = (1-t)²P0 + 2(1-t)tP1 + t²P2
-			// dir = 2(1-t)(P1-P0) + 2t(P2-P1) (이걸 정규화하면 방향 벡터!)
+				case ERailType.Curve_NE:
+					p0 = new Vector3(0, 0, 0.5f);
+					p1 = Vector3.zero;
+					p2 = new Vector3(0.5f, 0, 0);
+					break;
+				case ERailType.Curve_ES:
+					p0 = new Vector3(0.5f, 0, 0);
+					p1 = Vector3.zero;
+					p2 = new Vector3(0, 0, -0.5f);
+					break;
+				case ERailType.Curve_SW:
+					p0 = new Vector3(0, 0, -0.5f);
+					p1 = Vector3.zero;
+					p2 = new Vector3(-0.5f, 0, 0);
+					break;
+				case ERailType.Curve_WN:
+					p0 = new Vector3(-0.5f, 0, 0);
+					p1 = Vector3.zero;
+					p2 = new Vector3(0, 0, 0.5f);
+					break;
 
-			// 직선이라면 Lerp로 간단히
-			// pos = Vector3.Lerp(startPoint, endPoint, t);
-			// dir = (endPoint - startPoint).normalized;
+				case ERailType.Ascending_N:
+					p0 = new Vector3(0, 0, -0.5f);
+					p1 = new Vector3(0, 0.25f, 0);
+					p1 = new Vector3(0, 0.5f, 0.5f);
+					break;
+				case ERailType.Ascending_E:
+					p0 = new Vector3(-0.5f, 0, 0);
+					p1 = new Vector3(0, 0.25f, 0);
+					p1 = new Vector3(0.5f, 0.5f, 0);
+					break;
+				case ERailType.Ascending_S:
+					p0 = new Vector3(0, 0, 0.5f);
+					p1 = new Vector3(0, 0.25f, 0);
+					p1 = new Vector3(0, 0.5f, -0.5f);
+					break;
+				case ERailType.Ascending_W:
+					p0 = new Vector3(0.5f, 0, 0);
+					p1 = new Vector3(0, 0.25f, 0);
+					p1 = new Vector3(-0.5f, 0.5f, 0);
+					break;
+			}
 
-			// 임시값 할당
-			pos = Vector3.zero;
-			dir = Vector3.forward;
+			return GetQuadraticBezierPoint(p0, p1, p2, t);
+		}
+
+		Vector3 GetQuadraticBezierPoint(Vector3 p0, Vector3 p1, Vector3 p2, float t)
+		{
+			return (p0 * (1 - t) + p1 * t) * (1 - t) 
+				 + (p1 * (1 - t) + p2 * t) * t;
 		}
 	}
 }

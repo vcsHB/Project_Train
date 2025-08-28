@@ -12,12 +12,16 @@ namespace  Project_Train.RailSystem
         {
 			Vector3Int.right,
 			Vector3Int.left,
+			Vector3Int.forward,
+			Vector3Int.back,
 			new Vector3Int(0, 1, 1),
 			new Vector3Int(0, 1, -1),
 			new Vector3Int(0, -1, 1),
 			new Vector3Int(0, -1, -1),
-			Vector3Int.forward,
-			Vector3Int.back
+			new Vector3Int(1, 1, 0),
+			new Vector3Int(-1, 1, 0),
+			new Vector3Int(1, -1, 0),
+			new Vector3Int(-1, -1, 0),
 		};
 
 
