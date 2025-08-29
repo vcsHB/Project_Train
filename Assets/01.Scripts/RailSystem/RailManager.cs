@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,5 +45,11 @@ namespace  Project_Train.RailSystem
                 }
 			}
 		}
-    }
+
+		public void AddRail(ERailType railType, Vector3Int position)
+		{
+			if (_railGrid.ContainsKey(position)) return;
+			_railGrid.Add(position, railType);
+		}
+	}
 }

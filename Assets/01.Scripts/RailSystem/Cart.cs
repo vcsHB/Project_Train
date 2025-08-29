@@ -11,98 +11,51 @@ namespace Project_Train.RailSystem
 
 		void Update()
 		{
+			currentRailPos = Vector3Int.FloorToInt(transform.position - RailVectors.railOffset);
+
 			ERailType currentRailType = RailManager.Instance.GetRailType(currentRailPos);
 
 			// 1. 진행도 업데이트
 			float railLength = GetRailLength(currentRailType); // 레일 타입별 길이 미리 계산
+
+			Debug.Log(currentRailType);
+
 			progress += (speed / railLength) * Time.deltaTime;
 
 			// 2. 위치와 방향 계산
-			Vector3 worldPosition = default;
-			Vector3 direction = default;
-			CalculateNextPosition(currentRailType, progress);
+			Vector3 worldPosition = transform.position;
+			Vector3 nextPosition = CalculateNextPosition(currentRailType, progress);
+			Vector3 direction = (worldPosition - nextPosition).normalized;
 
-			transform.position = worldPosition;
-			transform.rotation = Quaternion.LookRotation(direction);
+			transform.position += direction * speed;
+			//transform.rotation = Quaternion.LookRotation(direction);
 
 			// 3. 다음 레일로 이동
 			if (progress >= 1f)
 			{
 				progress = 0f;
-				currentRailPos = GetNextRailPos(currentRailPos, currentRailType);
-			}
+				currentRailPos = GetNextRailPos(direction);
+			} 
 		}
 
-		private Vector3Int GetNextRailPos(Vector3Int currentRailPos, ERailType currentRailType)
+		private Vector3Int GetNextRailPos(Vector3 moveDir)
 		{
-			return default;
+			return Vector3Int.FloorToInt(currentRailPos + moveDir);
 		}
 
 		private float GetRailLength(ERailType currentRailType)
 		{
-			return default;
+			return 1f;
 		}
 
 		Vector3 CalculateNextPosition(ERailType railType, float t)
 		{
 			Vector3 p0 = Vector3.zero, p1 = Vector3.zero, p2 = Vector3.zero;
 
-			switch (railType)
-			{
-				case ERailType.Straight_NS:
-					p0 = new Vector3(0, 0, 0.5f);
-					p1 = Vector3.zero;
-					p2 = new Vector3(0, 0, -0.5f);
-					break;
-				case ERailType.Straight_EW:
-					p0 = new Vector3(0.5f, 0, 0);
-					p1 = Vector3.zero;
-					p2 = new Vector3(-0.5f, 0, 0);
-					break;
-
-				case ERailType.Curve_NE:
-					p0 = new Vector3(0, 0, 0.5f);
-					p1 = Vector3.zero;
-					p2 = new Vector3(0.5f, 0, 0);
-					break;
-				case ERailType.Curve_ES:
-					p0 = new Vector3(0.5f, 0, 0);
-					p1 = Vector3.zero;
-					p2 = new Vector3(0, 0, -0.5f);
-					break;
-				case ERailType.Curve_SW:
-					p0 = new Vector3(0, 0, -0.5f);
-					p1 = Vector3.zero;
-					p2 = new Vector3(-0.5f, 0, 0);
-					break;
-				case ERailType.Curve_WN:
-					p0 = new Vector3(-0.5f, 0, 0);
-					p1 = Vector3.zero;
-					p2 = new Vector3(0, 0, 0.5f);
-					break;
-
-				case ERailType.Ascending_N:
-					p0 = new Vector3(0, 0, -0.5f);
-					p1 = new Vector3(0, 0.25f, 0);
-					p2 = new Vector3(0, 0.5f, 0.5f);
-					break;
-				case ERailType.Ascending_E:
-					p0 = new Vector3(-0.5f, 0, 0);
-					p1 = new Vector3(0, 0.25f, 0);
-					p2 = new Vector3(0.5f, 0.5f, 0);
-					break;
-				case ERailType.Ascending_S:
-					p0 = new Vector3(0, 0, 0.5f);
-					p1 = new Vector3(0, 0.25f, 0);
-					p2 = new Vector3(0, 0.5f, -0.5f);
-					break;
-				case ERailType.Ascending_W:
-					p0 = new Vector3(0.5f, 0, 0);
-					p1 = new Vector3(0, 0.25f, 0);
-					p2 = new Vector3(-0.5f, 0.5f, 0);
-					break;
-			}
-
+			RailVectors.GetPoints(railType, out p0, out p1, out p2);
+			p0 += currentRailPos;
+			p1 += currentRailPos;
+			p2 += currentRailPos;
 			return GetQuadraticBezierPoint(p0, p1, p2, t);
 		}
 
