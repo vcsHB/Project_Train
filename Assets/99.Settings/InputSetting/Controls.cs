@@ -67,7 +67,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""ZoomScroll"",
                     ""type"": ""Value"",
                     ""id"": ""a6b47e25-67b6-45ff-ba53-33fd46b272a0"",
-                    ""expectedControlType"": ""Delta"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true

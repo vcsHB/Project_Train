@@ -93,7 +93,7 @@ namespace Project_Train.Core.Input
 
 			public void OnZoomScroll(InputAction.CallbackContext context)
 			{
-				Events.Invoke("OnZoomScrollEvent", context.ReadValue<float>());
+				Events.Invoke("OnZoomScrollEvent", context.ReadValue<Vector2>());
 			}
 		}
 

@@ -311,6 +311,7 @@ MonoBehaviour:
   _structureLayer:
     serializedVersion: 2
     m_Bits: 1024
+  _isBuildMode: 0
 --- !u!1 &62626808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1996,12 +1997,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1151554455}
   _lookPinPosition: {fileID: 1082987476}
-  _clampVerticalMaxAngle: 60
+  _clampVerticalMaxAngle: 80
   _clampVerticalMinAngle: 10
   _sensitivity: 6
   _distance: 5
-  _minDistance: 2
-  _maxDistance: 15
+  _minZoomLevel: 2
+  _maxZoomLevel: 15
   _zoomSpeed: 2
 --- !u!1 &589778905
 GameObject:
@@ -9057,7 +9058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1098470973851856037, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00072820694
+      value: 0.00005327367
       objectReference: {fileID: 0}
     - target: {fileID: 1100570318766575306, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -9077,7 +9078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1284216981258431178, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00071433093
+      value: -0.0000012346152
       objectReference: {fileID: 0}
     - target: {fileID: 1468525863900489861, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -9363,10 +9364,42 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4134151985609733919, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134151985609733919, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134151985609733919, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134151985609733919, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4456054778988006640, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 838728597}
+    - target: {fileID: 4518046882248606217, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518046882248606217, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518046882248606217, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518046882248606217, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4839335564141232678, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9407,6 +9440,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5397022188687596591, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
+      propertyPath: _buildController
+      value: 
+      objectReference: {fileID: 53181585}
     - target: {fileID: 5485983423339980177, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
       propertyPath: m_Name
       value: InGameCanvas
@@ -9467,10 +9504,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7271659861452511029, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
-      propertyPath: _buildController
-      value: 
-      objectReference: {fileID: 53181585}
     - target: {fileID: 7297800977625475861, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

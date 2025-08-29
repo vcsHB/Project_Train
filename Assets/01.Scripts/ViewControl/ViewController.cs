@@ -1,4 +1,3 @@
-using System;
 using Project_Train.Core.Input;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -14,35 +13,33 @@ namespace Project_Train.ViewControl
         [Header("Rotation Setting")]
         [SerializeField] private float _clampVerticalMaxAngle = 80f;
         [SerializeField] private float _clampVerticalMinAngle = 80f;
-        [SerializeField] private float _sensitivity = 2f; // 회전 민감도
+        [SerializeField] private float _sensitivity = 2f; 
 
         [Header("Zoom Setting")]
-        [SerializeField] private float _distance = 5f; // 기본 카메라 거리
-        [SerializeField] private float _minDistance = 2f; // 최소 줌
-        [SerializeField] private float _maxDistance = 15f; // 최대 줌
-        [SerializeField] private float _zoomSpeed = 2f; // 줌 속도
+        [SerializeField] private float _distance = 5f; 
+        [SerializeField] private float _minZoomLevel = 2f; 
+        [SerializeField] private float _maxZoomLevel = 15f;
+        [SerializeField] private float _zoomSpeed = 2f; 
 
         private readonly string _inputHoldKey = "OnMouseMoveClickEvent";
         private readonly string _inputReleaseKey = "OnMouseMoveReleaseEvent";
-        private readonly string _inputZoomScollKey = "OnMouseScrollEvent";
+        private readonly string _inputZoomScollKey = "OnZoomScrollEvent";
 
         private bool _isHolding;
-        private float _yaw;   // 좌우 회전값
-        private float _pitch; // 상하 회전값
+        private float _yaw;  
+        private float _pitch;
 
         private void Awake()
         {
             InputReader.AddListener(_inputReleaseKey, HandleViewRelease);
             InputReader.AddListener(_inputHoldKey, HandleViewHold);
-            InputReader.AddListener<float>(_inputZoomScollKey, HandleScroll);
+            InputReader.AddListener<Vector2>(_inputZoomScollKey, HandleScroll);
         }
 
-        private void HandleScroll(float delta)
+        private void HandleScroll(Vector2 delta)
         {
-            _distance -= delta * _zoomSpeed;
-            _distance = Mathf.Clamp(_distance, _minDistance, _maxDistance);
-
-            UpdateCameraPosition();
+            float newZoomLevel = _camera.Lens.OrthographicSize - delta.y * _zoomSpeed;
+            _camera.Lens.OrthographicSize = Mathf.Clamp(newZoomLevel, _minZoomLevel, _maxZoomLevel);
         }
 
         private void Update()
@@ -65,13 +62,9 @@ namespace Project_Train.ViewControl
         {
             if (_lookPinPosition == null || _camera == null) return;
 
-            // 회전값으로 쿼터니언 생성
             Quaternion rotation = Quaternion.Euler(_pitch, _yaw, 0f);
 
-            // 중심 기준 카메라 위치 계산
-            Vector3 targetPos = _lookPinPosition.position - (rotation * Vector3.forward * _distance);
-
-            // 카메라 이동 & 중심 바라보기
+            Vector3 targetPos = _lookPinPosition.position - (rotation * Vector3.forward * 15f);
             _camera.transform.position = targetPos;
             _camera.transform.LookAt(_lookPinPosition.position);
         }
