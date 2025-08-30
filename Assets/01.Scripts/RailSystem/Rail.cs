@@ -27,6 +27,7 @@ namespace  Project_Train.RailSystem
 
 			Gizmos.color = Color.blue;
 			Gizmos.DrawLine(position + offset + p0,	position + offset + p1);
+			Gizmos.color = Color.red;
 			Gizmos.DrawLine(position + offset + p1, position + offset + p2);
 			Gizmos.color = Color.white;
 		}

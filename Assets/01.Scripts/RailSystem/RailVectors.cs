@@ -10,6 +10,7 @@ namespace Project_Train.RailSystem
 		private static readonly Dictionary<ERailType, (Vector3, Vector3, Vector3)> _railpoints = new()
 		{
 			{ ERailType.None, (Vector3.zero, Vector3.zero, Vector3.zero) },
+
 			{ ERailType.Straight_NS, (new Vector3(0, 0, 0.5f), Vector3.zero, new Vector3(0, 0, -0.5f))},
 			{ ERailType.Straight_EW, (new Vector3(0.5f, 0, 0), Vector3.zero, new Vector3(-0.5f, 0, 0))},
 
@@ -30,6 +31,17 @@ namespace Project_Train.RailSystem
 			p0 = points.Item1;
 			p1 = points.Item2;
 			p2 = points.Item3;
+		}
+
+		public static Vector3[] GetPoints(ERailType railType)
+		{
+			Vector3[] result = new Vector3[3];
+			var points = _railpoints[railType];
+			result[0] = points.Item1;
+			result[1] = points.Item2;
+			result[2] = points.Item3;
+
+			return result;
 		}
 	}
 }
