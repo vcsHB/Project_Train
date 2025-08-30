@@ -33,12 +33,12 @@ namespace Project_Train.UIManage
             OnPanelEnabledEvent?.Invoke(this);
             _canvasGroup.DOFade(1f, _openDuration).OnComplete(() =>
             {
-
-
+                SetInteractable(true);
             }).SetUpdate(_useUnscaledTime);
         }
         public virtual void Close()
         {
+            SetInteractable(false);
             _canvasGroup.DOFade(0f, _closeDuration).OnComplete(() =>
             {
                 IsPanelEnabled = false;
