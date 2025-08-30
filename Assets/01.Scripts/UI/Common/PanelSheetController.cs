@@ -6,14 +6,19 @@ namespace Project_Train.UIManage
 {
     public class PanelSheetController : MonoBehaviour
     {
+        [Header("Essential Settings")]
         [SerializeField] private FadePanel _initPanel;
+        [SerializeField] private FadePanel _outermostPanel;
         [SerializeField] private FadePanel[] _panels;
         private Stack<FadePanel> _enabledPanelOrder = new();
 
-        private readonly string _panelCancelInputKey = "EscInputKey";
+        private readonly string _panelCancelInputKey = "OnCancelEvent";
 
         private void Awake()
         {
+            _outermostPanel.OnPanelEnabledEvent += HandlePanelOpened;
+            _outermostPanel.OnPanelDisabledEvent += HandlePanelClosed;
+            
             for (int i = 0; i < _panels.Length; i++)
             {
                 _panels[i].OnPanelEnabledEvent += HandlePanelOpened;
@@ -22,17 +27,22 @@ namespace Project_Train.UIManage
             _enabledPanelOrder.Push(_initPanel);
             _initPanel.Open();
 
-            InputReader.AddListener()
+            InputReader.AddListener(_panelCancelInputKey, CLoseCurrentPanel);
         }
 
         private void CLoseCurrentPanel()
         {
             if (_enabledPanelOrder.Count > 1)
             {
-                FadePanel currentPanel =_enabledPanelOrder.Pop();
+                FadePanel currentPanel = _enabledPanelOrder.Pop();
                 currentPanel.Close();
                 _enabledPanelOrder.Peek().Open();
 
+            }
+            else
+            {
+                _outermostPanel.Open();
+                _enabledPanelOrder.Push(_outermostPanel);
             }
         }
 

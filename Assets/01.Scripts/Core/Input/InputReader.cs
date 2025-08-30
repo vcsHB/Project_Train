@@ -101,6 +101,8 @@ namespace Project_Train.Core.Input
 		{
 			public void OnCancel(InputAction.CallbackContext context)
 			{
+				if (context.performed)
+					Events.Invoke("OnCancelEvent");
 			}
 
 			public void OnClick(InputAction.CallbackContext context)

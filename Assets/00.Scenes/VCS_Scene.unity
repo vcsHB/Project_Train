@@ -3021,6 +3021,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2133256101}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &829403043 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4970541785004608603, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
+  m_PrefabInstance: {fileID: 6768868688879479029}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c6ac7a48f5476d4ca282841e55b9fa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &838728596
 GameObject:
   m_ObjectHideFlags: 0
@@ -4081,9 +4092,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initPanel: {fileID: 1507308555}
+  _outermostPanel: {fileID: 829403043}
   _panels:
-  - {fileID: 1507308555}
   - {fileID: 551238953}
+  - {fileID: 1369571999}
 --- !u!1 &1114890481
 GameObject:
   m_ObjectHideFlags: 0
@@ -5423,6 +5435,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1369571999 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6740448597285029516, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
+  m_PrefabInstance: {fileID: 6768868688879479029}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0b7726ea6dfc6e4282cb11c9c06bc39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1382271791
 GameObject:
   m_ObjectHideFlags: 0
@@ -9507,6 +9530,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4970541785004608603, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
+      propertyPath: _useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5286997105497260111, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9594,6 +9621,10 @@ PrefabInstance:
     - target: {fileID: 5757470720936921700, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
       propertyPath: m_BlocksRaycasts
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6740448597285029516, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
+      propertyPath: _useUnscaledTime
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7237124527220655383, guid: 492c551aae3e2b141821a32afb713e2d, type: 3}
       propertyPath: m_AnchorMax.y
