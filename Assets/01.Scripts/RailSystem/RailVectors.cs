@@ -5,24 +5,25 @@ namespace Project_Train.RailSystem
 {
 	public static class RailVectors
 	{
+		public static float RailLength => 4f;
 		public static Vector3 railOffset => Vector3.up;
 
 		private static readonly Dictionary<ERailType, (Vector3, Vector3, Vector3)> _railpoints = new()
 		{
 			{ ERailType.None, (Vector3.zero, Vector3.zero, Vector3.zero) },
 
-			{ ERailType.Straight_NS, (new Vector3(0, 0, 0.5f), Vector3.zero, new Vector3(0, 0, -0.5f))},
-			{ ERailType.Straight_EW, (new Vector3(0.5f, 0, 0), Vector3.zero, new Vector3(-0.5f, 0, 0))},
+			{ ERailType.Straight_NS, (new Vector3(0, 0, RailLength * 0.5f), Vector3.zero, new Vector3(0, 0, RailLength * -0.5f))},
+			{ ERailType.Straight_EW, (new Vector3(RailLength * 0.5f, 0, 0), Vector3.zero, new Vector3(RailLength * -0.5f, 0, 0))},
 
-			{ ERailType.Curve_NE, (new Vector3(0, 0, 0.5f),  Vector3.zero, new Vector3(0.5f, 0, 0))},
-			{ ERailType.Curve_ES, (new Vector3(0.5f, 0, 0),  Vector3.zero, new Vector3(0, 0, -0.5f))},
-			{ ERailType.Curve_SW, (new Vector3(0, 0, -0.5f), Vector3.zero, new Vector3(-0.5f, 0, 0))},
-			{ ERailType.Curve_WN, (new Vector3(-0.5f, 0, 0), Vector3.zero, new Vector3(0, 0, 0.5f))},
+			{ ERailType.Curve_NE, (new Vector3(0, 0, RailLength * 0.5f),  Vector3.zero, new Vector3(RailLength * 0.5f, 0, 0))},
+			{ ERailType.Curve_ES, (new Vector3(RailLength * 0.5f, 0, 0),  Vector3.zero, new Vector3(0, 0, RailLength * -0.5f))},
+			{ ERailType.Curve_SW, (new Vector3(0, 0, RailLength * -0.5f), Vector3.zero, new Vector3(RailLength * -0.5f, 0, 0))},
+			{ ERailType.Curve_WN, (new Vector3(RailLength * -0.5f, 0, 0), Vector3.zero, new Vector3(0, 0, RailLength * 0.5f))},
 
-			{ ERailType.Ascending_N, (new Vector3(0, 0, -0.5f), new Vector3(0, 0.5f, 0), new Vector3(0, 1f, 0.5f))},
-			{ ERailType.Ascending_E, (new Vector3(-0.5f, 0, 0), new Vector3(0, 0.5f, 0), new Vector3(0.5f, 1f, 0))},
-			{ ERailType.Ascending_S, (new Vector3(0, 0, 0.5f),	new Vector3(0, 0.5f, 0), new Vector3(0, 1f, -0.5f))},
-			{ ERailType.Ascending_W, (new Vector3(0.5f, 0, 0),	new Vector3(0, 0.5f, 0), new Vector3(-0.5f, 1f, 0))},
+			{ ERailType.Ascending_N, (new Vector3(0, 0, RailLength * -0.5f), new Vector3(0, 0.5f, 0), new Vector3(0, 1f, RailLength * 0.5f))},
+			{ ERailType.Ascending_E, (new Vector3(RailLength * -0.5f, 0, 0), new Vector3(0, 0.5f, 0), new Vector3(RailLength * 0.5f, 1f, 0))},
+			{ ERailType.Ascending_S, (new Vector3(0, 0, RailLength * 0.5f),  new Vector3(0, 0.5f, 0), new Vector3(0, 1f, RailLength * -0.5f))},
+			{ ERailType.Ascending_W, (new Vector3(RailLength * 0.5f, 0, 0),  new Vector3(0, 0.5f, 0), new Vector3(RailLength * -0.5f, 1f, 0))},
 		};
 
 		public static void GetPoints(ERailType railType, out Vector3 p0, out Vector3 p1, out Vector3 p2)
