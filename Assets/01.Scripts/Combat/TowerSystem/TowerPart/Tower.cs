@@ -4,7 +4,9 @@ namespace Project_Train.Combat.TowerSystem
 {
     public class Tower : MonoBehaviour
     {
-        [SerializeField] private TowerBase _base;
+        [SerializeField] private TowerHead _base;
+        [SerializeField] private TargetDetector _targetDetector;
+        
         
         //
     }
