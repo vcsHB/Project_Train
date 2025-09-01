@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Project_Train.UIManage.InGameSceneUI.BuildUI
 {
-    public class BuildPanel : FadePanel
+    public class BuildPanel : GameUIPanel
     {
         [SerializeField] private BuildController _buildController;
         [Header("Detail Information Panel Setting")]

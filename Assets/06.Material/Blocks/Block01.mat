@@ -56,7 +56,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Glossiness: 0.5
-    - _Index: 0
+    - _Index: 1
     - _Metallic: 0
     - _QueueControl: 0
     - _QueueOffset: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Project_Train.UIManage.InGameSceneUI
 {
 
-    public class DatabasePanel : FadePanel
+    public class DatabasePanel : GameUIPanel
     {
         [SerializeField] private DatabaseListPanel _listPanel;
         [SerializeField] private DatabaseDetailPanel _detailPanel;
