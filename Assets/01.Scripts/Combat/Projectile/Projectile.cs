@@ -17,6 +17,7 @@ namespace Project_Train.Combat.ProjectileSystem
         [SerializeField] protected float _speed;
         [SerializeField, ReadOnly] protected Vector3 _originPosition;
         [SerializeField, ReadOnly] protected Vector3 _direction;
+        protected Transform _forceTargetTrm;
 
         protected bool _isProjectileEnable;
         protected float _fireTime;
@@ -37,11 +38,19 @@ namespace Project_Train.Combat.ProjectileSystem
 
         public virtual void OnPush()
         {
+            _forceTargetTrm = null;
         }
 
+        /// <summary>
+        /// Set ForceTargeting To newTargetTrm
+        /// </summary>
+        public void SetForceTarget(Transform newTargetTrm)
+        {
+            _forceTargetTrm = newTargetTrm;
+        }
 
         /// <summary>
-        /// 
+        /// Shoot Projectile
         /// </summary>
         /// <param name="originPosition">
         /// launch start point
