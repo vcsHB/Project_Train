@@ -1,33 +1,36 @@
+using System;
 using UnityEngine;
 namespace Project_Train.Combat.TowerSystem
 {
     public class TowerHead : MonoBehaviour
     {
+        [SerializeField] private GunBarrelPart _gunBarrelPart;
         [SerializeField] private float _aimingSpeed = 5f;
         [SerializeField] private float _aimAllowRange = 2f;
+        private TargetData _targetData;
 
         /// <summary>
-        /// TowerHead
+        /// TowerHead Rotation To Target 
         /// </summary>
-        /// <param name="direction">목표 위치 - 현재 위치 (월드 기준 방향 벡터)</param>
-        /// <returns>총구가 목표 각도 범위 안에 있으면 true</returns>
-        public bool SetAimRotation(Vector3 direction)
+        /// <param name="targetPosiotion">Direction to Target (TargetLocation - CurrentLocation)</param>
+        /// <returns>true : Aim Aligned</returns>
+        public bool SetAimRotation(Vector3 targetPosition)
         {
-            direction.y = 0f;
-            if (direction.sqrMagnitude < 0.001f)
-                return false; // 목표가 없는 경우
+            Quaternion targetRotation = Quaternion.LookRotation(targetPosition, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _aimingSpeed * Time.deltaTime);
 
-            Quaternion targetRot = Quaternion.LookRotation(direction, Vector3.up);
+            return Quaternion.Angle(transform.rotation, targetRotation) < _aimAllowRange;
+        }
 
-            transform.rotation = Quaternion.RotateTowards(
-                transform.rotation,
-                targetRot,
-                _aimingSpeed * Time.deltaTime
-            );
+        public void Initialize(TargetData targetData)
+        {
+            _targetData = targetData;
+            _gunBarrelPart.Initialize(targetData);
+        }
 
-            float angle = Quaternion.Angle(transform.rotation, targetRot);
-
-            return angle <= _aimAllowRange;
+        public void Shoot()
+        {
+            _gunBarrelPart.Shoot();
         }
     }
 }

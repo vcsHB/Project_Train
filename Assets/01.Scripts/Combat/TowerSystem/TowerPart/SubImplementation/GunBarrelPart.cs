@@ -2,8 +2,18 @@ using UnityEngine;
 namespace Project_Train.Combat.TowerSystem
 {
 
-    public class GunBarrelPart : TowerPart
+    public abstract class GunBarrelPart : TowerPart
     {
+        [Space(5f)]
+        [Header("GunBarrel Settings")]
+        protected TargetData _targetData;
+        public virtual void Initialize(TargetData targetData)
+        {
+            _targetData = targetData;
+            
+        }
+        public abstract void Shoot();
         
+
     }
 }

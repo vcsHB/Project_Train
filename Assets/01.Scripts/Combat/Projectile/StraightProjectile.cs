@@ -32,7 +32,7 @@ namespace Project_Train.Combat.ProjectileSystem
                 _direction.Normalize();
             }
             _originPosition = originPosition;
-            _speed = speed;
+            _speed = speed; 
             _lifeTime = lifeTime;
             _caster.ClearCastRecord();
 

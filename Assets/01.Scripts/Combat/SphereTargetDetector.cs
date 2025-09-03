@@ -5,22 +5,28 @@ namespace Project_Train.Combat
     public class SphereTargetDetector : TargetDetector
     {
         [SerializeField] private float _detectRadius = 5f;
-        protected Collider[] targets;
+        protected Collider[] _targets;
+
+        private void Awake()
+        {
+            _targets = new Collider[_detectMaxTargetAmount];
+        }
+
 
         public override Collider[] DetectAllTargets()
         {
-            
-            int amount = Physics.OverlapSphereNonAlloc(CenterPosition, _detectRadius, targets, _detectLayers);
-            if (amount == 0) return null;
-            return targets;
+
+            _detectAmount = Physics.OverlapSphereNonAlloc(CenterPosition, _detectRadius, _targets, _detectLayers);
+            if (_detectAmount == 0) return null;
+            return _targets;
 
         }
 
         public override Collider DetectTarget()
         {
-            int amount = Physics.OverlapSphereNonAlloc(CenterPosition, _detectRadius, targets, _detectLayers);
-            if (amount == 0) return null;
-            return targets[0];
+            _detectAmount = Physics.OverlapSphereNonAlloc(CenterPosition, _detectRadius, _targets, _detectLayers);
+            if (_detectAmount == 0) return null;
+            return _targets[0];
         }
 
 
@@ -29,6 +35,8 @@ namespace Project_Train.Combat
         protected virtual void OnDrawGizmos()
         {
             if (!_useGizmos) return;
+            Gizmos.color = new Color(_gizmosColor.r, _gizmosColor.g, _gizmosColor.b, 0.2f);
+            Gizmos.DrawSphere(CenterPosition, _detectRadius);
             Gizmos.color = _gizmosColor;
             Gizmos.DrawWireSphere(CenterPosition, _detectRadius);
         }
