@@ -12,7 +12,6 @@ namespace Project_Train.Combat.ProjectileSystem
         {
             TargetProjectile newProjectile = gameObject.Pop(_projectilePoolingType, transform.position, Quaternion.identity) as TargetProjectile; // TODO: Pooling
             newProjectile.SetForceTarget(target);
-            Debug.Log("ASD");
             newProjectile.Shoot(transform.position + _offset, target.position, _speed, _lifeTime * distance * _lifeTimeMultiplier);
 
         }

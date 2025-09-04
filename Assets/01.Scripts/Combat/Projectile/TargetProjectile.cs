@@ -1,5 +1,5 @@
-using DG.Tweening;
 using UnityEngine;
+
 namespace Project_Train.Combat.ProjectileSystem
 {
 
@@ -18,7 +18,7 @@ namespace Project_Train.Combat.ProjectileSystem
             _lifeTime = lifeTime;
             _originPosition = originPosition;
             _isProjectileEnable = true;
-            
+
             if (_forceTargetTrm == null)
                 Debug.LogError("[Missing Target Error] Must Be Bind ForceTargetTrm to TargetProjectile.");
 

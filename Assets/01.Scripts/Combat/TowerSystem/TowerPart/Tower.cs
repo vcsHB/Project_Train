@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 namespace Project_Train.Combat.TowerSystem
 {
     [System.Serializable]
@@ -12,6 +13,7 @@ namespace Project_Train.Combat.TowerSystem
     }
     public abstract class Tower : MonoBehaviour
     {
+        public UnityEvent OnAttackUnityEvent;
         public event Action OnAttackEvent;
         public event Action OnTargetDetectedEvent;
 
@@ -56,7 +58,7 @@ namespace Project_Train.Combat.TowerSystem
                     {
                         _nextFireTime = Time.time + _fireTerm;
                         TryShoot();
-
+                        InvokeAttackEvent();
                     }
                 }
             }
@@ -72,6 +74,7 @@ namespace Project_Train.Combat.TowerSystem
         protected void InvokeAttackEvent()
         {
             OnAttackEvent?.Invoke();
+            OnAttackUnityEvent?.Invoke();
         }
 
         protected void InvokeTargetDetectedEvent()

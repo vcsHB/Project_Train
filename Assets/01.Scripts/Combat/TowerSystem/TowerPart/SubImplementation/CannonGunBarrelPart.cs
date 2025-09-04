@@ -5,7 +5,6 @@ namespace Project_Train.Combat.TowerSystem
 
     public class CannonGunBarrelPart : GunBarrelPart
     {
-        [SerializeField] protected float _fireTerm;
         [SerializeField] protected TargetProjectileShooter _shooter;
         public override void Shoot()
         {
