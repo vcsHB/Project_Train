@@ -10,10 +10,15 @@ namespace Project_Train.Combat.TowerSystem
         public virtual void Initialize(TargetData targetData)
         {
             _targetData = targetData;
-            
+
         }
         public abstract void Shoot();
-        
+
+        public virtual void SetVerticalAngle(float angle)
+        {
+            transform.localRotation = Quaternion.Euler(-angle, 0f, 0f);
+        }
+
 
     }
 }
