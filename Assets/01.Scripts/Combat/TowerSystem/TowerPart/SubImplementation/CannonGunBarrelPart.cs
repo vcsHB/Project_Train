@@ -9,7 +9,7 @@ namespace Project_Train.Combat.TowerSystem
         [SerializeField] protected TargetProjectileShooter _shooter;
         public override void Shoot()
         {
-            _shooter.Shoot(_targetData.targetTransform);
+            _shooter.Shoot(_targetData.targetTransform, _targetData.distanceToTarget);
         }
     }
 }
