@@ -9,9 +9,67 @@ namespace Project_Train.RailSystem
 		private float _progress = 0f;
 		private bool _isReversedRail = false;
 
-		private void Awake()
+		private void Start()
+		{
+			InitializeStartPosition();
+		}
+
+		private void InitializeStartPosition()
 		{
 			currentRailPosition = Vector3Int.FloorToInt(transform.position - RailVectors.railOffset);
+
+			int railHalfLength = (int)RailVectors.RailLength / 2;
+
+			if (RailManager.Instance.GetRailType(currentRailPosition) == ERailType.None)
+			{
+				for (int x = -railHalfLength; x < railHalfLength; x += railHalfLength)
+				{
+					for (int y = -railHalfLength; y < railHalfLength; y += railHalfLength)
+					{
+						for (int z = -railHalfLength; z < railHalfLength; z += railHalfLength)
+						{
+							var newSelectedRailPos = currentRailPosition + new Vector3Int(x, y, z);
+							var newSelectedRailType = RailManager.Instance.GetRailType(newSelectedRailPos);
+							if (newSelectedRailType != ERailType.None)
+							{
+								InitializeProcess(newSelectedRailPos, newSelectedRailType);
+								return;
+							}
+						}
+					}
+				}
+			}
+			else
+			{
+				var newSelectedRailType = RailManager.Instance.GetRailType(currentRailPosition);
+				InitializeProcess(currentRailPosition, newSelectedRailType);
+			}
+		}
+
+		private void InitializeProcess(Vector3Int newSelectedRailPos, ERailType newSelectedRailType)
+		{
+			var t = (currentRailPosition - newSelectedRailPos);
+			RailVectors.GetPoints(newSelectedRailType, out Vector3 p0, out Vector3 p1, out Vector3 p2);
+
+			_progress = GetTForQuadraticBezier(p0, p1, p2, t);
+
+			if (_progress < 0.0f)
+			{
+				if (Vector3.Distance(currentRailPosition, newSelectedRailPos) < 0.1f)
+				{
+					_isReversedRail = false; // 정방향 연결
+					_progress = 0f;
+				}
+				else if (Vector3.Distance(currentRailPosition, newSelectedRailPos) < 0.1f)
+				{
+					_isReversedRail = true; // 역방향 연결
+					_progress = 1f;
+				}
+			}
+
+			Debug.Log(_progress);
+
+			currentRailPosition = newSelectedRailPos;
 		}
 
 		void Update()
@@ -27,7 +85,7 @@ namespace Project_Train.RailSystem
 			}
 
 			// 1. 진행도 업데이트
-			float railLength = GetRailLength(currentRailType);
+			float railLength = RailVectors.RailLength;
 			float step = (speed / railLength) * Time.deltaTime;
 			_progress += _isReversedRail ? -step : step;
 
@@ -35,13 +93,13 @@ namespace Project_Train.RailSystem
 			if (_progress >= 1f && !_isReversedRail)
 			{
 				_progress = 1f;
-				SetPositionAndRotation(currentRailType, _progress); 
+				SetPositionAndRotation(currentRailType, _progress);
 				TransitionToNextRail();
 			}
 			else if (_progress <= 0f && _isReversedRail)
 			{
 				_progress = 0f;
-				SetPositionAndRotation(currentRailType, _progress); 
+				SetPositionAndRotation(currentRailType, _progress);
 				TransitionToNextRail();
 			}
 			else
@@ -98,7 +156,7 @@ namespace Project_Train.RailSystem
 				exitDirection = (p0 - p1).normalized; // t=0에서의 접선 방향
 			}
 
-			currentRailPosition += Vector3Int.RoundToInt(exitDirection);
+			currentRailPosition += Vector3Int.RoundToInt(exitDirection * RailVectors.RailLength);
 
 			var currentRailType = RailManager.Instance.GetRailType(currentRailPosition);
 			if (currentRailType == ERailType.None)
@@ -130,10 +188,40 @@ namespace Project_Train.RailSystem
 			}
 		}
 
-		private float GetRailLength(ERailType currentRailType)
+		public static float GetTForQuadraticBezier(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p)
 		{
-			// TODO: 베지어 곡선의 길이를 계산하는 로직 추가
-			return 1f;
+			// 베지어 곡선 공식을 t에 대한 벡터 방정식 At^2 + Bt + C = 0 형태로 변환합니다.
+			Vector3 A = p0 - 2 * p1 + p2;
+			Vector3 B = 2 * (p1 - p0);
+			Vector3 C = p0 - p;
+
+			// A의 크기가 매우 작으면 곡선이 아닌 직선에 가깝습니다.
+			if (A.sqrMagnitude < 0.0001f)
+			{
+				if (B.sqrMagnitude < 0.0001f) return 0.0f;
+				float t = -Vector3.Dot(B, C) / B.sqrMagnitude;
+				return t;
+			}
+
+			// 벡터 방정식의 양변에 A를 내적하여 스칼라 2차 방정식으로 변환합니다.
+			float a = Vector3.Dot(A, A);
+			float b = Vector3.Dot(A, B);
+			float c = Vector3.Dot(A, C);
+
+			float discriminant = b * b - 4 * a * c;
+			if (discriminant < 0)
+			{
+				return -1.0f;
+			}
+
+			float sqrtDiscriminant = Mathf.Sqrt(discriminant);
+			float t1 = (-b + sqrtDiscriminant) / (2 * a);
+			float t2 = (-b - sqrtDiscriminant) / (2 * a);
+
+			if (t1 >= 0 && t1 <= 1) return t1;
+			if (t2 >= 0 && t2 <= 1) return t2;
+
+			return -1.0f;
 		}
 
 		Vector3 GetQuadraticBezierPoint(Vector3 p0, Vector3 p1, Vector3 p2, float t)
