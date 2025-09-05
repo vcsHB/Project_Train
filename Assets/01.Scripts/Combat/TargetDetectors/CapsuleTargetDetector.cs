@@ -2,10 +2,10 @@ using UnityEngine;
 namespace Project_Train.Combat
 {
 
-    public class CapsuleDetector : TargetDetector
+    public class CapsuleTargetDetector : TargetDetector
     {
-        [SerializeField] private float _detectRadius = 5f;
-        [SerializeField] private float _detectHeight = 20f;
+        [SerializeField] protected float _detectRadius = 5f;
+        [SerializeField] protected float _detectHeight = 20f;
         protected Collider[] targets;
 
         public override Collider[] DetectAllTargets()
@@ -27,6 +27,22 @@ namespace Project_Train.Combat
             if (amount == 0) return null;
             return targets[0];
         }
+
+#if UNITY_EDITOR
+
+
+        protected virtual void OnDrawGizmosSelected()
+        {
+            if (!_useGizmos) return;
+
+            UnityEditor.Handles.color = _gizmosColor;
+            Color innerColor = _gizmosColor;
+            innerColor.a = 0.2f;
+            UnityEditor.Handles.DrawWireDisc(CenterPosition, Vector3.up, _detectRadius);
+            UnityEditor.Handles.color = innerColor;
+            UnityEditor.Handles.DrawSolidDisc(CenterPosition, Vector3.up, _detectRadius);
+        }
+#endif
 
 
     }
