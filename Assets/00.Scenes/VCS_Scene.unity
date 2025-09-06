@@ -2314,7 +2314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &626738092
 Transform:
   m_ObjectHideFlags: 0
@@ -3117,7 +3117,7 @@ GameObject:
   - component: {fileID: 822804725}
   - component: {fileID: 822804724}
   - component: {fileID: 822804723}
-  m_Layer: 2
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7868,17 +7868,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1736698225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61f42864b29f0a449842e88715ef14e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fd4b5622f7a4804cb7e12a74a99b843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _detectLayers:
     serializedVersion: 2
     m_Bits: 2048
-  _detectOffset: {x: 0, y: 0.2, z: 0}
+  _detectOffset: {x: 0, y: 0, z: 0}
   _detectMaxTargetAmount: 4
   _useGizmos: 1
   _gizmosColor: {r: 1, g: 0, b: 0, a: 1}
   _detectRadius: 5
+  _detectHeight: 20
+  _useDistanceIgnore: 0
+  _ignoreDistanceRatio: 0.15
+  _ignoreGizmosColor: {r: 0, g: 1, b: 1, a: 1}
+  _detectObstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1739787141
 GameObject:
   m_ObjectHideFlags: 0
