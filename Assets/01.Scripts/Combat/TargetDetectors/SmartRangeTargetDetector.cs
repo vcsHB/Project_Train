@@ -1,6 +1,5 @@
 using Project_Train.Core.Attribute;
 using UnityEngine;
-using System.Collections.Generic;
 
 namespace Project_Train.Combat.TargetDetectors
 {
@@ -16,8 +15,8 @@ namespace Project_Train.Combat.TargetDetectors
         [SerializeField] private LayerMask _detectObstacleLayer;
 
         // Inner Caching Arrays
-        private RaycastHit[] _raycastHits = new RaycastHit[1]; 
-        private Collider[] _validTargets = new Collider[32]; 
+        private RaycastHit[] _raycastHits = new RaycastHit[1];
+        private Collider[] _validTargets = new Collider[32];
 
         private int _validTargetCount = 0;
 
@@ -27,19 +26,19 @@ namespace Project_Train.Combat.TargetDetectors
 
             Vector3 bottom = CenterPosition + new Vector3(0f, -(_detectHeight * 0.5f), 0f);
             Vector3 top = CenterPosition + new Vector3(0f, _detectHeight * 0.5f, 0f);
+            _detectAmount = Physics.OverlapCapsuleNonAlloc(bottom, top, _detectRadius, _targets, _detectLayers);
+            Debug.Log("Detected" + _detectAmount);
+            if (_detectAmount == 0) return null;
 
-            int count = Physics.OverlapCapsuleNonAlloc(bottom, top, _detectRadius, targets, _detectLayers);
-            if (count == 0) return null;
-
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < _detectAmount; i++)
             {
-                Collider collider = targets[i];
+                Collider collider = _targets[i];
                 if (collider == null) continue;
 
-                Vector3 dir = collider.bounds.center - CenterPosition;
+                Vector3 dir = collider.transform.position - CenterPosition;
                 float sqrDist = dir.sqrMagnitude;
 
-                if (_useDistanceIgnore && sqrDist < (_detectRadius * _ignoreDistanceRatio) * (_detectRadius * _ignoreDistanceRatio))
+                if (_useDistanceIgnore && sqrDist < _detectRadius * _ignoreDistanceRatio * (_detectRadius * _ignoreDistanceRatio))
                     continue;
 
                 dir.Normalize();
@@ -51,11 +50,12 @@ namespace Project_Train.Combat.TargetDetectors
                 {
                     if (_validTargetCount < _validTargets.Length)
                         _validTargets[_validTargetCount++] = collider;
+                    Debug.Log("ADD");
                 }
             }
 
             if (_validTargetCount == 0) return null;
-
+            Debug.Log("asdasd");
             Collider[] result = new Collider[_validTargetCount];
             for (int i = 0; i < _validTargetCount; i++)
                 result[i] = _validTargets[i];

@@ -6,16 +6,21 @@ namespace Project_Train.Combat
     {
         [SerializeField] protected float _detectRadius = 5f;
         [SerializeField] protected float _detectHeight = 20f;
-        protected Collider[] targets;
+        protected Collider[] _targets;
+
+        private void Awake()
+        {
+            _targets = new Collider[_detectMaxTargetAmount];
+        }
 
         public override Collider[] DetectAllTargets()
         {
 
             Vector3 bottom = CenterPosition + new Vector3(0f, -(_detectHeight * 0.5f), 0f);
             Vector3 top = CenterPosition + new Vector3(0f, _detectHeight * 0.5f, 0f);
-            int amount = Physics.OverlapCapsuleNonAlloc(bottom, top, _detectRadius, targets, _detectLayers);
+            int amount = Physics.OverlapCapsuleNonAlloc(bottom, top, _detectRadius, _targets, _detectLayers);
             if (amount == 0) return null;
-            return targets;
+            return _targets;
 
         }
 
@@ -23,9 +28,9 @@ namespace Project_Train.Combat
         {
             Vector3 bottom = CenterPosition + new Vector3(0f, -(_detectHeight * 0.5f), 0f);
             Vector3 top = CenterPosition + new Vector3(0f, _detectHeight * 0.5f, 0f);
-            int amount = Physics.OverlapCapsuleNonAlloc(bottom, top, _detectRadius, targets, _detectLayers);
+            int amount = Physics.OverlapCapsuleNonAlloc(bottom, top, _detectRadius, _targets, _detectLayers);
             if (amount == 0) return null;
-            return targets[0];
+            return _targets[0];
         }
 
 #if UNITY_EDITOR
