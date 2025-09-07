@@ -12,12 +12,14 @@ namespace Project_Train.Combat.TargetDetectors
         [ShowIf(nameof(_useDistanceIgnore)), SerializeField]
         private Color _ignoreGizmosColor = Color.cyan;
 
-        [SerializeField] private LayerMask _detectObstacleLayer;
+        [Space(10f)]
+        [SerializeField] private bool _useDetectObstacle;
+        [ShowIf(nameof(_useDetectObstacle)), SerializeField] 
+        private LayerMask _detectObstacleLayer;
 
         // Inner Caching Arrays
         private RaycastHit[] _raycastHits = new RaycastHit[1];
         private Collider[] _validTargets = new Collider[32];
-
         private int _validTargetCount = 0;
 
         public override Collider[] DetectAllTargets()
@@ -25,9 +27,9 @@ namespace Project_Train.Combat.TargetDetectors
             _validTargetCount = 0;
 
             Vector3 bottom = CenterPosition + new Vector3(0f, -(_detectHeight * 0.5f), 0f);
-            Vector3 top = CenterPosition + new Vector3(0f, _detectHeight * 0.5f, 0f);
+            Vector3 top    = CenterPosition + new Vector3(0f,  (_detectHeight * 0.5f), 0f);
+
             _detectAmount = Physics.OverlapCapsuleNonAlloc(bottom, top, _detectRadius, _targets, _detectLayers);
-            Debug.Log("Detected" + _detectAmount);
             if (_detectAmount == 0) return null;
 
             for (int i = 0; i < _detectAmount; i++)
@@ -38,24 +40,32 @@ namespace Project_Train.Combat.TargetDetectors
                 Vector3 dir = collider.transform.position - CenterPosition;
                 float sqrDist = dir.sqrMagnitude;
 
-                if (_useDistanceIgnore && sqrDist < _detectRadius * _ignoreDistanceRatio * (_detectRadius * _ignoreDistanceRatio))
+                // Sequence : Check Distance
+                float ignoreRadius = _detectRadius * _ignoreDistanceRatio;
+                if (_useDistanceIgnore && sqrDist < ignoreRadius * ignoreRadius)
                     continue;
 
-                dir.Normalize();
+                // Sequence : Check Obstacles
+                bool blocked = false;
+                if (_useDetectObstacle)
+                {
+                    float distance = Mathf.Sqrt(sqrDist);
+                    dir.Normalize();
+                    int hitCount = Physics.RaycastNonAlloc(
+                        CenterPosition, dir, _raycastHits, distance, _detectObstacleLayer
+                    );
+                    blocked = hitCount > 0;
+                }
 
-                float distance = Mathf.Sqrt(sqrDist);
-                int hitCount = Physics.RaycastNonAlloc(CenterPosition, dir, _raycastHits, distance, _detectObstacleLayer);
-
-                if (hitCount == 0)
+                if (!blocked)
                 {
                     if (_validTargetCount < _validTargets.Length)
                         _validTargets[_validTargetCount++] = collider;
-                    Debug.Log("ADD");
                 }
             }
 
             if (_validTargetCount == 0) return null;
-            Debug.Log("asdasd");
+
             Collider[] result = new Collider[_validTargetCount];
             for (int i = 0; i < _validTargetCount; i++)
                 result[i] = _validTargets[i];

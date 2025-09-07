@@ -2,6 +2,6 @@ namespace Crogen.CrogenPooling
 {
     public enum InGamePoolBasePoolType
     {
-        CannonProjectile, 
+        CannonProjectile, RocketProjectile, 
     }
 }

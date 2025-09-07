@@ -11,6 +11,7 @@ namespace Project_Train.Combat.ProjectileSystem
         {
             StraightProjectile newProjectile = new(); // TODO: Pooling
             newProjectile.Shoot(transform.position + _offset, targetInfo, _speed, _lifeTime);
+            OnFireEvent?.Invoke();
 
         }
         

@@ -16,3 +16,6 @@ MonoBehaviour:
   - poolType: CannonProjectile
     prefab: {fileID: 3488974446004042733, guid: 6a1f7beb6ee1a104eaa311c3e530da0d, type: 3}
     poolCount: 10
+  - poolType: RocketProjectile
+    prefab: {fileID: 7081693654467263399, guid: 6051e340cd25633458495cd134ce3ee5, type: 3}
+    poolCount: 10
