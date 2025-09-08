@@ -19,3 +19,9 @@ MonoBehaviour:
   - poolType: RocketProjectile
     prefab: {fileID: 7081693654467263399, guid: 6051e340cd25633458495cd134ce3ee5, type: 3}
     poolCount: 10
+  - poolType: MiddleExplosion
+    prefab: {fileID: 6144465152471610567, guid: 5ccaca44dddd88944b08588860298ad1, type: 3}
+    poolCount: 10
+  - poolType: SmallExplosion
+    prefab: {fileID: 4422283219299332822, guid: 5b8b57c7df4cdd345aeb2c304bfd64da, type: 3}
+    poolCount: 10

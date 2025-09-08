@@ -16,6 +16,7 @@ namespace Project_Train.Combat.ProjectileSystem
                 Debug.LogError("ProjectileType is Not Matched : ROCKETPROJECTILE");
                 return;
             }
+            projectile.SetForceTarget(target);
             projectile.Shoot(transform.position, target.position, 1f, _hitDelay + _distanceHitDelayMultiplier * distance * 0.1f);
             OnFireEvent?.Invoke();
         }

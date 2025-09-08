@@ -5,8 +5,8 @@ namespace Project_Train.Combat.TowerSystem
     {
         [SerializeField] private GunBarrelPart _gunBarrelPart;
         [SerializeField] private float _headAimingSpeed = 5f;
-        [SerializeField] private float _verticalAimingSpeed = 30f;
         [SerializeField] private float _aimAllowRange = 2f;
+        [SerializeField] private bool _useVerticalAiming = true;
         private TargetData _targetData;
 
 
@@ -23,9 +23,11 @@ namespace Project_Train.Combat.TowerSystem
             horizontalDirection.y = 0f;
             Quaternion headTargetRotation = Quaternion.LookRotation(horizontalDirection, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, headTargetRotation, _headAimingSpeed * Time.deltaTime);
-
-            float verticalAngle = Mathf.Atan2(direction.y, horizontalDirection.magnitude) * Mathf.Rad2Deg;
-            _gunBarrelPart.SetVerticalAngle(verticalAngle);
+            if (_useVerticalAiming)
+            {
+                float verticalAngle = Mathf.Atan2(direction.y, horizontalDirection.magnitude) * Mathf.Rad2Deg;
+                _gunBarrelPart.SetVerticalAngle(verticalAngle);
+            }
 
             return Quaternion.Angle(transform.rotation, headTargetRotation) < _aimAllowRange;
         }

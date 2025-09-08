@@ -9,11 +9,16 @@ namespace Project_Train.Combat.TowerSystem.SubVisuals
         [SerializeField] private Transform _firePositionTrm;
         public Transform FirePos => _firePositionTrm;
 
+        private void Awake()
+        {
+            _firePositionTrm = transform.Find("FirePos");
+        }
+
         public override void PlayVisualEffect()
         {
             _fireParticle.transform.position = _firePositionTrm.position;
             _fireParticle.Play();
-            
+
         }
     }
 }

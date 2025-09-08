@@ -1,6 +1,7 @@
 using Crogen.CrogenPooling;
 using Project_Train.Combat.CasterSystem;
 using Project_Train.Core.Attribute;
+using Project_Train.ObjectManage.VFX;
 using UnityEngine;
 namespace Project_Train.Combat.ProjectileSystem
 {
@@ -11,6 +12,7 @@ namespace Project_Train.Combat.ProjectileSystem
         [SerializeField] protected Caster _caster;
         [Header("Projectile Setting")]
         [SerializeField] protected bool _isHitDestroy;
+        [SerializeField] protected InGamePoolBasePoolType _destroyVFX;
 
         [Header("Projectile LifeData")]
         [SerializeField, ReadOnly] protected float _lifeTime;
@@ -72,6 +74,8 @@ namespace Project_Train.Combat.ProjectileSystem
             _isProjectileEnable = false;
             // TODO : Return To Pool 
             // TODO : Destroy VFX
+            VFXObject effect = gameObject.Pop(_destroyVFX, transform.position, Quaternion.identity)as VFXObject;
+            effect.Play(transform.position, _direction);
             this.Push();
         }
     }
