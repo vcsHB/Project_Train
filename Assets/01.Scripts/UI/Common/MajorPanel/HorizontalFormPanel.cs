@@ -19,6 +19,7 @@ namespace Project_Train.UIManage
         public override void Open()
         {
             IsPanelEnabled = true;
+            SetInteractable(true);
             OnPanelOpenEvent?.Invoke();
             _canvasGroup.DOFade(1f, _fadeDuration).SetUpdate(_useUnscaledTime);
             _rectTrm.DOSizeDelta(new Vector2(_defaultXSizeDelta, _enableHeight), _openDuration).SetUpdate(_useUnscaledTime);
@@ -27,9 +28,11 @@ namespace Project_Train.UIManage
 
         public override void Close()
         {
+            SetInteractable(false);
             _rectTrm.DOSizeDelta(new Vector2(_defaultXSizeDelta, _disableHeight), _closeDuration).SetUpdate(_useUnscaledTime).OnComplete(() =>
             {
                 IsPanelEnabled = false;
+                
                 OnPanelCloseEvent?.Invoke();
                 _canvasGroup.DOFade(0f, _fadeDuration).SetUpdate(_useUnscaledTime);
 

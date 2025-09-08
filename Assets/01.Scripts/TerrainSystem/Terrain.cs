@@ -7,19 +7,24 @@ namespace Project_Train.LevelSystem
 
     public class Terrain : MonoBehaviour
     {
-        [Header("Terrain Essential Setting")]
+        [Header("Terrain Generate Essential Setting")]
+        [SerializeField] private TerrainDataSO _terrainSetDataSO;
         [SerializeField] private Vector2Int _gridTiling = new Vector2Int(20, 20);
         [SerializeField] private Vector2 _gridTilingOffset;
-        [SerializeField] private BuildPoint _buildPointPrefab;
         [SerializeField] private float _tilingTerm = 10f;
+        [Space(10f)]
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private LayerMask _ignoreLayer;
         [SerializeField] private float _detectHeight = 5f;
         [SerializeField] private float _groundDetectDistance = 10f;
+        [Space(10f)]
         [SerializeField] private Transform _buildPointGroupParentTrm;
+        [SerializeField] private BuildPoint _buildPointPrefab;
         private Vector3 _bakeStartEdge;
         private Vector3 _bakeEndEdge;
+        [Header("Debug Data Properties")]
         [SerializeField] private List<BuildPoint> _buildPointList = new();
+
 
         [ContextMenu("BakeTerrain")]
         public void BakeTerrain()
@@ -60,6 +65,14 @@ namespace Project_Train.LevelSystem
             newPoint.gameObject.name = $"BuildPoint ({xIndex}-{zIndex})";
             newPoint.transform.position = position;
             _buildPointList.Add(newPoint);
+
+            float height = Mathf.Round(position.y) * _terrainSetDataSO.heightMultipleier;
+            newPoint.SetTerrainData(new TerrainStatus()
+            {
+                height = height,
+                rangeBenefit = (float)Math.Round((double)_terrainSetDataSO.GetRangeBenefit(height), 1)
+
+            });
 
         }
 

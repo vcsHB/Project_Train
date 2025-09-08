@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Project_Train.Combat.CasterSystem
 {
 
-    public class CircleCaster : Caster
+    public class SphereCaster : Caster
     {
         [Space(5f)]
         [Header("Sphere Range Setting")]

@@ -8,6 +8,8 @@ namespace Project_Train.TerrainSystem
         // Properties
         public Transform PointTrm => transform;
         public Vector3 PointPosition => transform.position;
+        [SerializeField] private TerrainStatus _terrainStatus;
+        public TerrainStatus TerrainStatus => _terrainStatus;
 
         public void Select()
         {
@@ -17,6 +19,11 @@ namespace Project_Train.TerrainSystem
         public void Release()
         {
 
+        }
+
+        public void SetTerrainData(TerrainStatus status)
+        {
+            _terrainStatus = status;
         }
 
         public void DestroyPoint()
