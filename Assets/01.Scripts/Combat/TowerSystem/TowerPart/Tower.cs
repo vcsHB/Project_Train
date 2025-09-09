@@ -1,4 +1,5 @@
 using System;
+using Project_Train.BuildSystem;
 using UnityEngine;
 using UnityEngine.Events;
 namespace Project_Train.Combat.TowerSystem
@@ -11,7 +12,7 @@ namespace Project_Train.Combat.TowerSystem
         public float distanceToTarget;
 
     }
-    public abstract class Tower : MonoBehaviour
+    public abstract class Tower : Building
     {
         public UnityEvent OnAttackUnityEvent;
         public event Action OnAttackEvent;
@@ -29,8 +30,9 @@ namespace Project_Train.Combat.TowerSystem
         [Header("Tower Attack Settings")]
         [SerializeField] protected float _fireTerm;
         protected float _nextFireTime;
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _head.Initialize(_targetData);
         }
 

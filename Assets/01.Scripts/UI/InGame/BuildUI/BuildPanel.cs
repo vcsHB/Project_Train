@@ -13,7 +13,7 @@ namespace Project_Train.UIManage.InGameSceneUI.BuildUI
         protected override void Awake()
         {
             base.Awake();
-            _buildController.OnSelectEvent += HandlePointSelect;
+            _buildController.OnPointSelectEvent += HandlePointSelect;
 
         }
 

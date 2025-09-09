@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 0_DatabaseGroup
   m_EditorClassIdentifier: 
   datas:
+  - {fileID: 11400000, guid: 149aca27996338e4cb692d13da07777e, type: 2}
   - {fileID: 11400000, guid: 009004d63b2babf4b96d465ca8e630df, type: 2}
   - {fileID: 11400000, guid: 44fd94e41e0101e418c6b2fdf3f4e5f7, type: 2}
   - {fileID: 11400000, guid: dd188f1215ab41f419f9dc20f81074f3, type: 2}

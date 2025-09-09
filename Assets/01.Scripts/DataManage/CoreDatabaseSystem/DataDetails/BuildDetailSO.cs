@@ -1,4 +1,4 @@
-using UnityEngine;
+using Project_Train.BuildSystem;
 namespace Project_Train.DataManage.CoreDataBaseSystem
 {
 
@@ -6,6 +6,8 @@ namespace Project_Train.DataManage.CoreDataBaseSystem
     {
         public override DataDetailType DetailType => DataDetailType.Build;
         // RequireResource : TODO => REsourceSystem
+
+        public Building buildingPrefab;
         
 
     }
