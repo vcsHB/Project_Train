@@ -22,11 +22,13 @@ namespace Project_Train.UIManage.InGameSceneUI.BuildUI
             base.Open();
             SetBuildMode(true);
         }
+
         public override void Close()
         {
             base.Close();
             SetBuildMode(false);
         }
+
         public void SetBuildMode(bool value)
         {
             _buildController.SetBuildMode(value);
