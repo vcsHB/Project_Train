@@ -17,5 +17,10 @@ namespace Project_Train.UIManage.InGameSceneUI.DataBaseUIManage
             _resourceNameText.text = resourceData.dataName;
             _resourceAmountText.text = amount.ToString();
         }
+
+        public void SetEnable(bool value)
+        {
+            gameObject.SetActive(value);
+        }
     }
 }

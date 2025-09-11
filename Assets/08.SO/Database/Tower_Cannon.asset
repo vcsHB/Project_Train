@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879130cc95fe7c348aaeb4ed78b011f2, type: 3}
   m_Name: BuildDetail
   m_EditorClassIdentifier: 
+  <RequireResource>k__BackingField:
+    _serializedList:
+    - Key: {fileID: 11400000, guid: dd188f1215ab41f419f9dc20f81074f3, type: 2}
+      Value: 50
   buildingPrefab: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:

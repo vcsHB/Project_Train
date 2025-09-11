@@ -9,7 +9,7 @@ namespace Project_Train.DataManage.CoreDataBaseSystem
     {
         public override DataDetailType DetailType => DataDetailType.Build;
         // RequireResource : TODO => REsourceSystem
-        [field:SerializeField] public SerializedDictionary<ResourceType, int> RequireResource { get; private set; }
+        [field:SerializeField] public SerializedDictionary<ResourceDataSO, int> RequireResource { get; private set; }
         public Building buildingPrefab;
 
 
