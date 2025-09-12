@@ -1,7 +1,7 @@
 using System;
 using Project_Train.DataManage.CoreDataBaseSystem;
 using UnityEngine;
-namespace Project_Train.UIManage.InGameSceneUI
+namespace Project_Train.UIManage.InGameSceneUI.DataBaseUIManage
 {
 
     public class DatabasePanel : GameUIPanel

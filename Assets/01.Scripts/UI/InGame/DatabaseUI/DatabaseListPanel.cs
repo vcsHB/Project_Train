@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Project_Train.DataManage.CoreDataBaseSystem;
 using UnityEngine;
-namespace Project_Train.UIManage.InGameSceneUI
+namespace Project_Train.UIManage.InGameSceneUI.DataBaseUIManage
 {
 
     public class DatabaseListPanel : MonoBehaviour

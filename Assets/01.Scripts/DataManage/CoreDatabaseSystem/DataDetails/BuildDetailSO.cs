@@ -1,3 +1,4 @@
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 namespace Project_Train.DataManage.CoreDataBaseSystem
 {
@@ -6,7 +7,12 @@ namespace Project_Train.DataManage.CoreDataBaseSystem
     {
         public override DataDetailType DetailType => DataDetailType.Build;
         // RequireResource : TODO => REsourceSystem
-        
+        [field:SerializeField] public SerializedDictionary<ResourceDataSO, int> RequireResource { get; private set; }
+
+
+
+
+
 
     }
 }

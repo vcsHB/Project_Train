@@ -3,7 +3,7 @@ using Project_Train.DataManage.CoreDataBaseSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-namespace Project_Train.UIManage.InGameSceneUI
+namespace Project_Train.UIManage.InGameSceneUI.DataBaseUIManage
 {
 
     public class DatabaseSlot : MonoBehaviour
