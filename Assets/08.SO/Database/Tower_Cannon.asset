@@ -1,22 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5685841355689816080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5687dceac043584d9f3014fcd0abc36, type: 3}
-  m_Name: FunctionDetail
-  m_EditorClassIdentifier: 
-  range: 32
-  randomizeErrorAngle: 0
-  fireCooltime: 0.8
-  attackArea: 1
---- !u!114 &-4234026795014945631
+--- !u!114 &-8094845525951795101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -32,7 +16,51 @@ MonoBehaviour:
     \uBC1C\uC0AC\uD569\uB2C8\uB2E4. \uC801\uC911\uC2DC \uBE44\uAD50\uC801 \uB192\uC740
     \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4. \uC801\uC911\uB960\uC740 100%\uC5D0
     \uB2EC\uD569\uB2C8\uB2E4."
---- !u!114 &-2827436350199880226
+--- !u!114 &-7869556080352376665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5687dceac043584d9f3014fcd0abc36, type: 3}
+  m_Name: FunctionDetail
+  m_EditorClassIdentifier: 
+  range: 32
+  randomizeErrorAngle: 0
+  fireCooltime: 0.8
+  attackArea: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 999d8f7482cd0884e81986a976668b73, type: 3}
+  m_Name: Tower_Cannon
+  m_EditorClassIdentifier: 
+  <Id>k__BackingField: 0
+  iconSprite: {fileID: 677766441, guid: b2dbc5c26c063d54da06ce31604ec35b, type: 3}
+  dataName: "\uCE90\uB17C"
+  details:
+    entries:
+    - key: 0
+      value: {fileID: -8094845525951795101}
+      foldout: 1
+    - key: 2
+      value: {fileID: -7869556080352376665}
+      foldout: 1
+    - key: 1
+      value: {fileID: 4150875506574056118}
+      foldout: 1
+  dataDescription: 
+  buildingPrefab: {fileID: 0}
+--- !u!114 &4150875506574056118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,31 +76,3 @@ MonoBehaviour:
     _serializedList:
     - Key: {fileID: 11400000, guid: dd188f1215ab41f419f9dc20f81074f3, type: 2}
       Value: 50
-  buildingPrefab: {fileID: 0}
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdb6b1e31d6de3d46ab1cf92cc6be5b8, type: 3}
-  m_Name: Tower_Cannon
-  m_EditorClassIdentifier: 
-  <Id>k__BackingField: 0
-  iconSprite: {fileID: 1886763195, guid: b2dbc5c26c063d54da06ce31604ec35b, type: 3}
-  dataName: "\uCE90\uB17C \uD0C0\uC6CC"
-  details:
-    entries:
-    - key: 0
-      value: {fileID: -4234026795014945631}
-      foldout: 1
-    - key: 2
-      value: {fileID: -5685841355689816080}
-      foldout: 1
-    - key: 1
-      value: {fileID: -2827436350199880226}
-      foldout: 1
-  dataDescription: 
