@@ -6,7 +6,8 @@ namespace Project_Train.Combat.TowerSystem
     {
         
         [SerializeField] protected TowerUpgradeList _upgradeList;
-        [SerializeField] private int _level = 0; // Init Level = 0
+        [SerializeField] protected PartVisual _partVisual;
+        [SerializeField] protected int _level = 0; // Init Level = 0
         [SerializeField] protected MeshRenderer _visualRenderer;
 
 

@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,6 +7,8 @@ namespace Project_Train.UIManage
     [RequireComponent(typeof(CanvasGroup))]
     public class FadePanel : MonoBehaviour, IWindowPanel
     {
+        public event Action<FadePanel> OnPanelEnabledEvent;
+        public event Action<FadePanel> OnPanelDisabledEvent;
         public UnityEvent OnPanelOpenEvent;
         public UnityEvent OnPanelCloseEvent;
         [SerializeField] protected float _openDuration = 0.4f;
@@ -13,7 +16,7 @@ namespace Project_Train.UIManage
         [SerializeField] protected bool _useUnscaledTime;
 
         protected CanvasGroup _canvasGroup;
-        
+
         [field: SerializeField] public bool IsPanelEnabled { get; protected set; } = true;
 
         protected virtual void Awake()
@@ -27,19 +30,21 @@ namespace Project_Train.UIManage
         {
             IsPanelEnabled = true;
             OnPanelOpenEvent?.Invoke();
+            OnPanelEnabledEvent?.Invoke(this);
             _canvasGroup.DOFade(1f, _openDuration).OnComplete(() =>
             {
-
-
+                SetInteractable(true);
             }).SetUpdate(_useUnscaledTime);
         }
         public virtual void Close()
         {
+            SetInteractable(false);
             _canvasGroup.DOFade(0f, _closeDuration).OnComplete(() =>
             {
                 IsPanelEnabled = false;
                 OnPanelCloseEvent?.Invoke();
-            }).SetUpdate(_useUnscaledTime); ;
+                OnPanelDisabledEvent?.Invoke(this);
+            }).SetUpdate(_useUnscaledTime);
         }
 
         #endregion

@@ -53,6 +53,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseMove"",
+                    ""type"": ""Button"",
+                    ""id"": ""d88d5f98-de85-4521-b120-94c8af5e3fe5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ZoomScroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""a6b47e25-67b6-45ff-ba53-33fd46b272a0"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -207,6 +225,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""659d9e70-8307-432a-a452-2ae4c6936d8d"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""MouseMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1386d626-1d7c-4de9-af7d-2355a6730eae"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""ZoomScroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -797,6 +837,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Mouse = m_Player.FindAction("Mouse", throwIfNotFound: true);
         m_Player_Select = m_Player.FindAction("Select", throwIfNotFound: true);
+        m_Player_MouseMove = m_Player.FindAction("MouseMove", throwIfNotFound: true);
+        m_Player_ZoomScroll = m_Player.FindAction("ZoomScroll", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -879,6 +921,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Mouse;
     private readonly InputAction m_Player_Select;
+    private readonly InputAction m_Player_MouseMove;
+    private readonly InputAction m_Player_ZoomScroll;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -886,6 +930,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Mouse => m_Wrapper.m_Player_Mouse;
         public InputAction @Select => m_Wrapper.m_Player_Select;
+        public InputAction @MouseMove => m_Wrapper.m_Player_MouseMove;
+        public InputAction @ZoomScroll => m_Wrapper.m_Player_ZoomScroll;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -904,6 +950,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Select.started += instance.OnSelect;
             @Select.performed += instance.OnSelect;
             @Select.canceled += instance.OnSelect;
+            @MouseMove.started += instance.OnMouseMove;
+            @MouseMove.performed += instance.OnMouseMove;
+            @MouseMove.canceled += instance.OnMouseMove;
+            @ZoomScroll.started += instance.OnZoomScroll;
+            @ZoomScroll.performed += instance.OnZoomScroll;
+            @ZoomScroll.canceled += instance.OnZoomScroll;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -917,6 +969,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Select.started -= instance.OnSelect;
             @Select.performed -= instance.OnSelect;
             @Select.canceled -= instance.OnSelect;
+            @MouseMove.started -= instance.OnMouseMove;
+            @MouseMove.performed -= instance.OnMouseMove;
+            @MouseMove.canceled -= instance.OnMouseMove;
+            @ZoomScroll.started -= instance.OnZoomScroll;
+            @ZoomScroll.performed -= instance.OnZoomScroll;
+            @ZoomScroll.canceled -= instance.OnZoomScroll;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1102,6 +1160,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnMouse(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
+        void OnMouseMove(InputAction.CallbackContext context);
+        void OnZoomScroll(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

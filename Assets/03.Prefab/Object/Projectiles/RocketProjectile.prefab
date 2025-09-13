@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4712217581897981023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5326053463480490240}
+  - component: {fileID: 7004278896407238934}
+  - component: {fileID: 5654994787392513370}
+  m_Layer: 0
+  m_Name: Caster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5326053463480490240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4712217581897981023}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9203573143185580103}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7004278896407238934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4712217581897981023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7200bf9328ce57d42b658413701f84fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnCastEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCastSuccessEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _offset: {x: 0, y: 0, z: 0}
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 6144
+  _targetMaxAmount: 5
+  _isDuplicateIgnore: 0
+  _gizmosColor: {r: 1, g: 0, b: 0, a: 1}
+  _detectRadius: 1
+--- !u!114 &5654994787392513370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4712217581897981023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ba34e35e06d1543865f85d46d39066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnCastSuccessEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _damageData:
+    damage: 10
+    originPosition: {x: 0, y: 0, z: 0}
+    damageDirection: {x: 0, y: 0, z: 0}
+    ignoreResist: 0
+    ignoreDamageCooltime: 0
+--- !u!1 &7081693654467263399
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9203573143185580103}
+  - component: {fileID: 877227220809444899}
+  m_Layer: 0
+  m_Name: RocketProjectile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9203573143185580103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7081693654467263399}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5326053463480490240}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &877227220809444899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7081693654467263399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05119a506f74c924e9843d133ab588bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _caster: {fileID: 7004278896407238934}
+  _isHitDestroy: 0
+  _destroyVFX: 2
+  _lifeTime: 0
+  _speed: 0
+  _originPosition: {x: 0, y: 0, z: 0}
+  _direction: {x: 0, y: 0, z: 0}
+  <OriginPoolType>k__BackingField: 

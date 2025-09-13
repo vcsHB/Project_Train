@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29eeea3c0f6c43640811dedf49d72d42, type: 3}
   m_Name: Terrain_1
   m_EditorClassIdentifier: 
+  terrainName: TERRAIN_
+  terrainDescription: 
   visibility: 1
   temperature: 20
   lightIntensity: 0.5
-  rangeBenefitByheight: 0
-  rangeBenefitRandomize: 0
+  heightMultipleier: 20
+  rangeBenefitByheight: 5
+  rangeBenefitRandomize: 1

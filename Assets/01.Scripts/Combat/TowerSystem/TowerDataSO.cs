@@ -1,14 +1,12 @@
+using Project_Train.BuildSystem;
 using UnityEngine;
 namespace Project_Train.Combat.TowerSystem
 {
-
-    public class TowerDataSO : MonoBehaviour
+    [CreateAssetMenu(menuName = "SO/Database/TowerData")]
+    public class TowerDataSO : BuildingDataSO
     {
-        public string towerName;
-        public string towerDescription;
-        public Tower towerPrefab;
 
-        
-        
+
+
     }
 }

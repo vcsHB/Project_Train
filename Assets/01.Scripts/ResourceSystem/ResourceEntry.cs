@@ -1,9 +1,11 @@
 using System;
+using Project_Train.DataManage.CoreDataBaseSystem;
 namespace Project_Train.ResourceSystem
 {
     [Serializable]
     public class ResourceEntry
     {
+        public ResourceDataSO resourceDataSO;
         public int amount;
         public event Action<int> OnValueChangedEvent;
 
