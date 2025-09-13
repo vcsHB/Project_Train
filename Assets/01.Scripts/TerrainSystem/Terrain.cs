@@ -20,6 +20,8 @@ namespace Project_Train.LevelSystem
         [Space(10f)]
         [SerializeField] private Transform _buildPointGroupParentTrm;
         [SerializeField] private BuildPoint _buildPointPrefab;
+        
+        
         private Vector3 _bakeStartEdge;
         private Vector3 _bakeEndEdge;
         [Header("Debug Data Properties")]

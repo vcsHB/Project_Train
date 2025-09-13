@@ -12,15 +12,30 @@ namespace Project_Train.DataManage.CoreDataBaseSystem
         public string dataName;
 
         [SerializeField] protected SerializableDetailDictionary details;
+        public SerializableDetailDictionary Details => details;
 
         [TextArea] public string dataDescription;
+
+        public T GetDetail<T>(DataDetailType key) where T : DataDetailSO
+        {
+            if (details.TryGetValue(key, out DataDetailSO detailSO))
+            {
+                if (detailSO is T data)
+                {
+                    return data;
+                }
+
+            }
+            return null;
+        }
+
+        
 
 
 #if UNITY_EDITOR
         internal void SetId(int newId) => Id = newId;
 
 
-        public SerializableDetailDictionary Details => details;
 #endif
     }
 
