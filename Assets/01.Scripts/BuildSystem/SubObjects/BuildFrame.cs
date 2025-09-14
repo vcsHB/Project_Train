@@ -1,4 +1,6 @@
 using System;
+using Crogen.CrogenPooling;
+using Project_Train.Combat.CasterSystem.HitBody;
 using Project_Train.DataManage.CoreDataBaseSystem;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,14 +11,26 @@ namespace Project_Train.BuildSystem.SubObjects
     {
         public event Action<float, float> OnBuildProgressChangeEvent;
         public event Action<Building> OnBuildCompleteEvent;
-        public UnityEvent OnBuildCompleteUntiyEvent;
+        public UnityEvent OnBuildCompleteUnityEvent;
         [SerializeField] private float _buildDuration;
+        private Health HealthCompo;
+
         private float _currentTime = 0f;
         private bool _isBuildStarted;
         private BuildingDataSO _buildData;
         private BuildDetailSO _detailData;
         private Vector3 _buildPosition;
 
+        public event Action<BuildFrame> OnFrameReturnEvent;
+
+        private void Awake()
+        {
+            HealthCompo = GetComponent<Health>();
+            if (HealthCompo == null)
+            {
+                Debug.LogError("Can't Find Health Component in BuildFrame");
+            }
+        }
 
         public void StartBuild(BuildingDataSO buildingData, BuildDetailSO buildDetail, Vector3 position)
         {
@@ -26,6 +40,8 @@ namespace Project_Train.BuildSystem.SubObjects
             _detailData = buildDetail;
             _buildPosition = position;
             _isBuildStarted = true;
+
+            HealthCompo.FillHealthToMax();
 
         }
 
@@ -49,8 +65,15 @@ namespace Project_Train.BuildSystem.SubObjects
             _isBuildStarted = false;
 
             OnBuildCompleteEvent?.Invoke(building);
-            OnBuildCompleteUntiyEvent?.Invoke();
-            
+            OnBuildCompleteUnityEvent?.Invoke();
+            ReturnToPool();
         }
+
+        private void ReturnToPool()
+        {
+            OnFrameReturnEvent?.Invoke(this);
+
+        }
+
     }
 }
