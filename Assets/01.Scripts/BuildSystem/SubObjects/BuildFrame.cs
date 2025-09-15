@@ -2,6 +2,7 @@ using System;
 using Crogen.CrogenPooling;
 using Project_Train.Combat.CasterSystem.HitBody;
 using Project_Train.DataManage.CoreDataBaseSystem;
+using Project_Train.ObjectManage.VFX;
 using Project_Train.TerrainSystem;
 using UnityEngine;
 using UnityEngine.Events;
@@ -78,6 +79,9 @@ namespace Project_Train.BuildSystem.SubObjects
         private void ReturnToPool()
         {
             OnFrameReturnEvent?.Invoke(this);
+            ParticleObject vfx = gameObject.Pop(InGamePoolBasePoolType.BuildCompleteVFX) as ParticleObject;
+            vfx.Play(transform.position, Vector3.zero);
+
 
         }
 
