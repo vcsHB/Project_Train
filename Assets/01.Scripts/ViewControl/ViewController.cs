@@ -12,7 +12,7 @@ namespace Project_Train.ViewControl
 
         [Header("Rotation Setting")]
         [SerializeField] private float _clampVerticalMaxAngle = 80f;
-        [SerializeField] private float _clampVerticalMinAngle = 80f;
+        [SerializeField] private float _clampVerticalMinAngle = -80f; // 음수로 해서 아래 각도도 허용
         [SerializeField] private float _sensitivity = 2f; 
 
         [Header("Zoom Setting")]
@@ -34,12 +34,14 @@ namespace Project_Train.ViewControl
             InputReader.AddListener(_inputReleaseKey, HandleViewRelease);
             InputReader.AddListener(_inputHoldKey, HandleViewHold);
             InputReader.AddListener<Vector2>(_inputZoomScollKey, HandleScroll);
+
+           
         }
 
         private void HandleScroll(Vector2 delta)
         {
-            float newZoomLevel = _camera.Lens.OrthographicSize - delta.y * _zoomSpeed;
-            _camera.Lens.OrthographicSize = Mathf.Clamp(newZoomLevel, _minZoomLevel, _maxZoomLevel);
+            _distance -= delta.y * _zoomSpeed;
+            _distance = Mathf.Clamp(_distance, _minZoomLevel, _maxZoomLevel);
         }
 
         private void Update()
@@ -53,9 +55,9 @@ namespace Project_Train.ViewControl
                 _pitch -= deltaY * _sensitivity;
 
                 _pitch = Mathf.Clamp(_pitch, _clampVerticalMinAngle, _clampVerticalMaxAngle);
-
-                UpdateCameraPosition();
             }
+
+            UpdateCameraPosition();
         }
 
         private void UpdateCameraPosition()
@@ -64,7 +66,7 @@ namespace Project_Train.ViewControl
 
             Quaternion rotation = Quaternion.Euler(_pitch, _yaw, 0f);
 
-            Vector3 targetPos = _lookPinPosition.position - (rotation * Vector3.forward * 15f);
+            Vector3 targetPos = _lookPinPosition.position - (rotation * Vector3.forward * _distance);
             _camera.transform.position = targetPos;
             _camera.transform.LookAt(_lookPinPosition.position);
         }

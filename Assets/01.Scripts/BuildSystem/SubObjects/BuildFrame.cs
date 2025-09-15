@@ -2,6 +2,7 @@ using System;
 using Crogen.CrogenPooling;
 using Project_Train.Combat.CasterSystem.HitBody;
 using Project_Train.DataManage.CoreDataBaseSystem;
+using Project_Train.TerrainSystem;
 using UnityEngine;
 using UnityEngine.Events;
 namespace Project_Train.BuildSystem.SubObjects
@@ -19,6 +20,7 @@ namespace Project_Train.BuildSystem.SubObjects
         private bool _isBuildStarted;
         private BuildingDataSO _buildData;
         private BuildDetailSO _detailData;
+        private BuildPoint _currentBuildPoint;
         private Vector3 _buildPosition;
 
         public event Action<BuildFrame> OnFrameReturnEvent;
@@ -32,16 +34,19 @@ namespace Project_Train.BuildSystem.SubObjects
             }
         }
 
-        public void StartBuild(BuildingDataSO buildingData, BuildDetailSO buildDetail, Vector3 position)
+        public void StartBuild(BuildingDataSO buildingData, BuildDetailSO buildDetail, BuildPoint point)
         {
+            _currentBuildPoint = point;
+            transform.position = point.PointPosition;
             _detailData = buildDetail;
             _buildDuration = buildDetail.buildDuration;
             _buildData = buildingData;
             _detailData = buildDetail;
-            _buildPosition = position;
+            _buildPosition = point.PointPosition;
             _isBuildStarted = true;
 
             HealthCompo.FillHealthToMax();
+            _currentTime = 0f;
 
         }
 
@@ -63,6 +68,7 @@ namespace Project_Train.BuildSystem.SubObjects
 
             Building building = Instantiate(_buildData.buildingPrefab, _buildPosition, Quaternion.identity);
             _isBuildStarted = false;
+            _currentBuildPoint.SetBuild(building);
 
             OnBuildCompleteEvent?.Invoke(building);
             OnBuildCompleteUnityEvent?.Invoke();

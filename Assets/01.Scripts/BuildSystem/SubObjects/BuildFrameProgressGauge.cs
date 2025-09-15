@@ -7,13 +7,20 @@ namespace Project_Train.BuildSystem.SubObjects
 
     public class BuildFrameProgressGauge : MonoBehaviour
     {
+        [SerializeField] private BuildFrame _buildFrame;
         [SerializeField] private Image _gaugeFillImage;
         [SerializeField] private TextMeshProUGUI _progressText;
+
+
+        private void Awake()
+        {
+            _buildFrame.OnBuildProgressChangeEvent += SetProgress;
+        }
 
         private int _lastPercent;
         private int _lastSecondsLeft;
 
-        private StringBuilder _stringBuilder = new StringBuilder(32); 
+        private StringBuilder _stringBuilder = new StringBuilder(32);
 
         public void SetProgress(float current, float max)
         {

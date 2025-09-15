@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 999d8f7482cd0884e81986a976668b73, type: 3}
   m_Name: Tower_Cannon
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 0
+  <Id>k__BackingField: 4
   iconSprite: {fileID: 677766441, guid: b2dbc5c26c063d54da06ce31604ec35b, type: 3}
   dataName: "\uCE90\uB17C"
   details:
@@ -59,7 +59,7 @@ MonoBehaviour:
       value: {fileID: 4150875506574056118}
       foldout: 1
   dataDescription: 
-  buildingPrefab: {fileID: 0}
+  buildingPrefab: {fileID: 7131517222986856489, guid: 1786808c91653024a841eaac6be07b42, type: 3}
 --- !u!114 &4150875506574056118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879130cc95fe7c348aaeb4ed78b011f2, type: 3}
   m_Name: BuildDetail
   m_EditorClassIdentifier: 
+  buildDuration: 5
   <RequireResource>k__BackingField:
     _serializedList:
     - Key: {fileID: 11400000, guid: dd188f1215ab41f419f9dc20f81074f3, type: 2}

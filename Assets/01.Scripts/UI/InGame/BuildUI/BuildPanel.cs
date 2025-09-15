@@ -7,10 +7,13 @@ namespace Project_Train.UIManage.InGameSceneUI.BuildUI
 {
     public class BuildPanel : GameUIPanel
     {
+        [SerializeField] private BuildingManager _buildManager;
         [SerializeField] private BuildController _buildController;
         [SerializeField] private BuildCategoryGroup _categoryGroup;
         [Header("Detail Information Panel Setting")]
         [SerializeField] private TerrainDataPanel _terrainDataPanel;
+        private Vector3 _buildPosition;
+        private BuildingDataSO _buildTarget;
 
         protected override void Awake()
         {
@@ -20,14 +23,15 @@ namespace Project_Train.UIManage.InGameSceneUI.BuildUI
 
         }
 
-        private void HandleSelect(BuildingDataSO sO)
+        private void HandleSelect(BuildingDataSO data)
         {
-            
+            _buildTarget = data;
         }
 
         public override void Open()
         {
             base.Open();
+            _buildTarget = null;
             SetBuildMode(true);
         }
 
@@ -44,9 +48,13 @@ namespace Project_Train.UIManage.InGameSceneUI.BuildUI
 
         private void HandlePointSelect(BuildPoint point)
         {
-            // TODO
             if (IsPanelEnabled)
                 _terrainDataPanel.SetData(point.TerrainStatus);
+
+            if (_buildTarget != null)
+            {
+                _buildManager.Build(_buildTarget, point);
+            }
         }
 
 
