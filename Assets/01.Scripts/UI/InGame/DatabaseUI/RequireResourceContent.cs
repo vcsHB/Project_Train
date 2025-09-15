@@ -2,7 +2,7 @@ using Project_Train.DataManage.CoreDataBaseSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-namespace Project_Train.UIManage.InGameSceneUI.DataBaseUIManage
+namespace Project_Train.UIManage.InGameSceneUI
 {
 
     public class RequireResourceContent : MonoBehaviour

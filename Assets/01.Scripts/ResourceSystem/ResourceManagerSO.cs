@@ -12,6 +12,18 @@ namespace Project_Train.ResourceSystem
 
         // TODO : Need DataLoad Value Setter
 
+        public int GetResourceValue(ResourceType type)
+        {
+            if (resourceDictionary.TryGetValue(type, out ResourceEntry entry))
+            {
+                return entry.amount;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         public void Add(ResourceType resourceType, int amount)
         {
             resourceDictionary[resourceType].Add(amount);

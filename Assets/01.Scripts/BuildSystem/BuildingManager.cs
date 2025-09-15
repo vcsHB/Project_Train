@@ -60,11 +60,10 @@ namespace Project_Train.BuildSystem
             return newFrame;
         }
 
-        public void Build(BuildingDataSO buildingData, BuildPoint point)
+        public void Build(BuildingDataSO buildingData, BuildDetailSO detail, BuildPoint point)
         {
             if (point.CanBuild)
             {
-                BuildDetailSO detail = buildingData.GetDetail<BuildDetailSO>(DataDetailType.Build);
                 point.SetCanBuild(false);
                 BuildFrame buildFrame = GetNewBuildFrame();
                 buildFrame.StartBuild(buildingData, detail, point);
