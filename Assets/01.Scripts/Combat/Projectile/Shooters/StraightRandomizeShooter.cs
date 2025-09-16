@@ -13,10 +13,11 @@ namespace Project_Train.Combat.ProjectileSystem
         {
             targetDirection.Normalize();
             StraightProjectile projectile = gameObject.Pop(_projectileType, FirePosition, Quaternion.identity) as StraightProjectile;
-            Vector3 newDirection = targetDirection + Random.insideUnitSphere * _randomizeLevel;
+            Vector3 newDirection = targetDirection * 5f + (Random.insideUnitSphere * _randomizeLevel);
+            newDirection.Normalize();
             projectile.Shoot(FirePosition, newDirection, _speed, _lifeTime);
             OnFireEvent?.Invoke();
-            
+
         }
 
     }

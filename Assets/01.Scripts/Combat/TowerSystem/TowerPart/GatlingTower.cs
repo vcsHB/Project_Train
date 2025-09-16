@@ -8,7 +8,6 @@ namespace Project_Train.Combat.TowerSystem
         protected override void TryShoot()
         {
             _head.Shoot();
-            Debug.Log("asdasdas");
         }
     }
 }

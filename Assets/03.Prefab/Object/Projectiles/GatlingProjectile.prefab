@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _caster: {fileID: 3117022715421550296}
-  _isHitDestroy: 0
-  _destroyVFX: 2
+  _isHitDestroy: 1
+  _destroyVFX: 3
   _lifeTime: 0
   _speed: 10
   _originPosition: {x: 0, y: 0, z: 0}
@@ -151,6 +151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9158212812882322122}
   - component: {fileID: 3117022715421550296}
+  - component: {fileID: 6777766825248689788}
   m_Layer: 0
   m_Name: Caster
   m_TagString: Untagged
@@ -199,3 +200,24 @@ MonoBehaviour:
   _isDuplicateIgnore: 1
   _gizmosColor: {r: 1, g: 0, b: 0, a: 1}
   _detectRadius: 0.34
+--- !u!114 &6777766825248689788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5778501273623613796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ba34e35e06d1543865f85d46d39066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnCastSuccessEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _damageData:
+    damage: 5
+    originPosition: {x: 0, y: 0, z: 0}
+    damageDirection: {x: 0, y: 0, z: 0}
+    ignoreResist: 0
+    ignoreDamageCooltime: 0

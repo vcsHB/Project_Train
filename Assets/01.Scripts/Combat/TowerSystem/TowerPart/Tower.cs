@@ -48,7 +48,7 @@ namespace Project_Train.Combat.TowerSystem
                 if (_targetData.targetTransform == null)
                     InvokeTargetDetectedEvent();
                 _targetData.targetTransform = target.transform;
-                Vector2 direction = target.transform.position - transform.position;
+                Vector3 direction = target.transform.position - _targetDetector.transform.position;
                 _targetData.distanceToTarget = direction.magnitude;
                 direction.Normalize();
                 _targetData.targetDirection = direction;
