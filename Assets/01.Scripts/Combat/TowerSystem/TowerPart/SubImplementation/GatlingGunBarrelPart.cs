@@ -1,0 +1,16 @@
+using UnityEngine;
+namespace Project_Train.Combat.TowerSystem
+{
+    public class GatlingGunBarrelPart : GunBarrelPart
+    {
+        [SerializeField] private float _rotationSpeed = 5f;
+        [SerializeField] private Transform _rotationHandleTrm;
+
+        public override void Shoot()
+        {
+            if (_rotationHandleTrm == null) return;
+
+            _rotationHandleTrm.Rotate(0f, 0f, -_rotationSpeed, Space.Self);
+        }
+    }
+}

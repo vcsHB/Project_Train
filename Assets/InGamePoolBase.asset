@@ -28,3 +28,6 @@ MonoBehaviour:
   - poolType: BuildCompleteVFX
     prefab: {fileID: 2560608813637862535, guid: 727186968472d7a48a4410c2ee001c4f, type: 3}
     poolCount: 10
+  - poolType: GatlingProjectile
+    prefab: {fileID: 1683265964001228008, guid: bab802adc2567da4483c21a840910bb2, type: 3}
+    poolCount: 10
