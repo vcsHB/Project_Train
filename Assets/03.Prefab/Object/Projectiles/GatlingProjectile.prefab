@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _caster: {fileID: 3117022715421550296}
   _isHitDestroy: 1
-  _destroyVFX: 3
+  _destroyVFX: 6
   _lifeTime: 0
   _speed: 10
   _originPosition: {x: 0, y: 0, z: 0}
@@ -197,7 +197,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   _targetMaxAmount: 2
-  _isDuplicateIgnore: 1
+  _isDuplicateIgnore: 0
   _gizmosColor: {r: 1, g: 0, b: 0, a: 1}
   _detectRadius: 0.34
 --- !u!114 &6777766825248689788

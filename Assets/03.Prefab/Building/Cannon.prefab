@@ -373,6 +373,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90c1e48e41fefea4483b0f781557280a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnBuildingDestroyEvent:
+    m_PersistentCalls:
+      m_Calls: []
   OnAttackUnityEvent:
     m_PersistentCalls:
       m_Calls:
@@ -467,7 +470,7 @@ MonoBehaviour:
   _detectMaxTargetAmount: 4
   _useGizmos: 1
   _gizmosColor: {r: 1, g: 0, b: 0, a: 1}
-  _detectRadius: 5
+  _detectRadius: 6
   _detectHeight: 20
   _useDistanceIgnore: 0
   _ignoreDistanceRatio: 0.15

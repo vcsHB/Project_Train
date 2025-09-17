@@ -30,4 +30,7 @@ MonoBehaviour:
     poolCount: 10
   - poolType: GatlingProjectile
     prefab: {fileID: 1683265964001228008, guid: bab802adc2567da4483c21a840910bb2, type: 3}
-    poolCount: 10
+    poolCount: 20
+  - poolType: BulletHitVFX
+    prefab: {fileID: 907986205061212790, guid: 49179fc15d7af6a4c89da5e0954fac83, type: 3}
+    poolCount: 20
