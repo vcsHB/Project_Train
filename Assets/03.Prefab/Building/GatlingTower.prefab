@@ -10427,6 +10427,7 @@ GameObject:
   - component: {fileID: 3134504766023748516}
   - component: {fileID: 2924628836959590336}
   - component: {fileID: 6523373142324809168}
+  - component: {fileID: 3258917103496365085}
   m_Layer: 9
   m_Name: GatlingTower
   m_TagString: Untagged
@@ -10465,6 +10466,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnBuildingDestroyEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildCompleteEvent:
     m_PersistentCalls:
       m_Calls: []
   OnAttackUnityEvent:
@@ -10510,6 +10514,27 @@ MonoBehaviour:
   _maxHealth: 350
   _hitResistanceDuration: 0.1
   _isResist: 0
+--- !u!135 &3258917103496365085
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8231988016227226391}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &8623713044402647056
 GameObject:
   m_ObjectHideFlags: 0

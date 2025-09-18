@@ -337,6 +337,7 @@ GameObject:
   - component: {fileID: 917257340678232853}
   - component: {fileID: 7131517222986856489}
   - component: {fileID: 6049357653965849380}
+  - component: {fileID: 269392705131052847}
   m_Layer: 9
   m_Name: Cannon
   m_TagString: Untagged
@@ -374,6 +375,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnBuildingDestroyEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildCompleteEvent:
     m_PersistentCalls:
       m_Calls: []
   OnAttackUnityEvent:
@@ -419,6 +423,27 @@ MonoBehaviour:
   _maxHealth: 100
   _hitResistanceDuration: 0.1
   _isResist: 0
+--- !u!135 &269392705131052847
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6865593217485171875}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &6874292007963566460
 GameObject:
   m_ObjectHideFlags: 0

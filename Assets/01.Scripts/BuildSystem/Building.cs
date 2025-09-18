@@ -9,10 +9,12 @@ namespace Project_Train.BuildSystem
         public UnityEvent OnBuildingDestroyEvent;
         public UnityEvent OnBuildCompleteEvent;
         public Health HealthCompo { get; protected set; }
+        public OverloadController OverloaderCompo { get; protected set; }
 
         protected virtual void Awake()
         {
             HealthCompo = GetComponent<Health>();
+            OverloaderCompo = GetComponent<OverloadController>();
             HealthCompo.OnDieEvent.AddListener(HandleDestroy);
 
         }

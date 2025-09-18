@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 2928073282053438701}
   - component: {fileID: 5468763159314440729}
   - component: {fileID: 2753299189256852021}
+  - component: {fileID: 552499627356339657}
   m_Layer: 9
   m_Name: RocketLauncher
   m_TagString: Untagged
@@ -154,6 +155,9 @@ MonoBehaviour:
   OnBuildingDestroyEvent:
     m_PersistentCalls:
       m_Calls: []
+  OnBuildCompleteEvent:
+    m_PersistentCalls:
+      m_Calls: []
   OnAttackUnityEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -186,6 +190,27 @@ MonoBehaviour:
   _maxHealth: 100
   _hitResistanceDuration: 0.1
   _isResist: 0
+--- !u!135 &552499627356339657
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064278444980399869}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &2150113113379674588
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,10 +641,10 @@ MonoBehaviour:
   _detectMaxTargetAmount: 10
   _useGizmos: 1
   _gizmosColor: {r: 0, g: 0.3207547, b: 0.27798745, a: 1}
-  _detectRadius: 40
+  _detectRadius: 20
   _detectHeight: 20
   _useDistanceIgnore: 1
-  _ignoreDistanceRatio: 0.25
+  _ignoreDistanceRatio: 0.15
   _ignoreGizmosColor: {r: 1, g: 0.10196079, b: 0, a: 1}
   _useDetectObstacle: 0
   _detectObstacleLayer:
