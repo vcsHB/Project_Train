@@ -70,9 +70,14 @@ namespace Project_Train.BuildSystem.SubObjects
             Building building = Instantiate(_buildData.buildingPrefab, _buildPosition, Quaternion.identity);
             _isBuildStarted = false;
             _currentBuildPoint.SetBuild(building);
+            building.HandleBuildComplete();
 
+            // Event Process -
             OnBuildCompleteEvent?.Invoke(building);
+            BuildEventChannel.InvokeBuildEvent(building);
             OnBuildCompleteUnityEvent?.Invoke();
+
+            // Return to Pool : BuildFrame Recycling
             ReturnToPool();
         }
 

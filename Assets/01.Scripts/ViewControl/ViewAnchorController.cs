@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Project_Train.Core.Attribute;
+using Project_Train.BuildSystem;
 using Project_Train.ViewControl;
 using UnityEngine;
 
@@ -9,7 +9,7 @@ namespace Project_Train
     public class ViewAnchorController : MonoBehaviour
     {
         [SerializeField] private List<ViewAnchorPoint> _viewAnchorList;
-        [SerializeField, ReadOnly] private int _currentViewAnchorIndex = 0;
+        [SerializeField] private int _currentViewAnchorIndex = 0;
         [SerializeField] private float _moveDuration;
         [SerializeField] private Transform _viewAnchorTrm;
         private float _currentTweenTime;
@@ -26,6 +26,26 @@ namespace Project_Train
                 return;
             }
             _viewAnchorTrm.position = CurrentPointPosiotion;
+            BuildEventChannel.OnBuildEvent += HandleBuildingBuild;
+            BuildEventChannel.OnDestroyEvent += HandleBuildingDestroy;
+        }
+
+
+
+        private void HandleBuildingBuild(Building building)
+        {
+            if (building is SubReactor subReactor)
+            {
+                AddNewViewAnchor(subReactor.ViewAnchorPoint);
+            }
+        }
+
+        private void HandleBuildingDestroy(Building building)
+        {
+            if (building is SubReactor subReactor)
+            {
+                _viewAnchorList.Remove(subReactor.ViewAnchorPoint);
+            }
         }
 
         public void AddNewViewAnchor(ViewAnchorPoint newPoint)

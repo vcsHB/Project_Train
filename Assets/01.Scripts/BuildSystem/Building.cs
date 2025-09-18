@@ -7,6 +7,7 @@ namespace Project_Train.BuildSystem
     public class Building : MonoBehaviour
     {
         public UnityEvent OnBuildingDestroyEvent;
+        public UnityEvent OnBuildCompleteEvent;
         public Health HealthCompo { get; protected set; }
 
         protected virtual void Awake()
@@ -16,9 +17,15 @@ namespace Project_Train.BuildSystem
 
         }
 
-        public void HandleDestroy()
+        public virtual void HandleBuildComplete()
+        {
+            OnBuildCompleteEvent?.Invoke();
+        }
+
+        public virtual void HandleDestroy()
         {
             OnBuildingDestroyEvent?.Invoke();
+            BuildEventChannel.InvokeDestroyEvent(this);
         }
 
 

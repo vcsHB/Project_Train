@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1060338748258206735}
   - component: {fileID: 1927954597748787883}
   - component: {fileID: 6613289431447215097}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BarrelPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5257926753148532417}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9019731392728343570}
   - component: {fileID: 1322091568389886338}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 1140204942631103391}
   - component: {fileID: 5049283735144992908}
   - component: {fileID: 1342305491177973091}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cannon_BaseVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 5553846156032394886}
   - component: {fileID: 171428290772830499}
   - component: {fileID: 1404382543442535524}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cannon_HeadVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 917257340678232853}
   - component: {fileID: 7131517222986856489}
   - component: {fileID: 6049357653965849380}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -429,7 +429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4728678911096724050}
   - component: {fileID: 7811046358486996982}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TargetDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 5758284449423940835}
   - component: {fileID: 3507059404809064134}
   - component: {fileID: 1041992153149883838}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cannon_BarrelVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,7 +575,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5726495936336911859}
   - component: {fileID: 4796290154845403380}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

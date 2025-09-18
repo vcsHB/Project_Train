@@ -1,11 +1,13 @@
+using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 namespace Project_Train.ViewControl
 {
-
+    
     public class ViewAnchorPoint : MonoBehaviour
     {
-
+        
         public UnityEvent OnEnterEvent;
         public UnityEvent OnExitEvent;
         public Vector3 PointWorldPosition => transform.position;

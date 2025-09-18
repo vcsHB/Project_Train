@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7362570832460069907}
   - component: {fileID: 3707444608353385730}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5331559586580133407}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FireFeedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 5670619778922931246}
   - component: {fileID: 3383044600204260110}
   - component: {fileID: 1775353225025906036}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BaseVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 7547907650166090382}
   - component: {fileID: 1665287342098238321}
   - component: {fileID: 4862989937992395406}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 1731573751620453785}
   - component: {fileID: 540824649640064480}
   - component: {fileID: 7060099147078145519}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HeadAxis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7289885817775967376}
   - component: {fileID: 3065013968733184302}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GunBarrels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,7 +456,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4253587863793001743}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Feedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 4387212230694413394}
   - component: {fileID: 5618783591585371063}
   - component: {fileID: 460805930189607079}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RotationBarrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 6553145565874243568}
   - component: {fileID: 2186601961156842952}
   - component: {fileID: 6256746774696476903}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FrontFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5467,7 +5467,7 @@ GameObject:
   - component: {fileID: 9067038285580484077}
   - component: {fileID: 4562727802714201401}
   - component: {fileID: 5054067190204588328}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AmmoBackVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10366,7 +10366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1345205576978887196}
   - component: {fileID: 8371366665893610322}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TargetDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10427,7 +10427,7 @@ GameObject:
   - component: {fileID: 3134504766023748516}
   - component: {fileID: 2924628836959590336}
   - component: {fileID: 6523373142324809168}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GatlingTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10521,7 +10521,7 @@ GameObject:
   - component: {fileID: 8662565681080307902}
   - component: {fileID: 2545683744923853994}
   - component: {fileID: 1888065758811324373}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FireVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
