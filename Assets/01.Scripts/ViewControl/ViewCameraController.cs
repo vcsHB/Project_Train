@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Project_Train.ViewControl
 {
-    public class ViewController : MonoBehaviour
+    public class ViewCameraController : MonoBehaviour
     {
         [Header("Essential Setting")]
         [SerializeField] private CinemachineCamera _camera;

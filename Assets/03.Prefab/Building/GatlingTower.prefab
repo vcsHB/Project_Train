@@ -60,11 +60,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _lifeTime: 10
-  _speed: 15
+  _lifeTime: 5
+  _speed: 35
   _offset: {x: 0, y: 0, z: 0}
   _projectileType: 5
-  _randomizeLevel: 0.3
+  _randomizeLevel: 0.4
 --- !u!1 &1781466014475773405
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gunBarrelPart: {fileID: 3065013968733184302}
-  _headAimingSpeed: 5
+  _headAimingSpeed: 13
   _aimAllowRange: 20
   _useVerticalAiming: 1
 --- !u!1 &3342583020213501140
@@ -5562,7 +5562,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -10618,7 +10618,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0

@@ -69,3 +69,5 @@ MonoBehaviour:
   _terrainStatus:
     height: 0
     rangeBenefit: 0
+  _buildingOnPoint: {fileID: 0}
+  <CanBuild>k__BackingField: 1
