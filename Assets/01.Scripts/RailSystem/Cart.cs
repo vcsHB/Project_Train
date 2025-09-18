@@ -67,8 +67,6 @@ namespace Project_Train.RailSystem
 				}
 			}
 
-			Debug.Log(_progress);
-
 			currentRailPosition = newSelectedRailPos;
 		}
 
@@ -156,6 +154,7 @@ namespace Project_Train.RailSystem
 				exitDirection = (p0 - p1).normalized; // t=0에서의 접선 방향
 			}
 
+			exitDirection = SnapToCardinal(exitDirection);
 			currentRailPosition += Vector3Int.RoundToInt(exitDirection * RailVectors.RailLength);
 
 			var currentRailType = RailManager.Instance.GetRailType(currentRailPosition);
@@ -188,14 +187,38 @@ namespace Project_Train.RailSystem
 			}
 		}
 
+		private Vector3 SnapToCardinal(Vector3 direction)
+		{
+			Vector3[] cardinalDirections =
+			{
+				Vector3.right,
+				Vector3.left,
+				Vector3.forward,
+				Vector3.back
+			};
+
+			Vector3 bestDirection = cardinalDirections[0];
+			float maxDot = Vector3.Dot(direction, bestDirection);
+
+			for (int i = 1; i < cardinalDirections.Length; i++)
+			{
+				float dot = Vector3.Dot(direction, cardinalDirections[i]);
+				if (dot > maxDot)
+				{
+					maxDot = dot;
+					bestDirection = cardinalDirections[i];
+				}
+			}
+
+			return bestDirection;
+		}
+
 		public static float GetTForQuadraticBezier(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p)
 		{
-			// 베지어 곡선 공식을 t에 대한 벡터 방정식 At^2 + Bt + C = 0 형태로 변환합니다.
 			Vector3 A = p0 - 2 * p1 + p2;
 			Vector3 B = 2 * (p1 - p0);
 			Vector3 C = p0 - p;
 
-			// A의 크기가 매우 작으면 곡선이 아닌 직선에 가깝습니다.
 			if (A.sqrMagnitude < 0.0001f)
 			{
 				if (B.sqrMagnitude < 0.0001f) return 0.0f;
@@ -203,7 +226,6 @@ namespace Project_Train.RailSystem
 				return t;
 			}
 
-			// 벡터 방정식의 양변에 A를 내적하여 스칼라 2차 방정식으로 변환합니다.
 			float a = Vector3.Dot(A, A);
 			float b = Vector3.Dot(A, B);
 			float c = Vector3.Dot(A, C);
