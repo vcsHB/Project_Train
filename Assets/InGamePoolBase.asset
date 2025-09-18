@@ -25,3 +25,12 @@ MonoBehaviour:
   - poolType: SmallExplosion
     prefab: {fileID: 4422283219299332822, guid: 5b8b57c7df4cdd345aeb2c304bfd64da, type: 3}
     poolCount: 10
+  - poolType: BuildCompleteVFX
+    prefab: {fileID: 2560608813637862535, guid: 727186968472d7a48a4410c2ee001c4f, type: 3}
+    poolCount: 10
+  - poolType: GatlingProjectile
+    prefab: {fileID: 1683265964001228008, guid: bab802adc2567da4483c21a840910bb2, type: 3}
+    poolCount: 20
+  - poolType: BulletHitVFX
+    prefab: {fileID: 907986205061212790, guid: 49179fc15d7af6a4c89da5e0954fac83, type: 3}
+    poolCount: 20

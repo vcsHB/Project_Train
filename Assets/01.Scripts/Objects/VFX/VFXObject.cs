@@ -1,5 +1,4 @@
 using Crogen.CrogenPooling;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 namespace Project_Train.ObjectManage.VFX
 {
@@ -18,6 +17,7 @@ namespace Project_Train.ObjectManage.VFX
         public void Play(Vector3 position, Vector3 direction)
         {
             _position = position;
+            transform.position = position;
             _direction = direction;
             PlayEffect();
         }

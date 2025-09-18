@@ -40,6 +40,7 @@ namespace Project_Train.Combat.CasterSystem
         protected virtual void Awake()
         {
             // GetComponent LowCasters
+            _hits = new Collider[_targetMaxAmount];
             _casters = GetComponentsInChildren<ICastable>();
         }
 
@@ -68,16 +69,17 @@ namespace Project_Train.Combat.CasterSystem
         {
             if (hit == null) return;
 
-            if (_castRecord.Add(hit))
+            if (_isDuplicateIgnore && !_castRecord.Add(hit))
+                return;
+
+            for (int i = 0; i < _casters.Length; i++)
             {
-                for (int j = 0; j < _casters.Length; j++)
-                    _casters[j].Cast(hit);
+                _casters[i].Cast(hit);
+            }
 
-                OnCastSuccessEvent?.Invoke();
-
-            } // Else => Ignore
-
+            OnCastSuccessEvent?.Invoke();
         }
+
 
         public void SendCasterData(CasterData data)
         {

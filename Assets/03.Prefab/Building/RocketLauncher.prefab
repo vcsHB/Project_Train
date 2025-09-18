@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6117841730053241185}
   - component: {fileID: 4656513499319493872}
   - component: {fileID: 6430974155960757211}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RocketLauncherHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 2928073282053438701}
   - component: {fileID: 5468763159314440729}
   - component: {fileID: 2753299189256852021}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RocketLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,6 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e63316ffa46a45d42a701498aacb4059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnBuildingDestroyEvent:
+    m_PersistentCalls:
+      m_Calls: []
   OnAttackUnityEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -192,7 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4748881318606408280}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirePos
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -226,7 +229,7 @@ GameObject:
   - component: {fileID: 3394274636437649467}
   - component: {fileID: 7285778475289243549}
   - component: {fileID: 1421444964923667654}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RocketLauncher_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +331,7 @@ GameObject:
   - component: {fileID: 4343421695944530837}
   - component: {fileID: 3598754344350298900}
   - component: {fileID: 6003652114355505926}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RocketLauncher_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +430,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1162946668709810732}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirePos
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -459,7 +462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5796882010973854815}
   - component: {fileID: 5977526089601674191}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RocketLauncherHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -520,7 +523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5052999334988465351}
   - component: {fileID: 2974539601646685668}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RocketShooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,7 +575,7 @@ GameObject:
   m_Component:
   - component: {fileID: 589614011580940957}
   - component: {fileID: 1022389715338848147}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TargetDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -631,7 +634,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3643753473229101982}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirePos
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -665,7 +668,7 @@ GameObject:
   - component: {fileID: 483625491209570904}
   - component: {fileID: 7706668642370990200}
   - component: {fileID: 6475406407523946168}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RocketLauncher_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -766,7 +769,7 @@ GameObject:
   - component: {fileID: 148016727789165376}
   - component: {fileID: 5562975260463998674}
   - component: {fileID: 7691150732159113371}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FireVFX (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5657,7 +5660,7 @@ GameObject:
   - component: {fileID: 4121717764603976621}
   - component: {fileID: 4228259845921059916}
   - component: {fileID: 6196885440898716952}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RocketLauncherVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5745,7 +5748,7 @@ GameObject:
   - component: {fileID: 4636159360127532746}
   - component: {fileID: 4849273354100857530}
   - component: {fileID: 4521928285941584493}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RocketLauncher_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5846,7 +5849,7 @@ GameObject:
   - component: {fileID: 5339681140645306114}
   - component: {fileID: 6465653870039944206}
   - component: {fileID: 3207537973578793047}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FireVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10736,7 +10739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1584086833243337724}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirePos
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}

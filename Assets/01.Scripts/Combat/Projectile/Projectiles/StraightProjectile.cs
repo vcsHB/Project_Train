@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 namespace Project_Train.Combat.ProjectileSystem
 {
@@ -6,12 +5,18 @@ namespace Project_Train.Combat.ProjectileSystem
     public class StraightProjectile : Projectile
     {
 
-
-        private void FixedUpdate()
+        private float _destroyTime;
+        protected virtual void FixedUpdate()
         {
             if (_isProjectileEnable)
             {
                 _caster.Cast();
+                transform.position += _direction * Time.fixedDeltaTime * _speed;
+                if (_destroyTime < Time.time)
+                {
+                    DestroyProjectile();
+                    _isProjectileEnable = false;
+                }
             }
         }
 
@@ -22,6 +27,9 @@ namespace Project_Train.Combat.ProjectileSystem
         {
             // Life Record
             _fireTime = Time.time;
+            _destroyTime = _fireTime + lifeTime;
+            _lifeTime = lifeTime;
+
             if (_forceTargetTrm == null)
             {
                 _direction = targetInfo.normalized;
@@ -32,15 +40,11 @@ namespace Project_Train.Combat.ProjectileSystem
                 _direction.Normalize();
             }
             _originPosition = originPosition;
-            _speed = speed; 
-            _lifeTime = lifeTime;
+            _speed = speed;
             _caster.ClearCastRecord();
 
             transform.position = _originPosition;
-            transform.DOMove(_originPosition + _direction * _lifeTime * _speed, _lifeTime).OnComplete(() =>
-            {
-                DestroyProjectile();
-            });
+
             _isProjectileEnable = true;
         }
         #endregion

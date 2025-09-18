@@ -28,6 +28,12 @@ namespace Project_Train.BuildSystem
 
         }
 
+        private void OnDestroy()
+        {
+            //  !!!!  Essential Work
+            BuildEventChannel.ClearBuildEvent();
+        }
+
 
         public void SetSelectable(bool value)
         {

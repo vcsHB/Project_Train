@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Project_Train.BuildSystem.SubObjects;
 using Project_Train.DataManage.CoreDataBaseSystem;
+using Project_Train.TerrainSystem;
 using UnityEngine;
 namespace Project_Train.BuildSystem
 {
@@ -29,6 +30,7 @@ namespace Project_Train.BuildSystem
             for (int i = 0; i < _initializePoolAmount; i++)
             {
                 BuildFrame buildFrame = GenerateNewBuildFrame();
+                buildFrame.gameObject.SetActive(false);
                 _buildFramePool.Push(buildFrame);
             }
 
@@ -38,7 +40,7 @@ namespace Project_Train.BuildSystem
         {
             BuildFrame newFrame = _buildFramePool.Count > 0 ?
                 _buildFramePool.Pop() : GenerateNewBuildFrame();
-
+            newFrame.gameObject.SetActive(true);
 
             return newFrame;
 
@@ -46,8 +48,9 @@ namespace Project_Train.BuildSystem
 
         private void HandleReturnFrame(BuildFrame frame)
         {
-            _buildFramePool.Push(frame);            
-            
+            frame.gameObject.SetActive(false);
+            _buildFramePool.Push(frame);
+
         }
 
         private BuildFrame GenerateNewBuildFrame()
@@ -57,13 +60,14 @@ namespace Project_Train.BuildSystem
             return newFrame;
         }
 
-
-
-        public void Build(BuildingDataSO buildingData, Vector3 position)
+        public void Build(BuildingDataSO buildingData, BuildDetailSO detail, BuildPoint point)
         {
-            BuildDetailSO detail = buildingData.GetDetail<BuildDetailSO>(DataDetailType.Build);
-            BuildFrame buildFrame = GetNewBuildFrame();
-            buildFrame.StartBuild(buildingData, detail, position);
+            if (point.CanBuild)
+            {
+                point.SetCanBuild(false);
+                BuildFrame buildFrame = GetNewBuildFrame();
+                buildFrame.StartBuild(buildingData, detail, point);
+            }
 
         }
     }
