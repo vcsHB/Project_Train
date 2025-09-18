@@ -58,12 +58,12 @@ namespace Project_Train
             if (_isMoving) return;
 
             _previousPosition = CurrentPointPosiotion;
+            _viewAnchorList[_currentViewAnchorIndex].Exit();
 
             if (isForward)
                 _currentViewAnchorIndex = _currentViewAnchorIndex <= 0 ? _viewAnchorList.Count - 1 : _currentViewAnchorIndex - 1;
             else
                 _currentViewAnchorIndex = (_currentViewAnchorIndex + 1) % _viewAnchorList.Count;
-
             _targetPosition = CurrentPointPosiotion;
             _isMoving = true;
         }
@@ -84,6 +84,7 @@ namespace Project_Train
                 {
                     _isMoving = false;
                     _currentTweenTime = 0f;
+                    _viewAnchorList[_currentViewAnchorIndex].Enter();
                     _viewAnchorTrm.position = _targetPosition;
                 }
 
