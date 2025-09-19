@@ -20,8 +20,16 @@ namespace Project_Train.Combat.TrainSystem
 			get { return _direction; }
 			set 
 			{
-				wheelVisual.rotation = Quaternion.LookRotation(value);
 				_direction = value; 
+
+				if (_direction != Vector3.zero)
+				{
+					if (isReversedRail)
+					{
+						_direction *= -1;
+					}
+					wheelVisual.rotation = Quaternion.LookRotation(_direction);
+				}
 			}
 		}
 	}
@@ -31,8 +39,6 @@ namespace Project_Train.Combat.TrainSystem
 		public float speed = 5f;
 		[SerializeField] private WheelDataInfo _wheelA;
 		[SerializeField] private WheelDataInfo _wheelB;
-
-		[SerializeField] private Vector3[] _positions;
 
 		private bool _isWent = false;
 
@@ -226,18 +232,10 @@ namespace Project_Train.Combat.TrainSystem
 			p1 += wheelDataInfo.currentRailPosition;
 			p2 += wheelDataInfo.currentRailPosition;
 
-			transform.position = RailMath.GetQuadraticBezierPoint(p0, p1, p2, wheelDataInfo.progress) + RailMath.railOffset;
+			wheelDataInfo.position = RailMath.GetQuadraticBezierPoint(p0, p1, p2, wheelDataInfo.progress) + RailMath.railOffset;
 
 			Vector3 direction = RailMath.GetQuadraticBezierTangent(p0, p1, p2, wheelDataInfo.progress);
-
-			if (direction != Vector3.zero)
-			{
-				if (wheelDataInfo.isReversedRail)
-				{
-					direction *= -1;
-				}
-				transform.rotation = Quaternion.LookRotation(direction);
-			}
+			wheelDataInfo.Direction = direction;
 		}
 	}
 }
