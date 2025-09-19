@@ -21,9 +21,9 @@ namespace  Project_Train.RailSystem
 		private void OnDrawGizmos()
 		{
 			var position = transform.position;
-			var offset = RailVectors.railOffset;
+			var offset = RailMath.railOffset;
 
-			RailVectors.GetPoints(type, out Vector3 p0, out Vector3 p1, out Vector3 p2);
+			RailMath.GetPoints(type, out Vector3 p0, out Vector3 p1, out Vector3 p2);
 
 			Gizmos.color = Color.blue;
 			Gizmos.DrawLine(position + offset + p0,	position + offset + p1);
