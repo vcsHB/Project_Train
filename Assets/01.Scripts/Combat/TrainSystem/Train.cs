@@ -1,9 +1,17 @@
 using Project_Train.RailSystem;
+using System;
 using UnityEngine;
 
 namespace Project_Train.Combat.TrainSystem
 {
-    public class Train : MonoBehaviour
+	//[Serializable]
+	//public struct CartDataInfo
+	//{
+	//	public Cart cart;
+	//	public Vector3 
+	//}
+	
+	public class Train : MonoBehaviour
     {
 		[SerializeField] private float _speed = 5f;
 		[SerializeField] private Cart _cartA;
