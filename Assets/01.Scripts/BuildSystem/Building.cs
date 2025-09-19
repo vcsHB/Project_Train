@@ -10,6 +10,7 @@ namespace Project_Train.BuildSystem
         public UnityEvent OnBuildCompleteEvent;
         public Health HealthCompo { get; protected set; }
         public OverloadController OverloaderCompo { get; protected set; }
+        [field: SerializeField] public BuildingDataSO BuildingData { get; private set; }
 
         protected virtual void Awake()
         {
@@ -29,6 +30,15 @@ namespace Project_Train.BuildSystem
             OnBuildingDestroyEvent?.Invoke();
             BuildEventChannel.InvokeDestroyEvent(this);
         }
+
+#if UNITY_EDITOR
+
+        internal void SetBuildingData(BuildingDataSO data)
+        {
+            BuildingData = data;
+        }
+
+#endif
 
 
     }
