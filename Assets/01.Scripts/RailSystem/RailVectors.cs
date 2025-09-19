@@ -7,7 +7,7 @@ namespace Project_Train.RailSystem
 	{
 		public const float RailLength = 4f;
 		public static Vector3 railOffset = Vector3.up;
-		private const float CenterPos = 0.35f;
+		private const float CurveCenterPos = 0.35f;
 
 		private static readonly Dictionary<ERailType, (Vector3, Vector3, Vector3)> _railpoints = new()
 		{
@@ -16,10 +16,10 @@ namespace Project_Train.RailSystem
 			{ ERailType.Straight_NS, (new Vector3(0, 0, RailLength * 0.5f), Vector3.zero, new Vector3(0, 0, RailLength * -0.5f))},
 			{ ERailType.Straight_EW, (new Vector3(RailLength * 0.5f, 0, 0), Vector3.zero, new Vector3(RailLength * -0.5f, 0, 0))},
 
-			{ ERailType.Curve_NE, (new Vector3(0, 0, RailLength * 0.5f),  new Vector3(CenterPos, 0, CenterPos), new Vector3(RailLength * 0.5f, 0, 0))},
-			{ ERailType.Curve_ES, (new Vector3(RailLength * 0.5f, 0, 0),  new Vector3(CenterPos, 0, -CenterPos), new Vector3(0, 0, RailLength * -0.5f))},
-			{ ERailType.Curve_SW, (new Vector3(0, 0, RailLength * -0.5f), new Vector3(-CenterPos, 0, -CenterPos), new Vector3(RailLength * -0.5f, 0, 0))},
-			{ ERailType.Curve_WN, (new Vector3(RailLength * -0.5f, 0, 0), new Vector3(-CenterPos, 0, CenterPos), new Vector3(0, 0, RailLength * 0.5f))},
+			{ ERailType.Curve_NE, (new Vector3(0, 0, RailLength * 0.625f),  new Vector3(CurveCenterPos, 0, CurveCenterPos), new Vector3(RailLength * 0.625f, 0, 0))},
+			{ ERailType.Curve_ES, (new Vector3(RailLength * 0.625f, 0, 0),  new Vector3(CurveCenterPos, 0, -CurveCenterPos), new Vector3(0, 0, RailLength * -0.625f))},
+			{ ERailType.Curve_SW, (new Vector3(0, 0, RailLength * -0.625f), new Vector3(-CurveCenterPos, 0, -CurveCenterPos), new Vector3(RailLength * -0.625f, 0, 0))},
+			{ ERailType.Curve_WN, (new Vector3(RailLength * -0.625f, 0, 0), new Vector3(-CurveCenterPos, 0, CurveCenterPos), new Vector3(0, 0, RailLength * 0.625f))},
 
 			{ ERailType.Ascending_N, (new Vector3(0, 0, RailLength * -0.5f), new Vector3(0, 0.5f, 0), new Vector3(0, 1f, RailLength * 0.5f))},
 			{ ERailType.Ascending_E, (new Vector3(RailLength * -0.5f, 0, 0), new Vector3(0, 0.5f, 0), new Vector3(RailLength * 0.5f, 1f, 0))},
