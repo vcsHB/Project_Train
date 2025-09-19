@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Rail.002
-  m_Shader: {fileID: -6465566751694194690, guid: 0b0f0397663f9634ba5e37c0627239c9, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: a2d12c80e4f4bfd4789cca27db44cab7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -55,9 +55,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Glossiness: 0.5
+    - _Index: 0
+    - _Metallic: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _TextureSize: 128
     m_Colors:
-    - _MaskColor: {r: 1, g: 0.30870256, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Offset: {r: 1, g: 0, b: 0, a: 0}
+    - _Tiling: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
