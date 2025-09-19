@@ -5,21 +5,13 @@ namespace  Project_Train.RailSystem
     public class Rail : MonoBehaviour
     {
         public ERailType type;
-
-		private void Awake()
-		{
-            var position = GetRailPosition();
-			RailManager.Instance.AddRail(type, position);
-		}
-
-        private Vector3Int GetRailPosition()
-        {
-            return Vector3Int.RoundToInt(transform.position);
-        }
+        public Transform startPoint;
+        public Transform endPoint;
 
 #if UNITY_EDITOR
 		private void OnDrawGizmos()
 		{
+			// 기존 기즈모 코드는 그대로 유지 (시각화에 유용)
 			var position = transform.position;
 			var offset = RailMath.railOffset;
 
