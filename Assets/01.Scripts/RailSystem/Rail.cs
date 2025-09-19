@@ -5,8 +5,6 @@ namespace  Project_Train.RailSystem
     public class Rail : MonoBehaviour
     {
         public ERailType type;
-        public Transform startPoint;
-        public Transform endPoint;
 
 #if UNITY_EDITOR
 		private void OnDrawGizmos()
