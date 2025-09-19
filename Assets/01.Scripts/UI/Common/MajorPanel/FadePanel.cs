@@ -28,6 +28,7 @@ namespace Project_Train.UIManage
 
         public virtual void Open()
         {
+            if (IsPanelEnabled) return;
             IsPanelEnabled = true;
             OnPanelOpenEvent?.Invoke();
             OnPanelEnabledEvent?.Invoke(this);
@@ -38,6 +39,7 @@ namespace Project_Train.UIManage
         }
         public virtual void Close()
         {
+            if (!IsPanelEnabled) return;
             SetInteractable(false);
             _canvasGroup.DOFade(0f, _closeDuration).OnComplete(() =>
             {

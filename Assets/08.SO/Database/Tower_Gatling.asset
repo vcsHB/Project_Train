@@ -26,7 +26,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5687dceac043584d9f3014fcd0abc36, type: 3}
   m_Name: FunctionDetail
   m_EditorClassIdentifier: 
-  range: 32
+  range: 5.6
+  ignoreRatio: 0.137
   randomizeErrorAngle: 18.2
   fireCooltime: 0.1
   attackArea: -1

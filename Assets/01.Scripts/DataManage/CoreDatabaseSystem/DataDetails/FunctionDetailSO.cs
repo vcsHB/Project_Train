@@ -12,9 +12,15 @@ namespace Project_Train.DataManage.CoreDataBaseSystem
     {
         public override DataDetailType DetailType => DataDetailType.Function;
         public float range;
+        [Range(0f, 1f)] public float ignoreRatio;
         [Range(0f, 50f)] public float randomizeErrorAngle;
         public float fireCooltime;
         public AttackAreaType attackArea;
+
+#if UNITY_EDITOR
+
+#endif
+
 
 
 

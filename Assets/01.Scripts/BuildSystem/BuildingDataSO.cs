@@ -9,7 +9,7 @@ namespace Project_Train.BuildSystem
 
 #if UNITY_EDITOR
 
-        private void OnValidate()
+        protected virtual void OnValidate()
         {
             if (buildingPrefab == null)
             {

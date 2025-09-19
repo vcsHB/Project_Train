@@ -158,6 +158,7 @@ MonoBehaviour:
   OnBuildCompleteEvent:
     m_PersistentCalls:
       m_Calls: []
+  <BuildingData>k__BackingField: {fileID: 11400000, guid: 85ce23972b3f167428e51a2299dd7d53, type: 2}
   OnAttackUnityEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -641,10 +642,10 @@ MonoBehaviour:
   _detectMaxTargetAmount: 10
   _useGizmos: 1
   _gizmosColor: {r: 0, g: 0.3207547, b: 0.27798745, a: 1}
-  _detectRadius: 20
+  _detectRadius: 7.5
   _detectHeight: 20
   _useDistanceIgnore: 1
-  _ignoreDistanceRatio: 0.15
+  _ignoreDistanceRatio: 0.311
   _ignoreGizmosColor: {r: 1, g: 0.10196079, b: 0, a: 1}
   _useDetectObstacle: 0
   _detectObstacleLayer:

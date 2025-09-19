@@ -10407,10 +10407,10 @@ MonoBehaviour:
   _detectMaxTargetAmount: 4
   _useGizmos: 1
   _gizmosColor: {r: 1, g: 0, b: 0, a: 1}
-  _detectRadius: 8
+  _detectRadius: 5.6
   _detectHeight: 20
-  _useDistanceIgnore: 0
-  _ignoreDistanceRatio: 0.15
+  _useDistanceIgnore: 1
+  _ignoreDistanceRatio: 0.137
   _ignoreGizmosColor: {r: 0, g: 1, b: 1, a: 1}
   _useDetectObstacle: 1
   _detectObstacleLayer:
@@ -10428,6 +10428,7 @@ GameObject:
   - component: {fileID: 2924628836959590336}
   - component: {fileID: 6523373142324809168}
   - component: {fileID: 3258917103496365085}
+  - component: {fileID: 4687333936600493825}
   m_Layer: 9
   m_Name: GatlingTower
   m_TagString: Untagged
@@ -10471,6 +10472,7 @@ MonoBehaviour:
   OnBuildCompleteEvent:
     m_PersistentCalls:
       m_Calls: []
+  <BuildingData>k__BackingField: {fileID: 11400000, guid: 5284449ba0859984fb802ba60af01ae3, type: 2}
   OnAttackUnityEvent:
     m_PersistentCalls:
       m_Calls:
@@ -10535,6 +10537,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.4
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &4687333936600493825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8231988016227226391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d4014af47e94e40b1e00896bec87a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _overloadLevel: 1
+  _overloadDuration: 5
 --- !u!1 &8623713044402647056
 GameObject:
   m_ObjectHideFlags: 0

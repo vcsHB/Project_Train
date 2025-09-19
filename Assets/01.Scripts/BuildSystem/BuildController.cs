@@ -1,5 +1,6 @@
 using System;
 using Project_Train.Core.Input;
+using Project_Train.DataManage.CoreDataBaseSystem;
 using Project_Train.TerrainSystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -74,6 +75,16 @@ namespace Project_Train.BuildSystem
                 if (Physics.Raycast(ray, out var buildingHitInfo, _detectMaxDistance, _structureLayer) &&
                     buildingHitInfo.collider.TryGetComponent(out Building building))
                 {
+                    FunctionDetailSO function = building.BuildingData.GetDetail<FunctionDetailSO>(DataDetailType.Function);
+                    if (function != null)
+                    {
+                        Debug.Log("asdasdasd");
+                        _buildSelector.SetTowerRangeVisual(function.range, function.ignoreRatio);
+                    }
+                    else
+                    {
+                        _buildSelector.SetTowerRangeVisual(0f);
+                    }
                     _buildSelector.SetPosition(building.transform.position);
                     OnBuildingSelectEvent?.Invoke(building);
                 }
