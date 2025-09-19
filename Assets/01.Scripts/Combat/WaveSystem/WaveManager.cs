@@ -1,19 +1,12 @@
-using UnityEngine;
-
-namespace  Project_Train
+namespace  Project_Train.Combat.WaveSystem
 {
-    public class WaveManager : MonoBehaviour
+    public class WaveManager : MonoSingleton<WaveManager>
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-        
-        }
+        public WaveSO[] waves;
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
-    }
+		private void Start()
+		{
+			
+		}
+	}
 }

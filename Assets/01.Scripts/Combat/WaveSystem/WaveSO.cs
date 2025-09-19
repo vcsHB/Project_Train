@@ -13,5 +13,7 @@ namespace Project_Train.Combat.WaveSystem
     public class WaveSO : ScriptableObject
     {
         [field: SerializeField] public WaveTrainData[] waveTrains;
+
+        [field: SerializeField] public float EndDelay { get; private set; } = 1f;
 	}
 }

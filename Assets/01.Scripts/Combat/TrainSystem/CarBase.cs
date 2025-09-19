@@ -14,6 +14,11 @@ namespace Project_Train.Combat.TrainSystem
 		public float SpeedStack { get; set; }
 		public bool IsRunning { get; private set; }
 
+		/// <summary>
+		/// The standard is back wheel
+		/// </summary>
+		public Rail currentRail;
+
 		[SerializeField] private Wheel _wheelA;
 		[SerializeField] private Wheel _wheelB;
 

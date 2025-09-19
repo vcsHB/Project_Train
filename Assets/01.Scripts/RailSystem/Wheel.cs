@@ -10,6 +10,7 @@ namespace  Project_Train
 		private float _progress = 0f;
 		private bool _isReversedRail = false;
 
+		// TODO : have to make initialize function that call by [CarBase].
 		private void Start()
 		{
 			InitializeStartPosition();
