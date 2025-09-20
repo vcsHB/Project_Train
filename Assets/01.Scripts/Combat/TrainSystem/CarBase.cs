@@ -59,7 +59,7 @@ namespace Project_Train.Combat.TrainSystem
 			SetupFinalSpeed();
 		}
 
-		private void OnDie()
+		public virtual void OnDie()
 		{
 			if (frontCar) frontCar.backCar = null;
 			if (backCar) backCar.frontCar = null;

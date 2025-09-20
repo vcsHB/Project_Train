@@ -35,7 +35,7 @@ namespace Project_Train.Combat.TrainSystem
 				if (_preiousSpawnedCarBase)
 				{
 					newCar.frontCar = _preiousSpawnedCarBase;
-					newCar.headCar = _preiousSpawnedCarBase.headCar;
+					newCar.SetHeadCar(_preiousSpawnedCarBase.headCar);
 					_preiousSpawnedCarBase.backCar = newCar;
 				}
 
