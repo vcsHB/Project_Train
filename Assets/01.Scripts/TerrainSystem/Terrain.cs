@@ -97,7 +97,7 @@ namespace Project_Train.LevelSystem
             Gizmos.color = new Color(1f, 0f, 0f, 0.1f);
             Gizmos.DrawCube(
                 transform.position +
-                new Vector3(
+				new Vector3(
                     0f,
                     -_groundDetectDistance * 0.5f + _detectHeight,
                     0f),
@@ -106,6 +106,7 @@ namespace Project_Train.LevelSystem
                     _groundDetectDistance,
                     _tilingTerm * _gridTiling.y)
             );
+
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(
                             transform.position +
