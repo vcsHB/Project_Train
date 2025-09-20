@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 1861037207737980970}
   - component: {fileID: 1077203391696421043}
   - component: {fileID: 8267669916864579053}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AttackerCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,6 @@ MonoBehaviour:
   headCar: {fileID: 0}
   frontCar: {fileID: 0}
   backCar: {fileID: 0}
-  currentRail: {fileID: 0}
   _wheelA: {fileID: 8219943270866569360}
   _wheelB: {fileID: 2008369881904509610}
 --- !u!114 &8267669916864579053

@@ -34,6 +34,11 @@ namespace Project_Train.Combat.TrainSystem
 		{
 			if (false == _isInitialized) return;
 
+			if (null == _wheelA.CurrentRail)
+			{
+				Explosion();
+			}
+
 			if (IsHeadCar && this != headCar)
 			{
 				SpeedStack = 0;
@@ -41,6 +46,16 @@ namespace Project_Train.Combat.TrainSystem
 			}
 
 			SetupFinalSpeed();
+		}
+
+		private void Explosion()
+		{
+			gameObject.SetActive(false);
+
+			if (null == backCar)
+			{
+
+			}
 		}
 
 		private void LateUpdate()

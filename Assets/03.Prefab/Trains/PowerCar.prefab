@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8261507497499987813}
   - component: {fileID: 7682808057318770977}
   - component: {fileID: 5311610344295027331}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PowerCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,6 @@ MonoBehaviour:
   headCar: {fileID: 0}
   frontCar: {fileID: 0}
   backCar: {fileID: 0}
-  currentRail: {fileID: 0}
   _wheelA: {fileID: 675184637075301931}
   _wheelB: {fileID: 5350908334235451751}
 --- !u!1 &5797774549675932050

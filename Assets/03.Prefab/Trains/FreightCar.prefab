@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 8058350849616079525}
   - component: {fileID: 8100662843353980897}
   - component: {fileID: 1213773250365612203}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FreightCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,6 +326,5 @@ MonoBehaviour:
   headCar: {fileID: 0}
   frontCar: {fileID: 0}
   backCar: {fileID: 0}
-  currentRail: {fileID: 0}
   _wheelA: {fileID: 1447463835217105658}
   _wheelB: {fileID: 9099493600362778400}
