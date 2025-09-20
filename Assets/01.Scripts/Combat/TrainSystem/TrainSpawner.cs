@@ -32,10 +32,10 @@ namespace Project_Train.Combat.TrainSystem
 			{
 				CarBase newCar = GameObject.Instantiate(trainArraySO[i], startRail.transform.position, startRail.transform.rotation);
 
-				if (null != _preiousSpawnedCarBase)
+				if (_preiousSpawnedCarBase)
 				{
 					newCar.frontCar = _preiousSpawnedCarBase;
-					newCar.headCar = _preiousSpawnedCarBase.headCar;
+					newCar.SetHeadCar(_preiousSpawnedCarBase.headCar);
 					_preiousSpawnedCarBase.backCar = newCar;
 				}
 
@@ -47,7 +47,7 @@ namespace Project_Train.Combat.TrainSystem
 				yield return new WaitUntil(() => newCar.CurrentRail != startRail);
 				yield return new WaitForSeconds(0.25f);
 			}
-
+			_preiousSpawnedCarBase = null;
 			OnTrainArraySpawnComplete?.Invoke();
 		}
 	}

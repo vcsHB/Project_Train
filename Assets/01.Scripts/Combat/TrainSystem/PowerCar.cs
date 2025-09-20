@@ -10,5 +10,12 @@ namespace  Project_Train.Combat.TrainSystem
 
 			headCar.SpeedStack += TargetSpeed;
 		}
+
+		public override void OnDie()
+		{
+			base.OnDie();
+
+			headCar.SpeedStack -= TargetSpeed;
+		}
 	}
 }
