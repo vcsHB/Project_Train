@@ -61,8 +61,8 @@ namespace Project_Train.Combat.TrainSystem
 
 		private void OnDie()
 		{
-			frontCar.backCar = null;
-			backCar.frontCar = null;
+			if (frontCar) frontCar.backCar = null;
+			if (backCar) backCar.frontCar = null;
 			Destroy(this);
 		}
 
