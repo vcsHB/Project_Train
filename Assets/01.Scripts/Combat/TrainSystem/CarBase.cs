@@ -63,7 +63,7 @@ namespace Project_Train.Combat.TrainSystem
 		{
 			if (frontCar) frontCar.backCar = null;
 			if (backCar) backCar.frontCar = null;
-			Destroy(this);
+			Destroy(gameObject);
 		}
 
 		private void Explosion()
