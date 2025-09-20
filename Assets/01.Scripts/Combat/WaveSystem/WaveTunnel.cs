@@ -4,10 +4,10 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace  Project_Train.Combat.WaveSystem
+namespace Project_Train.Combat.WaveSystem
 {
-    public class WaveTunnel : MonoBehaviour
-    {
+	public class WaveTunnel : MonoBehaviour
+	{
 		[field: SerializeField] public Rail StartRail { get; private set; }
 		public WaveSO[] waves;
 
@@ -22,7 +22,10 @@ namespace  Project_Train.Combat.WaveSystem
 
 		private WaveManager _waveManager;
 
-		public event Action<float> OnWaveEndDelayCooltimeEvent;
+		public event Action<int> OnLeftCarAmountChangeEvent;
+
+		public event Action<float, float> OnWaveEndDelayCooltimeEvent;
+		public int CurrentCarAmount => TrainSpawner.CurrentCarCount;
 
 		private void Awake()
 		{
@@ -34,10 +37,16 @@ namespace  Project_Train.Combat.WaveSystem
 
 			TrainSpawner = new TrainSpawner();
 			TrainSpawner.startRail = StartRail;
+			TrainSpawner.OnLeftCarAmountChangeEvent += HandleLeftCarChange;
 
 			_waveManager = WaveManager.Instance;
 			_waveManager.AddWaveTunnel(this);
 			TunnelIndex = _waveManager.waveTunnelList.IndexOf(this);
+		}
+
+		private void HandleLeftCarChange(int leftCarAmount)
+		{
+			OnLeftCarAmountChangeEvent?.Invoke(leftCarAmount);
 		}
 
 		private void Start()
@@ -79,7 +88,7 @@ namespace  Project_Train.Combat.WaveSystem
 				while (timer < endDelay)
 				{
 					yield return null;
-					OnWaveEndDelayCooltimeEvent?.Invoke(timer);
+					OnWaveEndDelayCooltimeEvent?.Invoke(timer, endDelay);
 					timer += Time.deltaTime;
 				}
 			}

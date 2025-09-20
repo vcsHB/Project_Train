@@ -36,7 +36,7 @@ namespace Project_Train.Combat.TrainSystem
 
 			_trainSpawner = trainSpawner;
 
-			++trainSpawner.currentCarCount;
+			++trainSpawner.CurrentCarCount;
 
 			_isInitialized = true;
 		}
@@ -69,7 +69,7 @@ namespace Project_Train.Combat.TrainSystem
 		private void Explosion()
 		{
 			Debug.Log("Explosion");
-			--_trainSpawner.currentCarCount;
+			--_trainSpawner.CurrentCarCount;
 			if (null == backCar)
 			{
 				DestroyWithForward();
