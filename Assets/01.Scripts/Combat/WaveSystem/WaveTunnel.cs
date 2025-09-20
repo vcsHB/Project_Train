@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace  Project_Train.Combat.WaveSystem
 {
-    public class WaveManager : MonoSingleton<WaveManager>
+    public class WaveTunnel : MonoBehaviour
     {
 		[field: SerializeField] public Rail StartRail { get; private set; }
 		public WaveSO[] waves;
