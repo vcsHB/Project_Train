@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 8895806513973296902}
   - component: {fileID: 1220197377950584960}
   - component: {fileID: 9008837684992557716}
-  m_Layer: 0
+  - component: {fileID: -4101787789164512547}
+  m_Layer: 2
   m_Name: Curve_ES
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,3 +101,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 4
+--- !u!64 &-4101787789164512547
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8095216487727029039}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3692362708112435495, guid: 0b3ddffb23faa0c449da1be98c8b22d0, type: 3}
