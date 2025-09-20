@@ -22,6 +22,8 @@ namespace  Project_Train.Combat.WaveSystem
 
 		private WaveManager _waveManager;
 
+		public event Action<float> OnWaveEndDelayCooltimeEvent;
+
 		private void Awake()
 		{
 			if (null == StartRail)
