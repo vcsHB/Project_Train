@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _caster: {fileID: 7004278896407238934}
   _isHitDestroy: 0
-  _destroyVFX: 2
+  _destroyVFX: 0
   _lifeTime: 0
   _speed: 0
   _originPosition: {x: 0, y: 0, z: 0}

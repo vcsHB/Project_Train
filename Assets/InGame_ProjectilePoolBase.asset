@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef843ff4ebdeee344a631d7c1ad9917f, type: 3}
+  m_Name: InGame_ProjectilePoolBase
+  m_EditorClassIdentifier: 
+  pairs:
+  - poolType: CannonProjectile
+    prefab: {fileID: 3488974446004042733, guid: 6a1f7beb6ee1a104eaa311c3e530da0d, type: 3}
+    poolCount: 20
+  - poolType: GatlingProjectile
+    prefab: {fileID: 1683265964001228008, guid: bab802adc2567da4483c21a840910bb2, type: 3}
+    poolCount: 20
+  - poolType: RocketProjectile
+    prefab: {fileID: 7081693654467263399, guid: 6051e340cd25633458495cd134ce3ee5, type: 3}
+    poolCount: 20
+  - poolType: Enemy_CannonProjectile
+    prefab: {fileID: 4460750416192343055, guid: 1cb5f25975637d1479c848f0250b3558, type: 3}
+    poolCount: 20
+  - poolType: Enemy_GatlingProjectile
+    prefab: {fileID: 2943055365540191533, guid: 56a391ff615fda84da44c2d75e15f143, type: 3}
+    poolCount: 20

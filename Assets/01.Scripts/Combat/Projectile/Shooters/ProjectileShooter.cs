@@ -1,3 +1,4 @@
+using Crogen.CrogenPooling;
 using UnityEngine;
 using UnityEngine.Events;
 namespace Project_Train.Combat.ProjectileSystem
@@ -7,7 +8,7 @@ namespace Project_Train.Combat.ProjectileSystem
     {
         public UnityEvent OnFireEvent;
         [Header("Projectile Setting")]
-        // Pooling Type;
+        [SerializeField] protected InGame_ProjectilePoolBasePoolType _projectileType;
         [SerializeField] protected float _lifeTime = 10f;
         [SerializeField] protected float _speed = 10f;
         [SerializeField] protected Vector3 _offset;

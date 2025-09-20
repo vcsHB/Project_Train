@@ -5,7 +5,6 @@ namespace Project_Train.Combat.ProjectileSystem
 
     public class StraightRandomizeShooter : ProjectileShooter
     {
-        [SerializeField] private InGamePoolBasePoolType _projectileType;
         [Header("Randomize Settings")]
         [SerializeField, Range(0f, 1f)] private float _randomizeLevel = 0.05f;
 
