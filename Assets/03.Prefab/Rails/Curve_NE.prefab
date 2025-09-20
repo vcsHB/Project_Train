@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 215224952423973136}
   - component: {fileID: 8895806513973296902}
   - component: {fileID: 1220197377950584960}
-  - component: {fileID: 4445509778434311400}
   - component: {fileID: 9008837684992557716}
   m_Layer: 0
   m_Name: Curve_NE
@@ -88,27 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4445509778434311400
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8095216487727029039}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &9008837684992557716
 MonoBehaviour:
   m_ObjectHideFlags: 0
