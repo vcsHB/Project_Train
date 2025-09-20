@@ -121,14 +121,14 @@ namespace Project_Train
 
             Rail nextRail = RailManager.Instance.GetRail(exitPoint, CurrentRail);
 
+            CurrentRail = nextRail;
+
             if (nextRail == null)
             {
                 Debug.LogWarning($"End of the line at {exitPoint}. Stopping wheel.", this);
                 speed = 0; // 레일이 없으면 정지
                 return;
             }
-
-            CurrentRail = nextRail;
 
             // 새 레일에서의 진행 방향과 시작 progress 설정
             if (Vector3.Distance(nextRail.StartPos, exitPoint) < 0.1f)

@@ -22,10 +22,16 @@ namespace Project_Train.Combat.TrainSystem
 
 		private bool _isInitialized = false;
 
-		public void Initialize(Rail startRail)
+		private TrainSpawner _trainSpawner;
+
+		public void Initialize(TrainSpawner trainSpawner, Rail startRail)
 		{
 			_wheelA.Initialize(startRail, transform);
 			_wheelB.Initialize(startRail, transform);
+
+			_trainSpawner = trainSpawner;
+
+			++trainSpawner.currentCarCount;
 
 			_isInitialized = true;
 		}
@@ -52,10 +58,19 @@ namespace Project_Train.Combat.TrainSystem
 		{
 			gameObject.SetActive(false);
 
+			Debug.Log("Explosion");
+			--_trainSpawner.currentCarCount;
 			if (null == backCar)
 			{
-
+				DestroyWithForward();
 			}
+		}
+
+		public void DestroyWithForward()
+		{
+			Destroy(gameObject);
+			if (null != frontCar)
+				frontCar.DestroyWithForward();
 		}
 
 		private void LateUpdate()
