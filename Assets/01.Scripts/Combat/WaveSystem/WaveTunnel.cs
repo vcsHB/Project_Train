@@ -55,6 +55,7 @@ namespace  Project_Train.Combat.WaveSystem
 
 		private IEnumerator CoroutineSpawnNextTrainArray()
 		{
+			// 모든 웨이브 끝
 			if (_currentWaveIndex >= waves.Length)
 			{
 				OnAllWaveEndEvent?.Invoke();
@@ -62,22 +63,34 @@ namespace  Project_Train.Combat.WaveSystem
 			}
 			else
 			{
-				_currentWaveTrainData = waves[_currentWaveIndex].waveTrains[_currentWaveTrainIndex];
-				yield return new WaitForSeconds(_currentWaveTrainData.startDelay);
-
-				TrainSpawner.Spawn(_currentWaveTrainData.trainArraySO);
-
-				if (false == _firstSpawnComplete)
 				{
-					_waveManager.OnWaveStartEvents[TunnelIndex]?.Invoke();
-					_firstSpawnComplete = true;
+					yield return new WaitForSeconds(_currentWaveTrainData.startDelay);
+
+					// 처음 소환하기 전 
+					if (false == _firstSpawnComplete)
+					{
+						_waveManager.OnWaveStartEvents[TunnelIndex]?.Invoke();
+						_firstSpawnComplete = true;
+					}
+
+					_currentWaveTrainData = waves[_currentWaveIndex].waveTrains[_currentWaveTrainIndex];
+					TrainSpawner.Spawn(_currentWaveTrainData.trainArraySO);
+					_currentWaveTrainIndex++;
 				}
 
-				_currentWaveTrainIndex++;
-
+				// 웨이브 끝
 				if (_currentWaveTrainIndex >= waves[_currentWaveIndex].waveTrains.Length)
 				{
-					yield return new WaitForSeconds(waves[_currentWaveIndex].EndDelay);
+					float timer = 0;
+					float endDelay = waves[_currentWaveIndex].EndDelay;
+					while (timer < endDelay)
+					{
+						OnWaveEndDelayCooltimeEvent?.Invoke(timer);
+						timer += Time.deltaTime;
+						yield return null;
+					}
+
+					yield return new WaitForSeconds(endDelay);
 
 					_currentWaveTrainIndex = 0;
 					_currentWaveIndex++;
