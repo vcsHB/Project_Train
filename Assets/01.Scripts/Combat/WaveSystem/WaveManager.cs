@@ -17,6 +17,12 @@ namespace  Project_Train.Combat.WaveSystem
 
 		private void Awake()
 		{
+			if (null == StartRail)
+			{
+				Debug.LogError("Start rail is null.");
+				return;
+			}
+
 			TrainSpawner = new TrainSpawner();
 			TrainSpawner.Initialize(this);
 			TrainSpawner.startRail = StartRail;
