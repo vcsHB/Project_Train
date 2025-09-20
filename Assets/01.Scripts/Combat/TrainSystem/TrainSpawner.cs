@@ -1,26 +1,36 @@
 using Project_Train.RailSystem;
-using Project_Train.Utils;
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
-namespace  Project_Train.Combat.TrainSystem
+namespace Project_Train.Combat.TrainSystem
 {
 	public class TrainSpawner
-    {
+	{
 		public Rail startRail;
 
 		private CarBase _preiousSpawnedCarBase = null;
 
-        public event Action OnTrainArraySpawnComplete;
+		public event Action OnTrainArraySpawnComplete;
+		public event Action<int> OnLeftCarAmountChangeEvent;
 
-		public int currentCarCount;
+		private int _currentCarCount;
+		public int CurrentCarCount
+		{
+			get { return _currentCarCount; }
+			set
+			{
+				OnLeftCarAmountChangeEvent?.Invoke(_currentCarCount);
+				_currentCarCount = value;
+			}
+		}
 
-        public IEnumerator CoroutineSpawn(TrainArraySO trainArraySO)
-        {
-            for (int i = 0; i < trainArraySO.Count; i++)
-            {
-                CarBase newCar = GameObject.Instantiate(trainArraySO[i], startRail.transform.position, startRail.transform.rotation);
+		public IEnumerator CoroutineSpawn(TrainArraySO trainArraySO)
+		{
+			for (int i = 0; i < trainArraySO.Count; i++)
+			{
+				CarBase newCar = GameObject.Instantiate(trainArraySO[i], startRail.transform.position, startRail.transform.rotation);
 
 				if (null != _preiousSpawnedCarBase)
 				{
@@ -29,9 +39,9 @@ namespace  Project_Train.Combat.TrainSystem
 					_preiousSpawnedCarBase.backCar = newCar;
 				}
 
-                _preiousSpawnedCarBase = newCar;
+				_preiousSpawnedCarBase = newCar;
 
-                newCar.Initialize(this, startRail);
+				newCar.Initialize(this, startRail);
 
 				// When completely off the start rail
 				yield return new WaitUntil(() => newCar.CurrentRail != startRail);

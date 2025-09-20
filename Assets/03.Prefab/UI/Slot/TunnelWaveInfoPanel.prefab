@@ -622,7 +622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentLeftEnemyText: {fileID: 3363669156163747249}
-  _leftTimeToNextWave: {fileID: 3363669156163747249}
+  _leftTimeToNextWave: {fileID: 7590386605083501710}
   _leftTimeGaugeImage: {fileID: 8569820936914717526}
 --- !u!1 &5021784789764683346
 GameObject:

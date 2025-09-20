@@ -78,7 +78,6 @@ namespace Project_Train.BuildSystem
                     FunctionDetailSO function = building.BuildingData.GetDetail<FunctionDetailSO>(DataDetailType.Function);
                     if (function != null)
                     {
-                        Debug.Log("asdasdasd");
                         _buildSelector.SetTowerRangeVisual(function.range, function.ignoreRatio);
                     }
                     else

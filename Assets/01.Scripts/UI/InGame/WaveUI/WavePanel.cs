@@ -16,17 +16,18 @@ namespace Project_Train.UIManage.InGameSceneUI
         private void Start()
         {
             // 
-
+            Initialize();
         }
 
         private void Initialize()
         {
             _waveManager = WaveManager.Instance;
-            List<WaveTunnel> tunnelList = new(); // WaveManager Reference;
+            List<WaveTunnel> tunnelList = _waveManager.waveTunnelList;
             _infoPanels = new WaveTunnelInfoPanel[tunnelList.Count];
             for (int i = 0; i < _infoPanels.Length; i++)
             {
                 WaveTunnelInfoPanel infoPanel = Instantiate(_tunnelInfoPrefab, _contentTrm);
+                infoPanel.Initialize(tunnelList[i]);
                 _infoPanels[i] = infoPanel;
 
                 //_waveManager.OnAllWaveTunnelEndEvent

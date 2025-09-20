@@ -42,16 +42,16 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMask: 15
-    - _LineWidth: 0.922
-    - _PixelSize: 0.35
+    - _LineWidth: 0.75
+    - _PixelSize: 35
     - _Rotation: -45
-    - _Speed: -0.3
+    - _Speed: -0.9
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
-    - _Tiling: 0.02
+    - _Tiling: 5
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
     m_Colors:

@@ -1,3 +1,4 @@
+using Project_Train.Combat.WaveSystem;
 using TMPro;
 using Unity.IntegerTime;
 using UnityEngine;
@@ -14,6 +15,12 @@ namespace Project_Train.UIManage.InGameSceneUI
         [SerializeField] private TextMeshProUGUI _leftTimeToNextWave;
         [SerializeField] private Image _leftTimeGaugeImage;
 
+        public void Initialize(WaveTunnel tunnel)
+        {
+            tunnel.OnWaveEndDelayCooltimeEvent += RefreshLeftTime;
+            tunnel.OnLeftCarAmountChangeEvent += RefreshLeftEnemy;
+        }
+
         public void RefreshLeftEnemy(int amount)
         {
             _currentLeftEnemyText.text = amount.ToString();
@@ -23,7 +30,7 @@ namespace Project_Train.UIManage.InGameSceneUI
         {
             float ratio = current / max;
             _leftTimeGaugeImage.fillAmount = ratio;
-            _leftTimeToNextWave.text = $"{Mathf.RoundToInt(current).ToString()}s";
+            _leftTimeToNextWave.text = $"{Mathf.RoundToInt(max - current).ToString()}s";
         }
     }
 }
