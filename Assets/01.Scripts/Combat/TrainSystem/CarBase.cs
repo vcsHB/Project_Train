@@ -1,3 +1,4 @@
+using Project_Train.Combat.CasterSystem.HitBody;
 using Project_Train.RailSystem;
 using UnityEngine;
 
@@ -22,10 +23,14 @@ namespace Project_Train.Combat.TrainSystem
 
 		private bool _isInitialized = false;
 
+		private Health _health;
 		private TrainSpawner _trainSpawner;
 
 		public void Initialize(TrainSpawner trainSpawner, Rail startRail)
 		{
+			_health = GetComponent<Health>();
+			_health.OnDieEvent.AddListener(OnDie);
+
 			_wheelA.Initialize(startRail, transform);
 			_wheelB.Initialize(startRail, transform);
 
@@ -54,21 +59,28 @@ namespace Project_Train.Combat.TrainSystem
 			SetupFinalSpeed();
 		}
 
+		private void OnDie()
+		{
+			frontCar.backCar = null;
+			backCar.frontCar = null;
+			Destroy(this);
+		}
+
 		private void Explosion()
 		{
-			gameObject.SetActive(false);
-
 			Debug.Log("Explosion");
 			--_trainSpawner.currentCarCount;
 			if (null == backCar)
 			{
 				DestroyWithForward();
 			}
+			gameObject.SetActive(false);
 		}
 
 		public void DestroyWithForward()
 		{
-			Destroy(gameObject);
+			OnDie();
+
 			if (null != frontCar)
 				frontCar.DestroyWithForward();
 		}

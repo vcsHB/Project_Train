@@ -244,8 +244,8 @@ MonoBehaviour:
   OnDieEvent:
     m_PersistentCalls:
       m_Calls: []
-  _currentHealth: 0
-  _maxHealth: 0
+  _currentHealth: 100
+  _maxHealth: 100
   _hitResistanceDuration: 0.1
   _isResist: 0
 --- !u!1 &6414833678151221525

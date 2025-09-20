@@ -33,7 +33,6 @@ namespace  Project_Train.Combat.WaveSystem
 			}
 
 			TrainSpawner = new TrainSpawner();
-			TrainSpawner.Initialize(this);
 			TrainSpawner.startRail = StartRail;
 
 			_waveManager = WaveManager.Instance;

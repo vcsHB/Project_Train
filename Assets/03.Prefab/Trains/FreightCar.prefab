@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 8058350849616079525}
   - component: {fileID: 8100662843353980897}
   - component: {fileID: 1213773250365612203}
+  - component: {fileID: 8707434115941424287}
   m_Layer: 11
   m_Name: FreightCar
   m_TagString: Untagged
@@ -328,3 +329,22 @@ MonoBehaviour:
   backCar: {fileID: 0}
   _wheelA: {fileID: 1447463835217105658}
   _wheelB: {fileID: 9099493600362778400}
+--- !u!114 &8707434115941424287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976247732663933907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d2c691057793f4785e58a173539381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnDieEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _currentHealth: 100
+  _maxHealth: 100
+  _hitResistanceDuration: 0.1
+  _isResist: 0
