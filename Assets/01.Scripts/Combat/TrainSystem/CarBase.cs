@@ -34,7 +34,7 @@ namespace Project_Train.Combat.TrainSystem
 		{
 			if (false == _isInitialized) return;
 
-			if (IsHeadCar && headCar == null)
+			if (IsHeadCar && this != headCar)
 			{
 				SpeedStack = 0;
 				SetHeadCar(this);
