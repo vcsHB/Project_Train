@@ -1,3 +1,4 @@
+using Project_Train.Combat.TrainSystem;
 using UnityEngine;
 
 namespace Project_Train.Combat.WaveSystem
