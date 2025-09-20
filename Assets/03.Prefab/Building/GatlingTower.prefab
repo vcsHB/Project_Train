@@ -74,6 +74,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5331559586580133407}
+  - component: {fileID: 4573739096684228807}
+  - component: {fileID: 6409072691245988802}
   m_Layer: 9
   m_Name: FireFeedback
   m_TagString: Untagged
@@ -96,6 +98,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4253587863793001743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4573739096684228807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781466014475773405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4936fac2f4e623b43b686557522cd8e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6409072691245988802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781466014475773405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c187813cb6c464395d352e79924d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundSO: {fileID: 11400000, guid: d9759dc5f0cc8da4087ac8a435073784, type: 2}
 --- !u!1 &2262872046792354584
 GameObject:
   m_ObjectHideFlags: 0
@@ -10480,6 +10507,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Project_Train.Combat.TowerSystem.SubVisuals.RetractionBarrel,
           Assembly-CSharp
         m_MethodName: PlayVisualEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4573739096684228807}
+        m_TargetAssemblyTypeName: Project_Train.FeedbackSystem.FeedbackPlayer, Assembly-CSharp
+        m_MethodName: CreateFeedback
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
