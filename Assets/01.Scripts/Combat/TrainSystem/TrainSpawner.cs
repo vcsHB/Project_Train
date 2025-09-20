@@ -6,20 +6,15 @@ using UnityEngine;
 
 namespace  Project_Train.Combat.TrainSystem
 {
-	public class TrainSpawner : ICoroutineableObject<MonoBehaviour>
+	public class TrainSpawner
     {
 		public Rail startRail;
-
-		public MonoBehaviour Owner { get; set;  }
 
 		private CarBase _preiousSpawnedCarBase = null;
 
         public event Action OnTrainArraySpawnComplete;
 
-		public void Initialize(MonoBehaviour owner)
-		{
-			Owner = owner;
-		}
+		public int currentCarCount;
 
         public IEnumerator CoroutineSpawn(TrainArraySO trainArraySO)
         {
@@ -36,7 +31,7 @@ namespace  Project_Train.Combat.TrainSystem
 
                 _preiousSpawnedCarBase = newCar;
 
-                newCar.Initialize(startRail);
+                newCar.Initialize(this, startRail);
 
 				// When completely off the start rail
 				yield return new WaitUntil(() => newCar.CurrentRail != startRail);
