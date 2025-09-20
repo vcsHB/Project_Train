@@ -5,6 +5,7 @@ namespace Project_Train.Combat.TrainSystem
 {
 	public abstract class CarBase : MonoBehaviour
 	{
+		[Header("TrainArrays")]
 		public CarBase headCar;
 		public CarBase frontCar;
 		public CarBase backCar;
@@ -19,6 +20,7 @@ namespace Project_Train.Combat.TrainSystem
 		/// </summary>
 		public Rail startRail;
 
+		[Header("Wheels")]
 		[SerializeField] private Wheel _wheelA;
 		[SerializeField] private Wheel _wheelB;
 
