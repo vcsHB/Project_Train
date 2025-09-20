@@ -1,43 +1,54 @@
 using Project_Train.RailSystem;
+using Project_Train.Utils;
 using System;
 using System.Collections;
 using UnityEngine;
 
 namespace  Project_Train.Combat.TrainSystem
 {
-    public class TrainSpawner : MonoBehaviour
+	public class TrainSpawner : ICoroutineableObject<MonoBehaviour>
     {
-        [field: SerializeField] public Rail StartRail { get; private set; }
+		public Rail startRail;
 
-        private CarBase _preiousSpawnedCarBase;
+		public MonoBehaviour Owner { get; set;  }
+
+		private CarBase _preiousSpawnedCarBase = null;
 
         public event Action OnTrainArraySpawnComplete;
 
-        public void Spawn(TrainArraySO trainArraySO)
+		public void Initialize(MonoBehaviour owner)
+		{
+			Owner = owner;
+		}
+
+		public void Spawn(TrainArraySO trainArraySO)
         {
-            StartCoroutine(CoroutineSpawn(trainArraySO));
+			Owner.StartCoroutine(CoroutineSpawn(trainArraySO));
         }
 
         private IEnumerator CoroutineSpawn(TrainArraySO trainArraySO)
         {
             for (int i = 0; i < trainArraySO.Count; i++)
             {
-                CarBase newCar = Instantiate(trainArraySO[i], StartRail.transform.position, StartRail.transform.rotation);
-				newCar.startRail = StartRail;
+                CarBase newCar = GameObject.Instantiate(trainArraySO[i], startRail.transform.position, startRail.transform.rotation);
 
 				if (null != _preiousSpawnedCarBase)
 				{
 					newCar.frontCar = _preiousSpawnedCarBase;
-                    _preiousSpawnedCarBase.backCar = newCar;
+					newCar.headCar = _preiousSpawnedCarBase.headCar;
+					_preiousSpawnedCarBase.backCar = newCar;
 				}
 
                 _preiousSpawnedCarBase = newCar;
 
-                newCar.Initialize();
+                newCar.Initialize(startRail);
 
 				// When completely off the start rail
-				yield return new WaitUntil(() => newCar.startRail != StartRail);
+				yield return new WaitUntil(() => newCar.CurrentRail != startRail);
+				yield return new WaitForSeconds(0.25f);
 			}
+
+			OnTrainArraySpawnComplete?.Invoke();
 		}
 	}
 }

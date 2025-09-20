@@ -56,8 +56,6 @@ namespace  Project_Train.RailSystem
 
 			StartPos = p0 + trmPos;
 			EndPos = p2 + trmPos;
-			Debug.Log($"StartPos : {StartPos}");
-			Debug.Log($"EndPos : {EndPos}");
 		}
 #endif
 	}

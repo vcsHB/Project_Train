@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d30b5dd75585e44b2283871df56be6, type: 3}
   m_Name: TrainArraySO
   m_EditorClassIdentifier: 
-  <CarPrefabs>k__BackingField: []
+  <CarPrefabs>k__BackingField:
+  - {fileID: 5311610344295027331, guid: a947dd07bd79a774496874cbda512f8e, type: 3}
+  - {fileID: 1077203391696421043, guid: 9e9c8dec52fc7e642b6750ed88b0aeba, type: 3}
+  - {fileID: 1213773250365612203, guid: 2e08a7e18a3a6db4a83d2216def054d2, type: 3}

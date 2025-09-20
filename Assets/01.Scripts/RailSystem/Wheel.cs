@@ -6,7 +6,7 @@ namespace Project_Train
     public class Wheel : MonoBehaviour
     {
         [HideInInspector] public float speed;
-        private Rail _currentRail;
+        public Rail CurrentRail { get; private set; }
         private float _progress = 0f;
         private bool _isReversedRail = false;
 
@@ -14,7 +14,7 @@ namespace Project_Train
 
         public void Initialize(Rail startRail, Transform carTransform)
         {
-            _currentRail = startRail;
+            CurrentRail = startRail;
 
 			InitializeProgress(startRail, carTransform);
 
@@ -59,7 +59,7 @@ namespace Project_Train
 
         void Update()
         {
-            if (Mathf.Approximately(speed, 0f) || !_isInitialized || _currentRail == null) return;
+            if (Mathf.Approximately(speed, 0f) || !_isInitialized || CurrentRail == null) return;
 
             // 1. 진행도 업데이트
             // 각 레일의 실제 길이는 다를 수 있으므로, 근사치로 RailLength를 사용하거나,
@@ -89,17 +89,17 @@ namespace Project_Train
 
         private void SetPositionAndRotation()
         {
-            if (_currentRail == null) return;
+            if (CurrentRail == null) return;
 
-            transform.position = _currentRail.GetPositionByProgress(_progress);
+            transform.position = CurrentRail.GetPositionByProgress(_progress);
 
-            RailMath.GetPoints(_currentRail.type, out Vector3 p0, out Vector3 p1, out Vector3 p2);
+            RailMath.GetPoints(CurrentRail.type, out Vector3 p0, out Vector3 p1, out Vector3 p2);
             
             // GetQuadraticBezierTangent는 로컬 방향을 반환하므로 레일의 회전을 적용해줘야 함.
             // 하지만 현재 Rail.cs는 회전을 사용하지 않고 position만 사용하므로, 월드 좌표계에서 다시 계산.
-            p0 += _currentRail.transform.position;
-            p1 += _currentRail.transform.position;
-            p2 += _currentRail.transform.position;
+            p0 += CurrentRail.transform.position;
+            p1 += CurrentRail.transform.position;
+            p2 += CurrentRail.transform.position;
 
             Vector3 direction = RailMath.GetQuadraticBezierTangent(p0, p1, p2, _progress);
 
@@ -115,11 +115,11 @@ namespace Project_Train
 
         private void TransitionToNextRail()
         {
-            if (_currentRail == null) return;
+            if (CurrentRail == null) return;
 
-            Vector3 exitPoint = _isReversedRail ? _currentRail.StartPos : _currentRail.EndPos;
+            Vector3 exitPoint = _isReversedRail ? CurrentRail.StartPos : CurrentRail.EndPos;
 
-            Rail nextRail = RailManager.Instance.GetRail(exitPoint, _currentRail);
+            Rail nextRail = RailManager.Instance.GetRail(exitPoint, CurrentRail);
 
             if (nextRail == null)
             {
@@ -128,7 +128,7 @@ namespace Project_Train
                 return;
             }
 
-            _currentRail = nextRail;
+            CurrentRail = nextRail;
 
             // 새 레일에서의 진행 방향과 시작 progress 설정
             if (Vector3.Distance(nextRail.StartPos, exitPoint) < 0.1f)
@@ -145,7 +145,7 @@ namespace Project_Train
             {
                 Debug.LogError($"Could not find a connecting rail at {exitPoint}. Stopping wheel.", this);
                 speed = 0; // 연결되는 레일을 찾을 수 없으면 정지
-                _currentRail = null;
+                CurrentRail = null;
             }
         }
     }

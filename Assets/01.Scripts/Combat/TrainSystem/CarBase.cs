@@ -14,11 +14,7 @@ namespace Project_Train.Combat.TrainSystem
 		public abstract float TargetSpeed { get; protected set; }
 		public float SpeedStack { get; set; }
 		public bool IsRunning { get; private set; }
-
-		/// <summary>
-		/// The standard is back wheel
-		/// </summary>
-		public Rail startRail;
+		public Rail CurrentRail => _wheelB.CurrentRail;
 
 		[Header("Wheels")]
 		[SerializeField] private Wheel _wheelA;
@@ -26,12 +22,7 @@ namespace Project_Train.Combat.TrainSystem
 
 		private bool _isInitialized = false;
 
-		private void Awake()
-		{
-			Initialize();
-		}
-
-		public void Initialize()
+		public void Initialize(Rail startRail)
 		{
 			_wheelA.Initialize(startRail, transform);
 			_wheelB.Initialize(startRail, transform);

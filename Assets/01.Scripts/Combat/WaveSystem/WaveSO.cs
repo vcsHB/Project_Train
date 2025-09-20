@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Project_Train.Combat.WaveSystem
 {
     [System.Serializable]
-    public struct WaveTrainData
+    public class WaveTrainData
     {
         public float startDelay;
         public TrainArraySO trainArraySO;
