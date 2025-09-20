@@ -74,6 +74,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5331559586580133407}
+  - component: {fileID: 4573739096684228807}
+  - component: {fileID: 6409072691245988802}
   m_Layer: 9
   m_Name: FireFeedback
   m_TagString: Untagged
@@ -96,6 +98,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4253587863793001743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4573739096684228807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781466014475773405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4936fac2f4e623b43b686557522cd8e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6409072691245988802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781466014475773405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c187813cb6c464395d352e79924d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundSO: {fileID: 11400000, guid: d9759dc5f0cc8da4087ac8a435073784, type: 2}
 --- !u!1 &2262872046792354584
 GameObject:
   m_ObjectHideFlags: 0
@@ -10407,10 +10434,10 @@ MonoBehaviour:
   _detectMaxTargetAmount: 4
   _useGizmos: 1
   _gizmosColor: {r: 1, g: 0, b: 0, a: 1}
-  _detectRadius: 8
+  _detectRadius: 5.6
   _detectHeight: 20
-  _useDistanceIgnore: 0
-  _ignoreDistanceRatio: 0.15
+  _useDistanceIgnore: 1
+  _ignoreDistanceRatio: 0.137
   _ignoreGizmosColor: {r: 0, g: 1, b: 1, a: 1}
   _useDetectObstacle: 1
   _detectObstacleLayer:
@@ -10427,6 +10454,8 @@ GameObject:
   - component: {fileID: 3134504766023748516}
   - component: {fileID: 2924628836959590336}
   - component: {fileID: 6523373142324809168}
+  - component: {fileID: 3258917103496365085}
+  - component: {fileID: 4687333936600493825}
   m_Layer: 9
   m_Name: GatlingTower
   m_TagString: Untagged
@@ -10467,6 +10496,10 @@ MonoBehaviour:
   OnBuildingDestroyEvent:
     m_PersistentCalls:
       m_Calls: []
+  OnBuildCompleteEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  <BuildingData>k__BackingField: {fileID: 11400000, guid: 5284449ba0859984fb802ba60af01ae3, type: 2}
   OnAttackUnityEvent:
     m_PersistentCalls:
       m_Calls:
@@ -10474,6 +10507,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Project_Train.Combat.TowerSystem.SubVisuals.RetractionBarrel,
           Assembly-CSharp
         m_MethodName: PlayVisualEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4573739096684228807}
+        m_TargetAssemblyTypeName: Project_Train.FeedbackSystem.FeedbackPlayer, Assembly-CSharp
+        m_MethodName: CreateFeedback
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10510,6 +10555,41 @@ MonoBehaviour:
   _maxHealth: 350
   _hitResistanceDuration: 0.1
   _isResist: 0
+--- !u!135 &3258917103496365085
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8231988016227226391}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &4687333936600493825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8231988016227226391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d4014af47e94e40b1e00896bec87a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _overloadLevel: 1
+  _overloadDuration: 5
 --- !u!1 &8623713044402647056
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,7 +27,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5687dceac043584d9f3014fcd0abc36, type: 3}
   m_Name: FunctionDetail
   m_EditorClassIdentifier: 
-  range: 45.5
+  range: 7.5
+  ignoreRatio: 0.311
   randomizeErrorAngle: 1.2
   fireCooltime: 2.5
   attackArea: -1
@@ -57,7 +58,9 @@ MonoBehaviour:
     - key: 1
       value: {fileID: 4150875506574056118}
       foldout: 1
-  dataDescription: 
+  dataDescription: '
+
+'
   buildingPrefab: {fileID: 5468763159314440729, guid: ba115bb7b1695224f8a81e126b302153, type: 3}
 --- !u!114 &4150875506574056118
 MonoBehaviour:

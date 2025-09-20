@@ -16,7 +16,7 @@ namespace Project_Train.UIManage
         [SerializeField] private FadePanel _outermostPanel;
         [SerializeField] private GameUIPanel[] _panels;
         private Stack<FadePanel> _enabledPanelOrder = new();
-
+        private bool _isTransitioning = false;
         private readonly string _panelCancelInputKey = "OnCancelEvent";
 
         private void Awake()
@@ -33,10 +33,10 @@ namespace Project_Train.UIManage
             _enabledPanelOrder.Push(_initPanel);
             _initPanel.Open();
 
-            InputReader.AddListener(_panelCancelInputKey, CLoseCurrentPanel);
+            InputReader.AddListener(_panelCancelInputKey, CloseCurrentPanel);
         }
 
-        private void CLoseCurrentPanel()
+        private void CloseCurrentPanel()
         {
             if (_enabledPanelOrder.Count > 1)
             {
@@ -68,6 +68,8 @@ namespace Project_Train.UIManage
 
         private void HandlePanelOpened(FadePanel panel)
         {
+            if (_isTransitioning) return;
+            _isTransitioning = true;
             _enabledPanelOrder.Peek().Close();
             if (panel is GameUIPanel gameUIPanel)
             {
@@ -76,6 +78,8 @@ namespace Project_Train.UIManage
             }
             if (panel != _initPanel)
                 _enabledPanelOrder.Push(panel);
+
+            _isTransitioning = false;
         }
 
     }

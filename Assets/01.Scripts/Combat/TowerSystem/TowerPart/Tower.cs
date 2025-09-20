@@ -1,5 +1,6 @@
 using System;
 using Project_Train.BuildSystem;
+using Project_Train.Combat.TargetDetectors;
 using UnityEngine;
 using UnityEngine.Events;
 namespace Project_Train.Combat.TowerSystem
@@ -20,7 +21,7 @@ namespace Project_Train.Combat.TowerSystem
 
         [Header("Essential Settings")]
         [SerializeField] protected TowerHead _head;
-        [SerializeField] protected TargetDetector _targetDetector;
+        [SerializeField] protected SmartRangeTargetDetector _targetDetector;
 
 
         [Header("Tower Status Settings")]
@@ -83,6 +84,22 @@ namespace Project_Train.Combat.TowerSystem
         {
             OnTargetDetectedEvent?.Invoke();
         }
+
+#if UNITY_EDITOR
+
+
+        public void SetDetectRange(float newRange, float ignoreRange)
+        {
+
+            _targetDetector.SetDetectRange(newRange, ignoreRange);
+            UnityEditor.EditorUtility.SetDirty(this);
+            if (_targetDetector != null)
+                UnityEditor.EditorUtility.SetDirty(_targetDetector);
+            Debug.Log("Tower:SetDetectRange");
+
+        }
+#endif
+
 
     }
 }
