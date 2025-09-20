@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+
 namespace Project_Train.Combat.CasterSystem.HitBody
 {
-
     public class Health : MonoBehaviour, IDamageable, IHealable
     {
         public UnityEvent OnDieEvent;

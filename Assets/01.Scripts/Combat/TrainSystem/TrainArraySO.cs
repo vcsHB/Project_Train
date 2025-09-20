@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Project_Train.Combat.TrainSystem
 {
-    [CreateAssetMenu(fileName = "TrainArraySO", menuName = "Scriptable Objects/TrainArraySO")]
+    [CreateAssetMenu(fileName = "TrainArraySO", menuName = "SO/TrainArraySO")]
     public class TrainArraySO : ScriptableObject
     {
         [field:SerializeField] public CarBase[] CarPrefabs { get; private set; }

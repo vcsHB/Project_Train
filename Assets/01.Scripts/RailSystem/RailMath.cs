@@ -118,5 +118,14 @@ namespace Project_Train.RailSystem
 
 			return bestDirection;
 		}
+
+		public static Vector3 GetRoundedPosition(Vector3 position)
+		{
+			position.x = Mathf.Round(position.x * 10) / 10;
+			position.y = Mathf.Round(position.y * 10) / 10;
+			position.z = Mathf.Round(position.z * 10) / 10;
+
+			return position;
+		}
 	}
 }

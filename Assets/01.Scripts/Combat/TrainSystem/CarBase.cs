@@ -17,23 +17,43 @@ namespace Project_Train.Combat.TrainSystem
 		/// <summary>
 		/// The standard is back wheel
 		/// </summary>
-		public Rail currentRail;
+		public Rail startRail;
 
 		[SerializeField] private Wheel _wheelA;
 		[SerializeField] private Wheel _wheelB;
 
+		private bool _isInitialized = false;
+
+		private void Awake()
+		{
+			Initialize();
+		}
+
+		public void Initialize()
+		{
+			_wheelA.Initialize(startRail, transform);
+			_wheelB.Initialize(startRail, transform);
+
+			_isInitialized = true;
+		}
+
 		protected virtual void Update()
 		{
-			if (true == IsHeadCar && null == headCar)
+			if (false == _isInitialized) return;
+
+			if (IsHeadCar && headCar == null)
 			{
 				SpeedStack = 0;
 				SetHeadCar(this);
-				SetupFinalSpeed();
 			}
+
+			SetupFinalSpeed();
 		}
 
 		private void LateUpdate()
 		{
+			if (false == _isInitialized) return;
+
 			VisualMove();
 		}
 
@@ -44,22 +64,13 @@ namespace Project_Train.Combat.TrainSystem
 				backCar.SetHeadCar(headCar);
 		}
 
+		// set wheel's speed to final speed 
 		private void SetupFinalSpeed()
 		{
 			if (null == headCar) return;
-			IsRunning = SpeedStack > 0;
-			SetIsRunning(this);
-			var finalSpeed = IsRunning ? SpeedStack : 0.1f;
+			IsRunning = headCar.SpeedStack > 0;
+			var finalSpeed = IsRunning ? headCar.SpeedStack : 0.1f;
 			_wheelA.speed = _wheelB.speed = finalSpeed;
-		}
-
-		private void SetIsRunning(CarBase headCar)
-		{
-			if (headCar != this)
-				this.IsRunning = headCar.IsRunning;
-
-			if (null != backCar)
-				backCar.SetIsRunning(headCar);
 		}
 
 		private void VisualMove()

@@ -1,4 +1,5 @@
 using Project_Train.RailSystem;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,6 +8,10 @@ namespace  Project_Train.Combat.TrainSystem
     public class TrainSpawner : MonoBehaviour
     {
         [field: SerializeField] public Rail StartRail { get; private set; }
+
+        private CarBase _preiousSpawnedCarBase;
+
+        public event Action OnTrainArraySpawnComplete;
 
         public void Spawn(TrainArraySO trainArraySO)
         {
@@ -17,11 +22,21 @@ namespace  Project_Train.Combat.TrainSystem
         {
             for (int i = 0; i < trainArraySO.Count; i++)
             {
-                var car = Instantiate(trainArraySO[i], StartRail.transform.position, StartRail.transform.rotation);
-				car.currentRail = StartRail;
+                CarBase newCar = Instantiate(trainArraySO[i], StartRail.transform.position, StartRail.transform.rotation);
+				newCar.startRail = StartRail;
+
+				if (null != _preiousSpawnedCarBase)
+				{
+					newCar.frontCar = _preiousSpawnedCarBase;
+                    _preiousSpawnedCarBase.backCar = newCar;
+				}
+
+                _preiousSpawnedCarBase = newCar;
+
+                newCar.Initialize();
 
 				// When completely off the start rail
-				yield return new WaitUntil(() => car.currentRail != StartRail);
+				yield return new WaitUntil(() => newCar.startRail != StartRail);
 			}
 		}
 	}

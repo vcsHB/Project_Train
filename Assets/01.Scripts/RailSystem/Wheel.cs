@@ -1,266 +1,152 @@
 using Project_Train.RailSystem;
 using UnityEngine;
 
-namespace  Project_Train
+namespace Project_Train
 {
     public class Wheel : MonoBehaviour
     {
-		public float speed = 5f;
-		private Vector3Int currentRailPosition = default;
-		private float _progress = 0f;
-		private bool _isReversedRail = false;
+        [HideInInspector] public float speed;
+        private Rail _currentRail;
+        private float _progress = 0f;
+        private bool _isReversedRail = false;
 
-		// TODO : have to make initialize function that call by [CarBase].
-		private void Start()
-		{
-			InitializeStartPosition();
+        private bool _isInitialized = false;
+
+        public void Initialize(Rail startRail, Transform carTransform)
+        {
+            _currentRail = startRail;
+
+			InitializeProgress(startRail, carTransform);
+
+            _isInitialized = true;
 		}
 
-		private void InitializeStartPosition()
-		{
-			currentRailPosition = Vector3Int.FloorToInt(transform.position - RailMath.railOffset);
+        private void InitializeProgress(Rail rail, Transform carTransform)
+        {
+            // Î†àÏùºÏùò Î°úÏª¨ Ï¢åÌëúÍ≥Ñ Í∏∞Ï§ÄÏúºÎ°ú Ìú†Ïùò ÏúÑÏπòÎ•º Î≥ÄÌôò
+            Vector3 wheelPosInRailSpace = transform.position - rail.transform.position - RailMath.railOffset;
 
-			int railHalfLength = (int)RailMath.RailLength / 2;
+            RailMath.GetPoints(rail.type, out Vector3 p0, out Vector3 p1, out Vector3 p2);
 
-			if (RailManager.Instance.GetRailType(currentRailPosition) == ERailType.None)
-			{
-				for (int x = -railHalfLength; x < railHalfLength; x += railHalfLength)
-				{
-					for (int y = -railHalfLength; y < railHalfLength; y += railHalfLength)
-					{
-						for (int z = -railHalfLength; z < railHalfLength; z += railHalfLength)
-						{
-							var newSelectedRailPos = currentRailPosition + new Vector3Int(x, y, z);
-							var newSelectedRailType = RailManager.Instance.GetRailType(newSelectedRailPos);
-							if (newSelectedRailType != ERailType.None)
-							{
-								InitializeProcess(newSelectedRailPos, newSelectedRailType);
-								return;
-							}
-						}
-					}
-				}
-			}
-			else
-			{
-				var newSelectedRailType = RailManager.Instance.GetRailType(currentRailPosition);
-				InitializeProcess(currentRailPosition, newSelectedRailType);
-			}
-		}
+            // t Í∞íÏùÑ Ï∞æÍ∏∞ ÏúÑÌï¥ ÏõîÎìú Ìè¨ÏßÄÏÖòÏùÑ ÏÇ¨Ïö©ÌïòÏßÄ ÏïäÍ≥†, Î†àÏùº Í∏∞Ï§ÄÏùò ÏÉÅÎåÄ ÏúÑÏπòÎ•º ÏÇ¨Ïö©Ìï¥Ïïº Ìï®
+            _progress = RailMath.GetTForQuadraticBezier(p0, p1, p2, wheelPosInRailSpace);
 
-		private void InitializeProcess(Vector3Int newSelectedRailPos, ERailType newSelectedRailType)
-		{
-			var t = (currentRailPosition - newSelectedRailPos);
-			RailMath.GetPoints(newSelectedRailType, out Vector3 p0, out Vector3 p1, out Vector3 p2);
+            // t Í∞íÏù¥ 0~1 Î≤îÏúÑÎ•º Î≤óÏñ¥ÎÇú Í≤ΩÏö∞, ÏãúÏûëÏ†êÍ≥º ÎÅùÏ†ê Ï§ë Îçî Í∞ÄÍπåÏö¥ Ï™ΩÏúºÎ°ú progressÏôÄ Î∞©Ìñ•ÏùÑ ÏÑ§Ï†ï
+            if (_progress < 0f || _progress > 1f)
+            {
+                float distToStart = Vector3.Distance(wheelPosInRailSpace, p0);
+                float distToEnd = Vector3.Distance(wheelPosInRailSpace, p2);
 
-			_progress = GetTForQuadraticBezier(p0, p1, p2, t);
+                if (distToStart < distToEnd)
+                {
+                    _progress = 0f;
+                    _isReversedRail = false;
+                }
+                else
+                {
+                    _progress = 1f;
+                    _isReversedRail = true;
+                }
+            }
+            else
+            {
+                Vector3 tangent = RailMath.GetQuadraticBezierTangent(p0, p1, p2, _progress);
+                float dot = Vector3.Dot(tangent, carTransform.forward);
+                _isReversedRail = dot < 0;
+            }
+        }
 
-			if (_progress < 0.0f)
-			{
-				if (Vector3.Distance(currentRailPosition, newSelectedRailPos) < 0.1f)
-				{
-					_isReversedRail = false; // ¡§πÊ«‚ ø¨∞·
-					_progress = 0f;
-				}
-				else if (Vector3.Distance(currentRailPosition, newSelectedRailPos) < 0.1f)
-				{
-					_isReversedRail = true; // ø™πÊ«‚ ø¨∞·
-					_progress = 1f;
-				}
-			}
 
-			currentRailPosition = newSelectedRailPos;
-		}
+        void Update()
+        {
+            if (Mathf.Approximately(speed, 0f) || !_isInitialized || _currentRail == null) return;
 
-		void Update()
-		{
-			if (speed == 0) return;
+            // 1. ÏßÑÌñâÎèÑ ÏóÖÎç∞Ïù¥Ìä∏
+            // Í∞Å Î†àÏùºÏùò Ïã§Ï†ú Í∏∏Ïù¥Îäî Îã§Î•º Ïàò ÏûàÏúºÎØÄÎ°ú, Í∑ºÏÇ¨ÏπòÎ°ú RailLengthÎ•º ÏÇ¨Ïö©ÌïòÍ±∞ÎÇò,
+            // Îçî Ï†ïÌôïÌïòÍ≤åÎäî Í∞Å Ïª§Î∏åÏùò Í∏∏Ïù¥Î•º Í≥ÑÏÇ∞Ìï¥Ïïº Ìï®. ÏßÄÍ∏àÏùÄ ÏÉÅÏàòÎ•º ÏÇ¨Ïö©.
+            float railLengthApproximation = RailMath.RailLength;
+            float step = (speed / railLengthApproximation) * Time.deltaTime;
+            _progress += _isReversedRail ? -step : step;
 
-			ERailType currentRailType = RailManager.Instance.GetRailType(currentRailPosition);
-			if (currentRailType == ERailType.None)
-			{
-				speed = 0;
-				Debug.LogWarning($"No rail found at {currentRailPosition}. Stopping cart.");
-				return;
-			}
+            // 2. Î†àÏùº Ï†ÑÌôò Ï≤òÎ¶¨
+            if (_progress >= 1f && !_isReversedRail)
+            {
+                _progress = 1f;
+                SetPositionAndRotation();
+                TransitionToNextRail();
+            }
+            else if (_progress <= 0f && _isReversedRail)
+            {
+                _progress = 0f;
+                SetPositionAndRotation();
+                TransitionToNextRail();
+            }
+            else
+            {
+                SetPositionAndRotation();
+            }
+        }
 
-			// 1. ¡¯«‡µµ æ˜µ•¿Ã∆Æ
-			float railLength = RailMath.RailLength;
-			float step = (speed / railLength) * Time.deltaTime;
-			_progress += _isReversedRail ? -step : step;
+        private void SetPositionAndRotation()
+        {
+            if (_currentRail == null) return;
 
-			// 2. ∑π¿œ ¿¸»Ø √≥∏Æ
-			if (_progress >= 1f && !_isReversedRail)
-			{
-				_progress = 1f;
-				SetPositionAndRotation(currentRailType, _progress);
-				TransitionToNextRail();
-			}
-			else if (_progress <= 0f && _isReversedRail)
-			{
-				_progress = 0f;
-				SetPositionAndRotation(currentRailType, _progress);
-				TransitionToNextRail();
-			}
-			else
-			{
-				SetPositionAndRotation(currentRailType, _progress);
-			}
-		}
+            transform.position = _currentRail.GetPositionByProgress(_progress);
 
-		private void SetPositionAndRotation(ERailType railType, float t)
-		{
-			Vector3 p0, p1, p2;
-			RailMath.GetPoints(railType, out p0, out p1, out p2);
+            RailMath.GetPoints(_currentRail.type, out Vector3 p0, out Vector3 p1, out Vector3 p2);
+            
+            // GetQuadraticBezierTangentÎäî Î°úÏª¨ Î∞©Ìñ•ÏùÑ Î∞òÌôòÌïòÎØÄÎ°ú Î†àÏùºÏùò ÌöåÏ†ÑÏùÑ Ï†ÅÏö©Ìï¥Ï§òÏïº Ìï®.
+            // ÌïòÏßÄÎßå ÌòÑÏû¨ Rail.csÎäî ÌöåÏ†ÑÏùÑ ÏÇ¨Ïö©ÌïòÏßÄ ÏïäÍ≥† positionÎßå ÏÇ¨Ïö©ÌïòÎØÄÎ°ú, ÏõîÎìú Ï¢åÌëúÍ≥ÑÏóêÏÑú Îã§Ïãú Í≥ÑÏÇ∞.
+            p0 += _currentRail.transform.position;
+            p1 += _currentRail.transform.position;
+            p2 += _currentRail.transform.position;
 
-			p0 += currentRailPosition;
-			p1 += currentRailPosition;
-			p2 += currentRailPosition;
+            Vector3 direction = RailMath.GetQuadraticBezierTangent(p0, p1, p2, _progress);
 
-			transform.position = GetQuadraticBezierPoint(p0, p1, p2, t) + RailMath.railOffset;
+            if (direction != Vector3.zero)
+            {
+                if (_isReversedRail)
+                {
+                    direction *= -1;
+                }
+                transform.rotation = Quaternion.LookRotation(direction);
+            }
+        }
 
-			Vector3 direction = GetQuadraticBezierTangent(p0, p1, p2, t);
+        private void TransitionToNextRail()
+        {
+            if (_currentRail == null) return;
 
-			if (direction != Vector3.zero)
-			{
-				if (_isReversedRail)
-				{
-					direction *= -1;
-				}
-				transform.rotation = Quaternion.LookRotation(direction);
-			}
-		}
+            Vector3 exitPoint = _isReversedRail ? _currentRail.StartPos : _currentRail.EndPos;
 
-		private void TransitionToNextRail()
-		{
-			var previousRailPosition = currentRailPosition;
-			var previousRailType = RailManager.Instance.GetRailType(previousRailPosition);
+            Rail nextRail = RailManager.Instance.GetRail(exitPoint, _currentRail);
 
-			Vector3 p0, p1, p2;
-			RailMath.GetPoints(previousRailType, out p0, out p1, out p2);
-			p0 += previousRailPosition;
-			p1 += previousRailPosition;
-			p2 += previousRailPosition;
+            if (nextRail == null)
+            {
+                Debug.LogWarning($"End of the line at {exitPoint}. Stopping wheel.", this);
+                speed = 0; // Î†àÏùºÏù¥ ÏóÜÏúºÎ©¥ Ï†ïÏßÄ
+                return;
+            }
 
-			Vector3 previousRailEndPoint;
-			Vector3 exitDirection;
+            _currentRail = nextRail;
 
-			if (!_isReversedRail) // ¡§πÊ«‚¿∏∑Œ ¡¯«‡ ¡ﬂ¿Ãæ˙¿ª ∞ÊøÏ (t=1ø°º≠ ≈ª√‚)
-			{
-				previousRailEndPoint = p2;
-				exitDirection = (p2 - p1).normalized; // t=1ø°º≠¿« ¡¢º± πÊ«‚
-			}
-			else // ø™πÊ«‚¿∏∑Œ ¡¯«‡ ¡ﬂ¿Ãæ˙¿ª ∞ÊøÏ (t=0ø°º≠ ≈ª√‚)
-			{
-				previousRailEndPoint = p0;
-				exitDirection = (p0 - p1).normalized; // t=0ø°º≠¿« ¡¢º± πÊ«‚
-			}
-
-			exitDirection = SnapToCardinal(exitDirection);
-			currentRailPosition += Vector3Int.RoundToInt(exitDirection * RailMath.RailLength);
-
-			var currentRailType = RailManager.Instance.GetRailType(currentRailPosition);
-			if (currentRailType == ERailType.None)
-			{
-				Debug.LogWarning($"End of the line at {currentRailPosition}. Stopping cart.");
-				speed = 0; // º±∑Œ∞° æ¯¿∏∏È ¡§¡ˆ
-				return;
-			}
-
-			Vector3 newP0, newP1, newP2;
-			RailMath.GetPoints(currentRailType, out newP0, out newP1, out newP2);
-			newP0 += currentRailPosition;
-			newP2 += currentRailPosition;
-
-			if (Vector3.Distance(newP0, previousRailEndPoint) < 0.1f)
-			{
-				_isReversedRail = false; // ¡§πÊ«‚ ø¨∞·
-				_progress = 0f;
-			}
-			else if (Vector3.Distance(newP2, previousRailEndPoint) < 0.1f)
-			{
-				_isReversedRail = true; // ø™πÊ«‚ ø¨∞·
-				_progress = 1f;
-			}
-			else
-			{
-				Debug.LogError($"Could not find a connecting rail at {currentRailPosition} coming from {previousRailPosition}. Stopping cart.");
-				speed = 0; // ø¨∞·µ«¥¬ ∑π¿œ¿Ã æ¯¿∏∏È ¡§¡ˆ
-			}
-		}
-
-		private Vector3 SnapToCardinal(Vector3 direction)
-		{
-			Vector3[] cardinalDirections =
-			{
-				Vector3.right,
-				Vector3.left,
-				Vector3.forward,
-				Vector3.back
-			};
-
-			Vector3 bestDirection = cardinalDirections[0];
-			float maxDot = Vector3.Dot(direction, bestDirection);
-
-			for (int i = 1; i < cardinalDirections.Length; i++)
-			{
-				float dot = Vector3.Dot(direction, cardinalDirections[i]);
-				if (dot > maxDot)
-				{
-					maxDot = dot;
-					bestDirection = cardinalDirections[i];
-				}
-			}
-
-			return bestDirection;
-		}
-
-		public static float GetTForQuadraticBezier(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p)
-		{
-			Vector3 A = p0 - 2 * p1 + p2;
-			Vector3 B = 2 * (p1 - p0);
-			Vector3 C = p0 - p;
-
-			if (A.sqrMagnitude < 0.0001f)
-			{
-				if (B.sqrMagnitude < 0.0001f) return 0.0f;
-				float t = -Vector3.Dot(B, C) / B.sqrMagnitude;
-				return t;
-			}
-
-			float a = Vector3.Dot(A, A);
-			float b = Vector3.Dot(A, B);
-			float c = Vector3.Dot(A, C);
-
-			float discriminant = b * b - 4 * a * c;
-			if (discriminant < 0)
-			{
-				return -1.0f;
-			}
-
-			float sqrtDiscriminant = Mathf.Sqrt(discriminant);
-			float t1 = (-b + sqrtDiscriminant) / (2 * a);
-			float t2 = (-b - sqrtDiscriminant) / (2 * a);
-
-			if (t1 >= 0 && t1 <= 1) return t1;
-			if (t2 >= 0 && t2 <= 1) return t2;
-
-			return -1.0f;
-		}
-
-		Vector3 GetQuadraticBezierPoint(Vector3 p0, Vector3 p1, Vector3 p2, float t)
-		{
-			t = Mathf.Clamp01(t);
-			float oneMinusT = 1f - t;
-			return oneMinusT * oneMinusT * p0 +
-				   2f * oneMinusT * t * p1 +
-				   t * t * p2;
-		}
-
-		Vector3 GetQuadraticBezierTangent(Vector3 p0, Vector3 p1, Vector3 p2, float t)
-		{
-			return (2f * (1f - t) * (p1 - p0) + 2f * t * (p2 - p1)).normalized;
-		}
-
-	}
+            // ÏÉà Î†àÏùºÏóêÏÑúÏùò ÏßÑÌñâ Î∞©Ìñ•Í≥º ÏãúÏûë progress ÏÑ§Ï†ï
+            if (Vector3.Distance(nextRail.StartPos, exitPoint) < 0.1f)
+            {
+                _isReversedRail = false; // Ï†ïÎ∞©Ìñ•
+                _progress = 0f;
+            }
+            else if (Vector3.Distance(nextRail.EndPos, exitPoint) < 0.1f)
+            {
+                _isReversedRail = true; // Ïó≠Î∞©Ìñ•
+                _progress = 1f;
+            }
+            else
+            {
+                Debug.LogError($"Could not find a connecting rail at {exitPoint}. Stopping wheel.", this);
+                speed = 0; // Ïó∞Í≤∞ÎêòÎäî Î†àÏùºÏùÑ Ï∞æÏùÑ Ïàò ÏóÜÏúºÎ©¥ Ï†ïÏßÄ
+                _currentRail = null;
+            }
+        }
+    }
 }
