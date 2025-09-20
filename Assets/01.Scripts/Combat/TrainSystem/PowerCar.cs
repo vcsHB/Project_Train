@@ -8,6 +8,12 @@ namespace  Project_Train.Combat.TrainSystem
 		{
 			base.SetHeadCar(headCar);
 
+		}
+
+		public override void OnArrayChanged()
+		{
+			base.OnArrayChanged();
+
 			headCar.SpeedStack += TargetSpeed;
 		}
 
