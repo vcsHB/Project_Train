@@ -1,3 +1,4 @@
+using Project_Train.Core.Attribute;
 using Project_Train.Core.Input;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -9,24 +10,25 @@ namespace Project_Train.ViewControl
         [Header("Essential Setting")]
         [SerializeField] private CinemachineCamera _camera;
         [SerializeField] private Transform _lookPinPosition;
+        [SerializeField] private bool _useInitCameraPosition;
+        [SerializeField, ShowIf(nameof(_useInitCameraPosition))] private Vector3 _initCameraPosition;
 
         [Header("Rotation Setting")]
         [SerializeField] private float _clampVerticalMaxAngle = 80f;
         [SerializeField] private float _clampVerticalMinAngle = -80f; // 음수로 해서 아래 각도도 허용
-        [SerializeField] private float _sensitivity = 2f; 
+        [SerializeField] private float _sensitivity = 2f;
 
         [Header("Zoom Setting")]
-        [SerializeField] private float _distance = 5f; 
-        [SerializeField] private float _minZoomLevel = 2f; 
+        [SerializeField] private float _distance = 5f;
+        [SerializeField] private float _minZoomLevel = 2f;
         [SerializeField] private float _maxZoomLevel = 15f;
-        [SerializeField] private float _zoomSpeed = 2f; 
+        [SerializeField] private float _zoomSpeed = 2f;
 
         private readonly string _inputHoldKey = "OnMouseMoveClickEvent";
         private readonly string _inputReleaseKey = "OnMouseMoveReleaseEvent";
         private readonly string _inputZoomScollKey = "OnZoomScrollEvent";
-
         private bool _isHolding;
-        private float _yaw;  
+        private float _yaw;
         private float _pitch;
 
         private void Awake()
@@ -35,9 +37,27 @@ namespace Project_Train.ViewControl
             InputReader.AddListener(_inputHoldKey, HandleViewHold);
             InputReader.AddListener<Vector2>(_inputZoomScollKey, HandleScroll);
 
-           
+            InitializeCameraPosition();
         }
 
+
+        private void InitializeCameraPosition()
+        {
+            if (_useInitCameraPosition && _lookPinPosition != null)
+            {
+                Vector3 dir = (_initCameraPosition - _lookPinPosition.position).normalized;
+
+                _distance = Vector3.Distance(_initCameraPosition, _lookPinPosition.position);
+                _distance = Mathf.Clamp(_distance, _minZoomLevel, _maxZoomLevel);
+
+                _pitch = Mathf.Asin(dir.y) * Mathf.Rad2Deg;   // -90~90
+                _yaw = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+
+                UpdateCameraPosition();
+            }
+        }
+
+        
         private void HandleScroll(Vector2 delta)
         {
             _distance -= delta.y * _zoomSpeed;
