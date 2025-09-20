@@ -35,7 +35,6 @@ namespace  Project_Train.Combat.WaveSystem
 			TrainSpawner = new TrainSpawner();
 			TrainSpawner.Initialize(this);
 			TrainSpawner.startRail = StartRail;
-			TrainSpawner.OnTrainArraySpawnComplete += HandleGenerateNextCar;
 
 			_waveManager = WaveManager.Instance;
 			_waveManager.AddWaveTunnel(this);
@@ -47,55 +46,47 @@ namespace  Project_Train.Combat.WaveSystem
 			StartCoroutine(CoroutineSpawnNextTrainArray());
 		}
 
-		private void HandleGenerateNextCar()
-		{
-			_waveManager.OnWaveTunnelClearEvents[TunnelIndex]?.Invoke(_currentWaveIndex);
-			StartCoroutine(CoroutineSpawnNextTrainArray());
-		}
-
 		private IEnumerator CoroutineSpawnNextTrainArray()
 		{
-			// 모든 웨이브 끝
-			if (_currentWaveIndex+1 >= waves.Length)
+			for (int curWaveIndex = 0; curWaveIndex < waves.Length; ++curWaveIndex)
 			{
-				OnAllWaveEndEvent?.Invoke();
-				_waveManager.OnWaveTunnelCompleteEvents[TunnelIndex]?.Invoke();
-			}
-			else
-			{
+				_currentWaveIndex = curWaveIndex;
+
+				for (int curWaveTrainIndex = 0; curWaveTrainIndex < waves[curWaveIndex].waveTrains.Length; ++curWaveTrainIndex)
 				{
+					_currentWaveTrainIndex = curWaveTrainIndex;
+
 					_currentWaveTrainData = waves[_currentWaveIndex].waveTrains[_currentWaveTrainIndex];
 					yield return new WaitForSeconds(_currentWaveTrainData.startDelay);
 
-					// 처음 소환하기 전 
+					// First spawn
 					if (false == _firstSpawnComplete)
 					{
 						_waveManager.OnWaveStartEvents[TunnelIndex]?.Invoke();
 						_firstSpawnComplete = true;
 					}
 
-					TrainSpawner.Spawn(_currentWaveTrainData.trainArraySO);
+					yield return TrainSpawner.CoroutineSpawn(_currentWaveTrainData.trainArraySO);
+					_waveManager.OnWaveTunnelClearEvents[TunnelIndex]?.Invoke(_currentWaveIndex);
 					_currentWaveTrainIndex++;
 				}
 
-				// 웨이브 끝
-				if (_currentWaveTrainIndex >= waves[_currentWaveIndex].waveTrains.Length)
+				float timer = 0;
+				float endDelay = waves[_currentWaveIndex].EndDelay;
+				_currentWaveIndex++;
+				_currentWaveTrainIndex = 0;
+
+				// Wave's end delay time
+				while (timer < endDelay)
 				{
-					float timer = 0;
-					float endDelay = waves[_currentWaveIndex].EndDelay;
-					_currentWaveIndex++;
-					_currentWaveTrainIndex = 0;
-
-					while (timer < endDelay)
-					{
-						yield return null;
-						OnWaveEndDelayCooltimeEvent?.Invoke(timer);
-						timer += Time.deltaTime;
-					}
-
-					yield return new WaitForSeconds(endDelay);
+					yield return null;
+					OnWaveEndDelayCooltimeEvent?.Invoke(timer);
+					timer += Time.deltaTime;
 				}
 			}
+
+			OnAllWaveEndEvent?.Invoke();
+			_waveManager.OnWaveTunnelCompleteEvents[TunnelIndex]?.Invoke();
 		}
 	}
 }

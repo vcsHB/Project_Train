@@ -21,12 +21,7 @@ namespace  Project_Train.Combat.TrainSystem
 			Owner = owner;
 		}
 
-		public void Spawn(TrainArraySO trainArraySO)
-        {
-			Owner.StartCoroutine(CoroutineSpawn(trainArraySO));
-        }
-
-        private IEnumerator CoroutineSpawn(TrainArraySO trainArraySO)
+        public IEnumerator CoroutineSpawn(TrainArraySO trainArraySO)
         {
             for (int i = 0; i < trainArraySO.Count; i++)
             {

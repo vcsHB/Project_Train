@@ -16,11 +16,6 @@ namespace  Project_Train.Combat.WaveSystem
 		public Dictionary<int, Action> OnWaveTunnelCompleteEvents = new();
 		public event Action OnAllWaveTunnelEndEvent;
 
-		private void Awake()
-		{
-			OnAllWaveTunnelEndEvent += () => Debug.Log("OnAllWaveTunnelEndEvent");
-		}
-
 		public void AddWaveTunnel(WaveTunnel waveTunnel)
         {
 			waveTunnel.OnAllWaveEndEvent += HandleIncreaseClearedTunnelCount;
@@ -29,10 +24,6 @@ namespace  Project_Train.Combat.WaveSystem
 			OnWaveStartEvents.Add(tunnelIndex, null);
 			OnWaveTunnelClearEvents.Add(tunnelIndex, null);
 			OnWaveTunnelCompleteEvents.Add(tunnelIndex, null);
-
-			OnWaveStartEvents[tunnelIndex] += () => Debug.Log($"OnWaveStartEvents - {tunnelIndex}");
-			OnWaveTunnelClearEvents[tunnelIndex] += (int waveIndex) => Debug.Log($"OnWaveTunnelClearEvents{waveIndex} - {tunnelIndex}");
-			OnWaveTunnelCompleteEvents[tunnelIndex] += () => Debug.Log($"OnWaveTunnelCompleteEvents - {tunnelIndex}");
 		}
 
 		private void HandleIncreaseClearedTunnelCount()
