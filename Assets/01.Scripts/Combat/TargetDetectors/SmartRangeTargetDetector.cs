@@ -115,7 +115,7 @@ namespace Project_Train.Combat.TargetDetectors
         {
             _detectRadius = newRange;
             _ignoreDistanceRatio = ignoreDistanceRatio;
-            Debug.Log("Detector:SetDetectRange");
+            //Debug.Log("Detector:SetDetectRange");
 
 
         }
