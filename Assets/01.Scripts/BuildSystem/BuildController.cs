@@ -1,5 +1,6 @@
 using System;
 using Project_Train.Core.Input;
+using Project_Train.DataManage.CoreDataBaseSystem;
 using Project_Train.TerrainSystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,10 +17,10 @@ namespace Project_Train.BuildSystem
         [SerializeField] private LayerMask _structureLayer;
         private readonly string _mouseEventKey = "OnMousePositionEvent";
         private readonly string _selectEventKey = "OnSelectEvent";
-        private float _detectMaxDistance = 100f;
+        private float _detectMaxDistance = 500000f;
         private Vector2 _mousePosition;
         [SerializeField] private bool _isBuildMode;
-        [SerializeField] private bool _isSelectable;
+        [SerializeField] private bool _isSelectable = true;
 
         private void Awake()
         {
@@ -47,7 +48,6 @@ namespace Project_Train.BuildSystem
 
         private void HandleMousePositionSet(Vector2 mousePos)
         {
-            if (!_isBuildMode) return;
             _mousePosition = mousePos;
         }
 
@@ -58,27 +58,40 @@ namespace Project_Train.BuildSystem
 
         private void HandleSelect()
         {
-            if (EventSystem.current.IsPointerOverGameObject()) return;
+            if (EventSystem.current.IsPointerOverGameObject() || !_isSelectable) return;
 
-            if (!_isBuildMode || !_isSelectable) return;
             Ray ray = Camera.main.ScreenPointToRay(_mousePosition);
-            bool isDetected = Physics.Raycast(ray, out RaycastHit hitInfo, _detectMaxDistance, _buildPointLayer);
-            bool isBuildingDetected = Physics.Raycast(ray, out RaycastHit buildingHitInfo, _detectMaxDistance, _structureLayer);
-
-            if (isDetected)
+            if (_isBuildMode)
             {
-                if (hitInfo.collider.TryGetComponent(out Building building))
-                {
-                    _buildSelector.SetPosition(building.transform.position);
-                    OnBuildingSelectEvent?.Invoke(building);
-                }
-                if (hitInfo.collider.TryGetComponent(out BuildPoint buildPoint))
+                if (Physics.Raycast(ray, out var hitInfo, _detectMaxDistance, _buildPointLayer) &&
+                    hitInfo.collider.TryGetComponent(out BuildPoint buildPoint))
                 {
                     _buildSelector.SetPosition(buildPoint.PointPosition);
                     OnPointSelectEvent?.Invoke(buildPoint);
                 }
             }
+            else
+            {
+                if (Physics.Raycast(ray, out var buildingHitInfo, _detectMaxDistance, _structureLayer) &&
+                    buildingHitInfo.collider.TryGetComponent(out Building building))
+                {
+                    FunctionDetailSO function = building.BuildingData.GetDetail<FunctionDetailSO>(DataDetailType.Function);
+                    if (function != null)
+                    {
+                        Debug.Log("asdasdasd");
+                        _buildSelector.SetTowerRangeVisual(function.range, function.ignoreRatio);
+                    }
+                    else
+                    {
+                        _buildSelector.SetTowerRangeVisual(0f);
+                    }
+                    _buildSelector.SetPosition(building.transform.position);
+                    OnBuildingSelectEvent?.Invoke(building);
+                }
+            }
         }
+
+
 
     }
 }

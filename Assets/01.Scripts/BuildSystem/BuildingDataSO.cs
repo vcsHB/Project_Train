@@ -6,5 +6,19 @@ namespace Project_Train.BuildSystem
     public class BuildingDataSO : DataSO
     {
         public Building buildingPrefab;
+
+#if UNITY_EDITOR
+
+        protected virtual void OnValidate()
+        {
+            if (buildingPrefab == null)
+            {
+                Debug.LogWarning($"[BuildingDataSO Warning] buildingPrefab is Null. (name:{dataName})");
+                return;
+            }
+
+            buildingPrefab.SetBuildingData(this);
+        }
+#endif
     }
 }

@@ -55,6 +55,7 @@ MonoBehaviour:
   OnBuildCompleteEvent:
     m_PersistentCalls:
       m_Calls: []
+  <BuildingData>k__BackingField: {fileID: 11400000, guid: 937c7798706284840ae7da1c3f859cb3, type: 2}
 --- !u!114 &-5906497996211557778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 1207547354205191343}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.996, z: 0}
+  m_LocalPosition: {x: 0, y: 2.136, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

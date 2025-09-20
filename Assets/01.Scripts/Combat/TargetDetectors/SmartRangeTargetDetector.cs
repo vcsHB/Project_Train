@@ -14,7 +14,7 @@ namespace Project_Train.Combat.TargetDetectors
 
         [Space(10f)]
         [SerializeField] private bool _useDetectObstacle;
-        [ShowIf(nameof(_useDetectObstacle)), SerializeField] 
+        [ShowIf(nameof(_useDetectObstacle)), SerializeField]
         private LayerMask _detectObstacleLayer;
 
         // Inner Caching Arrays
@@ -27,7 +27,7 @@ namespace Project_Train.Combat.TargetDetectors
             _validTargetCount = 0;
 
             Vector3 bottom = CenterPosition + new Vector3(0f, -(_detectHeight * 0.5f), 0f);
-            Vector3 top    = CenterPosition + new Vector3(0f,  (_detectHeight * 0.5f), 0f);
+            Vector3 top = CenterPosition + new Vector3(0f, (_detectHeight * 0.5f), 0f);
 
             _detectAmount = Physics.OverlapCapsuleNonAlloc(bottom, top, _detectRadius, _targets, _detectLayers);
             if (_detectAmount == 0) return null;
@@ -109,6 +109,15 @@ namespace Project_Train.Combat.TargetDetectors
                 UnityEditor.Handles.color = ignoreInnerColor;
                 UnityEditor.Handles.DrawSolidDisc(CenterPosition, Vector3.up, _detectRadius * _ignoreDistanceRatio);
             }
+        }
+
+        public void SetDetectRange(float newRange, float ignoreDistanceRatio)
+        {
+            _detectRadius = newRange;
+            _ignoreDistanceRatio = ignoreDistanceRatio;
+            Debug.Log("Detector:SetDetectRange");
+
+
         }
 #endif
     }
