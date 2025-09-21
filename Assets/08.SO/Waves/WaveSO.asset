@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveTrains:
   - startDelay: 1
-    trainArraySO: {fileID: 11400000, guid: 52151099a9ffa8c4486d7b901640a9df, type: 2}
+    trainArraySO: {fileID: 11400000, guid: 8735788df05a300459e7181fdc269002, type: 2}
   - startDelay: 1
-    trainArraySO: {fileID: 11400000, guid: 52151099a9ffa8c4486d7b901640a9df, type: 2}
+    trainArraySO: {fileID: 11400000, guid: 8735788df05a300459e7181fdc269002, type: 2}
   - startDelay: 1
-    trainArraySO: {fileID: 11400000, guid: 52151099a9ffa8c4486d7b901640a9df, type: 2}
+    trainArraySO: {fileID: 11400000, guid: 8735788df05a300459e7181fdc269002, type: 2}
   <EndDelay>k__BackingField: 30

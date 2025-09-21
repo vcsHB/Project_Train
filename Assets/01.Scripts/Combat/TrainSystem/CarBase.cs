@@ -6,42 +6,12 @@ namespace Project_Train.Combat.TrainSystem
 {
 	public abstract class CarBase : MonoBehaviour
 	{
-		private CarBase _headCar;
-		private CarBase _frontCar;
-		private CarBase _backCar;
+		public CarBase headCar;
+		public CarBase frontCar;
+		public CarBase backCar;
 		private bool _isHandlingCompositionChange;
 
 		[Header("TrainArrays")]
-		public CarBase headCar
-		{
-			get => _headCar;
-			set
-			{
-				if (_headCar == value) return;
-				_headCar = value;
-				HandleTrainCompositionChange();
-			}
-		}
-		public CarBase frontCar 
-		{
-			get => _frontCar;
-			set
-			{
-				if (_frontCar == value) return;
-				_frontCar = value;
-				HandleTrainCompositionChange();
-			}
-		}
-		public CarBase backCar
-		{
-			get => _backCar;
-			set
-			{
-				if (_backCar == value) return;
-				_backCar = value;
-				HandleTrainCompositionChange();
-			}
-		}
 		public bool IsHeadCar => null == frontCar;
 
 		public abstract float TargetSpeed { get; protected set; }
@@ -58,8 +28,13 @@ namespace Project_Train.Combat.TrainSystem
 		private Health _health;
 		private TrainSpawner _trainSpawner;
 
+		private Collider _selfCollider;
+		private Collider[] _trainColliders = new Collider[2];
+		[SerializeField] private LayerMask layerMask;
+
 		public void Initialize(TrainSpawner trainSpawner, Rail startRail)
 		{
+			_selfCollider = GetComponent<Collider>();
 			_health = GetComponent<Health>();
 			_health.OnDieEvent.AddListener(OnDie);
 
@@ -77,6 +52,8 @@ namespace Project_Train.Combat.TrainSystem
 		{
 			if (false == _isInitialized) return;
 
+			CheckFrontCar();
+
 			if (null == _wheelA.CurrentRail)
 			{
 				Explosion();
@@ -84,10 +61,33 @@ namespace Project_Train.Combat.TrainSystem
 
 			if (IsHeadCar && this != headCar)
 			{
+				SpeedStack = 0f;
 				SetHeadCar(this);
 			}
 
 			SetupFinalSpeed();
+		}
+
+		private void CheckFrontCar()
+		{
+			if (false == IsHeadCar) return;
+
+			var pos = transform.position + transform.forward.normalized * RailMath.RailLength;
+			if (Physics.OverlapSphereNonAlloc(pos, 0.5f, _trainColliders, layerMask) > 0)
+			{
+				for (int i = 0; i < _trainColliders.Length; i++)
+				{
+					if (_selfCollider == _trainColliders[i]) continue;
+					if (_trainColliders[i] == null) continue;
+					if (_trainColliders[i].TryGetComponent(out CarBase newCarBase))
+					{
+						frontCar = newCarBase;
+						newCarBase.backCar = this;
+						SetHeadCar(newCarBase.headCar);
+						return;
+					}
+				}
+			}
 		}
 
 		public virtual void SetHeadCar(CarBase headCar)
@@ -97,33 +97,12 @@ namespace Project_Train.Combat.TrainSystem
 				backCar.SetHeadCar(headCar);
 		}
 	
-		private void HandleTrainCompositionChange()
+		private void OnDestroy()
 		{
-			if(_isHandlingCompositionChange) return;
-			_isHandlingCompositionChange = true;
-    
-			CarBase root = this;
-			while (root.frontCar != null)
+			if (headCar?.headCar)
 			{
-				root = root.frontCar;
+				headCar.headCar = null;
 			}
-
-			root.SpeedStack = 0;
-
-			CarBase current = root;
-			while (current != null)
-			{
-				current.headCar = root;
-				current.OnArrayChanged();
-				current = current.backCar;
-			}
-
-			_isHandlingCompositionChange = false;
-		}
-
-		public virtual void OnArrayChanged()
-		{
-    
 		}
 
 		public virtual void OnDie()
@@ -135,7 +114,6 @@ namespace Project_Train.Combat.TrainSystem
 
 		private void Explosion()
 		{
-			Debug.Log("Explosion");
 			--_trainSpawner.CurrentCarCount;
 			if (null == backCar)
 			{
