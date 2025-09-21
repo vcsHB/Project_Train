@@ -638,8 +638,8 @@ MonoBehaviour:
   OnFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _projectileType: 0
   _lifeTime: 0.25
   _speed: 35
   _offset: {x: 0, y: 0, z: 0}
-  _projectilePoolingType: 0
   _lifeTimeMultiplier: 0.2

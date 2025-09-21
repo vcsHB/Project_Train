@@ -10,7 +10,7 @@ namespace Project_Train.Combat.ProjectileSystem
 
         public void Shoot(Transform target, float distance)
         {
-            InstantTargetProjectile projectile = gameObject.Pop(InGamePoolBasePoolType.RocketProjectile) as InstantTargetProjectile;
+            InstantTargetProjectile projectile = gameObject.Pop(InGame_ProjectilePoolBasePoolType.RocketProjectile) as InstantTargetProjectile;
             if (projectile == null)
             {
                 Debug.LogError("ProjectileType is Not Matched : ROCKETPROJECTILE");
