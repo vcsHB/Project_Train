@@ -28,8 +28,13 @@ namespace Project_Train.Combat.TrainSystem
 		private Health _health;
 		private TrainSpawner _trainSpawner;
 
+		private Collider _selfCollider;
+		private Collider[] _trainColliders = new Collider[2];
+		[SerializeField] private LayerMask layerMask;
+
 		public void Initialize(TrainSpawner trainSpawner, Rail startRail)
 		{
+			_selfCollider = GetComponent<Collider>();
 			_health = GetComponent<Health>();
 			_health.OnDieEvent.AddListener(OnDie);
 
@@ -47,6 +52,8 @@ namespace Project_Train.Combat.TrainSystem
 		{
 			if (false == _isInitialized) return;
 
+			CheckFrontCar();
+
 			if (null == _wheelA.CurrentRail)
 			{
 				Explosion();
@@ -59,6 +66,28 @@ namespace Project_Train.Combat.TrainSystem
 			}
 
 			SetupFinalSpeed();
+		}
+
+		private void CheckFrontCar()
+		{
+			if (false == IsHeadCar) return;
+
+			var pos = transform.position + transform.forward.normalized * RailMath.RailLength;
+			if (Physics.OverlapSphereNonAlloc(pos, 0.5f, _trainColliders, layerMask) > 0)
+			{
+				for (int i = 0; i < _trainColliders.Length; i++)
+				{
+					if (_selfCollider == _trainColliders[i]) continue;
+					if (_trainColliders[i] == null) continue;
+					if (_trainColliders[i].TryGetComponent(out CarBase newCarBase))
+					{
+						frontCar = newCarBase;
+						newCarBase.backCar = this;
+						SetHeadCar(newCarBase.headCar);
+						return;
+					}
+				}
+			}
 		}
 
 		public virtual void SetHeadCar(CarBase headCar)
@@ -85,7 +114,6 @@ namespace Project_Train.Combat.TrainSystem
 
 		private void Explosion()
 		{
-			Debug.Log("Explosion");
 			--_trainSpawner.CurrentCarCount;
 			if (null == backCar)
 			{
