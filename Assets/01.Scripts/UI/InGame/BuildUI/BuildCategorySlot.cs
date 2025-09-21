@@ -70,7 +70,7 @@ namespace Project_Train.UIManage.InGameSceneUI.BuildUI
             float totalEnableWidth = _defaultWidth + (_buildSlotWidthSize * contentAmount) + _offset;
 
             _enableWidth = totalEnableWidth;
-            Debug.Log($"Auto Value Set: TotalEnableWidth={totalEnableWidth}");
+            //Debug.Log($"Auto Value Set: TotalEnableWidth={totalEnableWidth}");
 
 
         }
