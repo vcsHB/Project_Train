@@ -28,3 +28,6 @@ MonoBehaviour:
   - poolType: LargeExplosion
     prefab: {fileID: 6144465152471610567, guid: 3f0e7bd8db236944e972fd2f0f3fe753, type: 3}
     poolCount: 20
+  - poolType: TrainCrashVFX
+    prefab: {fileID: 1563784674987093022, guid: 1efa3939c911a3f4c8fffa7684afd662, type: 3}
+    poolCount: 10
