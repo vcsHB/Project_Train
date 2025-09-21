@@ -110,9 +110,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 319610961072353944, guid: 9e9c8dec52fc7e642b6750ed88b0aeba, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2085107607306707857, guid: 9e9c8dec52fc7e642b6750ed88b0aeba, type: 3}
       propertyPath: m_Name
-      value: AttackerCar_asdasd
+      value: AttackerCar_Gatling
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
