@@ -90,12 +90,16 @@ namespace Project_Train.Combat.TowerSystem
 
         public void SetDetectRange(float newRange, float ignoreRange)
         {
+            if (_targetDetector == null)
+            {
+                Debug.LogError("[Auto Value Setting Error] TargetDetector is not Binded");
+            }
 
             _targetDetector.SetDetectRange(newRange, ignoreRange);
             UnityEditor.EditorUtility.SetDirty(this);
             if (_targetDetector != null)
                 UnityEditor.EditorUtility.SetDirty(_targetDetector);
-            Debug.Log("Tower:SetDetectRange");
+            //Debug.Log("Tower:SetDetectRange");
 
         }
 #endif

@@ -11,6 +11,7 @@ namespace Project_Train.UIManage.InGameSceneUI
 
         [Header("Essential Settings")]
         [SerializeField] private TextMeshProUGUI _currentLeftEnemyText;
+        [SerializeField] private string _textPrefix;
 
         [SerializeField] private TextMeshProUGUI _leftTimeToNextWave;
         [SerializeField] private Image _leftTimeGaugeImage;
@@ -23,7 +24,7 @@ namespace Project_Train.UIManage.InGameSceneUI
 
         public void RefreshLeftEnemy(int amount)
         {
-            _currentLeftEnemyText.text = amount.ToString();
+            _currentLeftEnemyText.text = $"{_textPrefix}{amount.ToString()}";
         }
 
         public void RefreshLeftTime(float current, float max)

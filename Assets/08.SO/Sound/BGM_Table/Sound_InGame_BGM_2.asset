@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundName: InGame_BGM_2
   audioType: 0
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: b7ac9438b80666348bc5fa042c87bec2, type: 3}
   loop: 0
   randomizePitch: 0
   randomPitchModifier: 0.1
