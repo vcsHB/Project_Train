@@ -7,13 +7,6 @@ namespace  Project_Train.Combat.TrainSystem
 		public override void SetHeadCar(CarBase headCar)
 		{
 			base.SetHeadCar(headCar);
-
-		}
-
-		public override void OnArrayChanged()
-		{
-			base.OnArrayChanged();
-
 			headCar.SpeedStack += TargetSpeed;
 		}
 

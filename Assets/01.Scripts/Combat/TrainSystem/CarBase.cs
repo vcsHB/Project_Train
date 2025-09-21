@@ -6,42 +6,12 @@ namespace Project_Train.Combat.TrainSystem
 {
 	public abstract class CarBase : MonoBehaviour
 	{
-		private CarBase _headCar;
-		private CarBase _frontCar;
-		private CarBase _backCar;
+		public CarBase headCar;
+		public CarBase frontCar;
+		public CarBase backCar;
 		private bool _isHandlingCompositionChange;
 
 		[Header("TrainArrays")]
-		public CarBase headCar
-		{
-			get => _headCar;
-			set
-			{
-				if (_headCar == value) return;
-				_headCar = value;
-				HandleTrainCompositionChange();
-			}
-		}
-		public CarBase frontCar 
-		{
-			get => _frontCar;
-			set
-			{
-				if (_frontCar == value) return;
-				_frontCar = value;
-				HandleTrainCompositionChange();
-			}
-		}
-		public CarBase backCar
-		{
-			get => _backCar;
-			set
-			{
-				if (_backCar == value) return;
-				_backCar = value;
-				HandleTrainCompositionChange();
-			}
-		}
 		public bool IsHeadCar => null == frontCar;
 
 		public abstract float TargetSpeed { get; protected set; }
@@ -84,6 +54,7 @@ namespace Project_Train.Combat.TrainSystem
 
 			if (IsHeadCar && this != headCar)
 			{
+				SpeedStack = 0f;
 				SetHeadCar(this);
 			}
 
@@ -97,33 +68,12 @@ namespace Project_Train.Combat.TrainSystem
 				backCar.SetHeadCar(headCar);
 		}
 	
-		private void HandleTrainCompositionChange()
+		private void OnDestroy()
 		{
-			if(_isHandlingCompositionChange) return;
-			_isHandlingCompositionChange = true;
-    
-			CarBase root = this;
-			while (root.frontCar != null)
+			if (headCar?.headCar)
 			{
-				root = root.frontCar;
+				headCar.headCar = null;
 			}
-
-			root.SpeedStack = 0;
-
-			CarBase current = root;
-			while (current != null)
-			{
-				current.headCar = root;
-				current.OnArrayChanged();
-				current = current.backCar;
-			}
-
-			_isHandlingCompositionChange = false;
-		}
-
-		public virtual void OnArrayChanged()
-		{
-    
 		}
 
 		public virtual void OnDie()
