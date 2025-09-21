@@ -236,7 +236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2085107607306707857, guid: 9e9c8dec52fc7e642b6750ed88b0aeba, type: 3}
       propertyPath: m_Name
-      value: AttackerCar Variant
+      value: AttackerCar_Cannon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
