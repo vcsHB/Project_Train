@@ -110,6 +110,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4936fac2f4e623b43b686557522cd8e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnFeedbackCreateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFeedbackStopEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6409072691245988802
 MonoBehaviour:
   m_ObjectHideFlags: 0

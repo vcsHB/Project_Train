@@ -2,6 +2,6 @@ namespace Crogen.CrogenPooling
 {
     public enum InGamePoolBasePoolType
     {
-        MiddleExplosion, SmallExplosion, BuildCompleteVFX, BulletHitVFX, 
+        MiddleExplosion, SmallExplosion, BuildCompleteVFX, BulletHitVFX, LargeExplosion, 
     }
 }

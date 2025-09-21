@@ -1,11 +1,15 @@
+using Project_Train.Combat.CasterSystem;
 using Project_Train.Combat.CasterSystem.HitBody;
 using Project_Train.RailSystem;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Project_Train.Combat.TrainSystem
 {
 	public abstract class CarBase : MonoBehaviour
 	{
+		public UnityEvent OnCrashEvent;
+		[Header("Train PositionSet")]
 		public CarBase headCar;
 		public CarBase frontCar;
 		public CarBase backCar;
@@ -56,7 +60,7 @@ namespace Project_Train.Combat.TrainSystem
 
 			if (null == _wheelA.CurrentRail)
 			{
-				Explosion();
+				HandleTrainCrash(); // Arrive To EndPoint => Reactor
 			}
 
 			if (IsHeadCar && this != headCar)
@@ -96,7 +100,7 @@ namespace Project_Train.Combat.TrainSystem
 			if (null != backCar)
 				backCar.SetHeadCar(headCar);
 		}
-	
+
 		private void OnDestroy()
 		{
 			if (headCar?.headCar)
@@ -109,16 +113,19 @@ namespace Project_Train.Combat.TrainSystem
 		{
 			if (frontCar) frontCar.backCar = null;
 			if (backCar) backCar.frontCar = null;
+			//TODO : Pooling Processing
 			Destroy(gameObject);
 		}
 
-		private void Explosion()
+		private void HandleTrainCrash()
 		{
 			--_trainSpawner.CurrentCarCount;
 			if (null == backCar)
 			{
 				DestroyWithForward();
 			}
+			_health.ForceDestroy();
+			OnCrashEvent?.Invoke();
 			gameObject.SetActive(false);
 		}
 

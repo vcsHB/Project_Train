@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Project_Train.FeedbackSystem
 {
 
     public class FeedbackPlayer : MonoBehaviour
     {
+        public UnityEvent OnFeedbackCreateEvent;
+        public UnityEvent OnFeedbackStopEvent;
         private Feedback[] _feedbacks;
         private void Awake()
         {
@@ -13,11 +16,12 @@ namespace Project_Train.FeedbackSystem
 
         public void CreateFeedback()
         {
-            if(_feedbacks == null) return;
+            if (_feedbacks == null) return;
             for (int i = 0; i < _feedbacks.Length; i++)
             {
                 _feedbacks[i].CreateFeedback();
             }
+            OnFeedbackCreateEvent?.Invoke();
         }
 
         public void StopFeedback()
@@ -26,6 +30,7 @@ namespace Project_Train.FeedbackSystem
             {
                 _feedbacks[i].FinishFeedback();
             }
+            OnFeedbackStopEvent?.Invoke();
         }
     }
 

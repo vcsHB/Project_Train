@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 497159462495286285}
   - component: {fileID: 7278770189875520012}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Halo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4258511992830839454}
   - component: {fileID: 6683384020047662790}
   - component: {fileID: 6714344597930683735}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: -760459556520771970}
   - component: {fileID: 8049624352136135174}
   - component: {fileID: 4333681976401409396}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MainReactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1885775400027540155}
   - component: {fileID: 4591177585858672277}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: TerrainIgnoreArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5505386331427536916}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HaloGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7181925900810908336}
   - component: {fileID: 6973625343151099846}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ViewAnchorPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2959694045369320673}
   - component: {fileID: 59016805848304737}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Halo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -505,7 +505,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3949732618080594935}
   - component: {fileID: 7962378496925825359}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Halo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -590,6 +590,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2285572901334251900}
     m_Modifications:
+    - target: {fileID: 6602820923706560621, guid: 29eb25ab3ee925f40b1fda14928b258d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6820746948617620429, guid: 29eb25ab3ee925f40b1fda14928b258d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -633,6 +637,10 @@ PrefabInstance:
     - target: {fileID: 7755736515749565921, guid: 29eb25ab3ee925f40b1fda14928b258d, type: 3}
       propertyPath: m_Name
       value: BeaconEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755736515749565921, guid: 29eb25ab3ee925f40b1fda14928b258d, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace Project_Train.Combat.CasterSystem.HitBody
 {
-    public class Health : MonoBehaviour, IDamageable, IHealable
+    public class Health : MonoBehaviour, IDamageable, IHealable, IDestroyable
     {
         public UnityEvent OnDieEvent;
         public event Action OnDamageIgnoreEvent;
@@ -86,6 +86,14 @@ namespace Project_Train.Combat.CasterSystem.HitBody
             }
         }
 
+        public void ForceDestroy()
+        {
+            _currentHealth = 0f;
+            OnHealthDecreaseEvent?.Invoke(_currentHealth, _maxHealth);
+            HandleHealthChanged();
+
+        }
+
         #endregion
 
         private void HandleHealthChanged()
@@ -102,5 +110,7 @@ namespace Project_Train.Combat.CasterSystem.HitBody
             _currentHealth = Mathf.Clamp(_currentHealth, 0f, _maxHealth);
 
         }
+
+
     }
 }
