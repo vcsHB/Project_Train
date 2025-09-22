@@ -148,7 +148,7 @@ MonoBehaviour:
   _wheelB: {fileID: 5350908334235451751}
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   <TargetSpeed>k__BackingField: 5
 --- !u!114 &-2905160432637833010
 MonoBehaviour:
