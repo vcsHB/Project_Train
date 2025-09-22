@@ -44,13 +44,13 @@ Material:
     - _DrawOrder: 0
     - _EdgeWidth: 30
     - _GridWidth: 0.037
-    - _IgnoreRadiusRatio: 0.137
+    - _IgnoreRadiusRatio: 0.311
     - _Radius: 26.1
     - _Tiling: 1
     m_Colors:
     - _Color: {r: 1, g: 0.20356658, b: 0, a: 0}
     - _EdgeColor: {r: 0, g: 0, b: 0, a: 0}
-    - _Offset: {r: 0.03, g: 0.03, b: 0, a: 0}
+    - _Offset: {r: 0.53, g: 0.53, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &6665731035182604174

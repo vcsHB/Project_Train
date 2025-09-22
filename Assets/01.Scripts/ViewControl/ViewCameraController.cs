@@ -13,6 +13,7 @@ namespace Project_Train.ViewControl
         [SerializeField] private bool _useInitCameraPosition;
         [SerializeField, ShowIf(nameof(_useInitCameraPosition))] private Vector3 _initCameraPosition;
 
+
         [Header("Rotation Setting")]
         [SerializeField] private float _clampVerticalMaxAngle = 80f;
         [SerializeField] private float _clampVerticalMinAngle = -80f; // 음수로 해서 아래 각도도 허용
@@ -41,7 +42,7 @@ namespace Project_Train.ViewControl
         }
 
 
-        private void InitializeCameraPosition()
+        public void InitializeCameraPosition()
         {
             if (_useInitCameraPosition && _lookPinPosition != null)
             {
@@ -57,7 +58,7 @@ namespace Project_Train.ViewControl
             }
         }
 
-        
+
         private void HandleScroll(Vector2 delta)
         {
             _distance -= delta.y * _zoomSpeed;

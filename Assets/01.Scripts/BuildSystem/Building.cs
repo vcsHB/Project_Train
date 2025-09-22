@@ -29,6 +29,7 @@ namespace Project_Train.BuildSystem
         {
             OnBuildingDestroyEvent?.Invoke();
             BuildEventChannel.InvokeDestroyEvent(this);
+            Destroy(gameObject);// TODO : Pooling?
         }
 
 #if UNITY_EDITOR

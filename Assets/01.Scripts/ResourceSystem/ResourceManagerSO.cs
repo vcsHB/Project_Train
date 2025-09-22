@@ -24,6 +24,11 @@ namespace Project_Train.ResourceSystem
             }
         }
 
+        public void SetResourceAmount(ResourceType resourceType, int amount)
+        {
+            resourceDictionary[resourceType].SetAmount(amount);
+
+        }
         public void Add(ResourceType resourceType, int amount)
         {
             resourceDictionary[resourceType].Add(amount);

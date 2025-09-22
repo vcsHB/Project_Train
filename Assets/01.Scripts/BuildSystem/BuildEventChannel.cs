@@ -6,7 +6,7 @@ namespace Project_Train.BuildSystem
     {
         public static event Action<Building> OnBuildEvent;
         public static event Action<Building> OnDestroyEvent;
-
+        public static event Action OnBuildCancelEvent;
         public static void ClearBuildEvent()
         {
             OnBuildEvent = null;

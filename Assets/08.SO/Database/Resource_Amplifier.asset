@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Resource_Amplifier
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 0
-  iconSprite: {fileID: 0}
+  iconSprite: {fileID: -2069104814, guid: d012b231cb9183140acba8b171ce53b0, type: 3}
   dataName: "\uC99D\uD3ED\uAE30"
   details:
     entries:

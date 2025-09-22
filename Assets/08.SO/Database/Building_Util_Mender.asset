@@ -15,10 +15,12 @@ MonoBehaviour:
   buildDuration: 5
   <RequireResource>k__BackingField:
     _serializedList:
-    - Key: {fileID: 11400000, guid: dd188f1215ab41f419f9dc20f81074f3, type: 2}
-      Value: 200
     - Key: {fileID: 11400000, guid: bf7cc19c125717e4ead41961205570ef, type: 2}
-      Value: 200
+      Value: 150
+    - Key: {fileID: 11400000, guid: dd188f1215ab41f419f9dc20f81074f3, type: 2}
+      Value: 40
+    - Key: {fileID: 11400000, guid: c509486c68909c8468e5bbfa6ad0dfa5, type: 2}
+      Value: 1
 --- !u!114 &-809022068014792183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e02885fd46d6a4ebc5d748dbd05f5f, type: 3}
   m_Name: Building_Util_Mender
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 0
+  <Id>k__BackingField: 8
   iconSprite: {fileID: -1985876169, guid: b2dbc5c26c063d54da06ce31604ec35b, type: 3}
   dataName: "\uBA58\uB354"
   details:

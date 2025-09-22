@@ -14,6 +14,9 @@ namespace Project_Train.TerrainSystem
         public TerrainStatus TerrainStatus => _terrainStatus;
         [SerializeField] private Building _buildingOnPoint;
         [field: SerializeField] public bool CanBuild { get; private set; } = true;
+
+        private int _currentEnergy;
+        public bool IsEnoughEnergy => _currentEnergy > 0;
         public void Select()
         {
 
@@ -45,6 +48,13 @@ namespace Project_Train.TerrainSystem
         {
             _terrainStatus = status;
         }
+
+        public void SupplyEnergy()
+        {
+            _currentEnergy++;
+        }
+
+
 
         public void DestroyPoint()
         {

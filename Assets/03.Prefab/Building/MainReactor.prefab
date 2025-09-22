@@ -226,10 +226,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnDieEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Project_Train.InGameSystem.GameManager, Assembly-CSharp
+        m_MethodName: HandleGameOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _currentHealth: 500
   _maxHealth: 500
-  _hitResistanceDuration: 0.1
+  _hitResistanceDuration: 0
   _isResist: 0
 --- !u!114 &8049624352136135174
 MonoBehaviour:
