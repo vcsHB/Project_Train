@@ -2,7 +2,7 @@ using Project_Train.ViewControl;
 namespace Project_Train.BuildSystem
 {
 
-    public class SubReactor : Building
+    public class SubReactor : EnergySourceBuilding
     {
         private ViewAnchorPoint _viewAnchorPointCompo;
         public ViewAnchorPoint ViewAnchorPoint => _viewAnchorPointCompo;

@@ -65,6 +65,7 @@ namespace Project_Train.BuildSystem
         public void Build(BuildingDataSO buildingData, BuildDetailSO detail, BuildPoint point)
         {
             if (!point.CanBuild) return;
+            if (!point.IsEnoughEnergy) return;
             foreach (var require in detail.RequireResource)
             {
                 if (!_resourceManager.IsEnough(require.Key.resourceType, require.Value))

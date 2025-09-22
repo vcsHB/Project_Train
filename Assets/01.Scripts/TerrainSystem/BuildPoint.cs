@@ -17,6 +17,7 @@ namespace Project_Train.TerrainSystem
 
         private int _currentEnergy;
         public bool IsEnoughEnergy => _currentEnergy > 0;
+
         public void Select()
         {
 
@@ -52,6 +53,10 @@ namespace Project_Train.TerrainSystem
         public void SupplyEnergy()
         {
             _currentEnergy++;
+        }
+        public void SubtractEnergy()
+        {
+            _currentEnergy--;
         }
 
 
