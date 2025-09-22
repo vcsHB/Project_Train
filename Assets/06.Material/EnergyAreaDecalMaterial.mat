@@ -42,7 +42,7 @@ Material:
     - _DecalMeshViewBias: 0
     - _DrawOrder: 0
     m_Colors:
-    - _Color: {r: 0.7490196, g: 0.04396077, b: 0, a: 0}
+    - _Color: {r: 2.2706027, g: 0.13326412, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &1564734151782597494

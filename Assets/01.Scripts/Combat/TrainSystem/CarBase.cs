@@ -76,7 +76,7 @@ namespace Project_Train.Combat.TrainSystem
 		{
 			if (false == IsHeadCar) return;
 
-			var pos = transform.position + transform.forward.normalized * RailMath.RailLength;
+			var pos = transform.position + transform.forward.normalized * RailMath.RailLength * 0.3f;
 			if (Physics.OverlapSphereNonAlloc(pos, 0.5f, _trainColliders, layerMask) > 0)
 			{
 				for (int i = 0; i < _trainColliders.Length; i++)
@@ -109,24 +109,18 @@ namespace Project_Train.Combat.TrainSystem
 			}
 		}
 
-		public virtual void OnDie()
-		{
-			if (frontCar) frontCar.backCar = null;
-			if (backCar) backCar.frontCar = null;
-			//TODO : Pooling Processing
-			Destroy(gameObject);
-		}
-
 		private void HandleTrainCrash()
 		{
 			--_trainSpawner.CurrentCarCount;
+			OnCrashEvent?.Invoke();
 			if (null == backCar)
 			{
 				DestroyWithForward();
 			}
-			_health.ForceDestroy();
-			OnCrashEvent?.Invoke();
-			gameObject.SetActive(false);
+			else
+			{
+				gameObject.SetActive(false);
+			}
 		}
 
 		public void DestroyWithForward()
@@ -135,6 +129,14 @@ namespace Project_Train.Combat.TrainSystem
 
 			if (null != frontCar)
 				frontCar.DestroyWithForward();
+		}
+
+		public virtual void OnDie()
+		{
+			if (frontCar) frontCar.backCar = null;
+			if (backCar) backCar.frontCar = null;
+			//TODO : Pooling Processing
+			Destroy(gameObject);
 		}
 
 		private void LateUpdate()

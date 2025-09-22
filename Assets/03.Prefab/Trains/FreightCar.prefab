@@ -376,8 +376,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _currentHealth: 100
-  _maxHealth: 100
+  _currentHealth: 50
+  _maxHealth: 50
   _hitResistanceDuration: 0.1
   _isResist: 0
 --- !u!1 &8477633297507697634
