@@ -57,7 +57,7 @@ Material:
     - _QueueOffset: 0
     - _RotationDegree: 84.98
     - _Speed: 1.2
-    - _Tiling: 20
+    - _Tiling: 40
     - _UVScale: 1
     - _WaveScale: 0.2
     - _WaveSpeed: 1
