@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e0ed97e29a007c4b9dd3c28b34f8d53, type: 3}
   m_Name: Resource_Metal
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 0
-  iconSprite: {fileID: 0}
+  <Id>k__BackingField: 1
+  iconSprite: {fileID: 1187991084, guid: d012b231cb9183140acba8b171ce53b0, type: 3}
   dataName: "\uAC15\uCCA0"
   details:
     entries:

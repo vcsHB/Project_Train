@@ -76,5 +76,7 @@ MonoBehaviour:
   buildDuration: 5
   <RequireResource>k__BackingField:
     _serializedList:
+    - Key: {fileID: 11400000, guid: bf7cc19c125717e4ead41961205570ef, type: 2}
+      Value: 35
     - Key: {fileID: 11400000, guid: dd188f1215ab41f419f9dc20f81074f3, type: 2}
-      Value: 50
+      Value: 5

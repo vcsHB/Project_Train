@@ -55,7 +55,7 @@ MonoBehaviour:
   _targetLayer:
     serializedVersion: 2
     m_Bits: 6656
-  _targetMaxAmount: 5
+  _targetMaxAmount: 9
   _isDuplicateIgnore: 0
   _gizmosColor: {r: 1, g: 0, b: 0, a: 1}
   _detectRadius: 0.19

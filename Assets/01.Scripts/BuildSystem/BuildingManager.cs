@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Project_Train.BuildSystem.SubObjects;
 using Project_Train.DataManage.CoreDataBaseSystem;
+using Project_Train.ResourceSystem;
 using Project_Train.TerrainSystem;
 using UnityEngine;
 namespace Project_Train.BuildSystem
@@ -9,6 +10,7 @@ namespace Project_Train.BuildSystem
 
     public class BuildingManager : MonoBehaviour
     {
+        [SerializeField] private ResourceManagerSO _resourceManager;
         [SerializeField] private List<Building> _buildingList;
         [Header("BuildFrame Essential Settings")]
 
@@ -62,12 +64,23 @@ namespace Project_Train.BuildSystem
 
         public void Build(BuildingDataSO buildingData, BuildDetailSO detail, BuildPoint point)
         {
-            if (point.CanBuild)
+            if (!point.CanBuild) return;
+            foreach (var require in detail.RequireResource)
             {
-                point.SetCanBuild(false);
-                BuildFrame buildFrame = GetNewBuildFrame();
-                buildFrame.StartBuild(buildingData, detail, point);
+                if (!_resourceManager.IsEnough(require.Key.resourceType, require.Value))
+                {
+
+                    return;
+                }
             }
+            foreach (var require in detail.RequireResource)
+            {
+                _resourceManager.TrySubtractResource(require.Key.resourceType, require.Value);
+            }
+
+            point.SetCanBuild(false);
+            BuildFrame buildFrame = GetNewBuildFrame();
+            buildFrame.StartBuild(buildingData, detail, point);
 
         }
     }
