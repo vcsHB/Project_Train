@@ -552,6 +552,26 @@ PrefabInstance:
       propertyPath: _owner
       value: 
       objectReference: {fileID: 8267669916864579053}
+    - target: {fileID: 318507914026920230, guid: 48700c7e390112040b29ade98e8a035f, type: 3}
+      propertyPath: _rewardDatas.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 318507914026920230, guid: 48700c7e390112040b29ade98e8a035f, type: 3}
+      propertyPath: _rewardDatas.Array.data[0].amount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 318507914026920230, guid: 48700c7e390112040b29ade98e8a035f, type: 3}
+      propertyPath: _rewardDatas.Array.data[1].amount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 318507914026920230, guid: 48700c7e390112040b29ade98e8a035f, type: 3}
+      propertyPath: _rewardDatas.Array.data[0].resourceType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 318507914026920230, guid: 48700c7e390112040b29ade98e8a035f, type: 3}
+      propertyPath: _rewardDatas.Array.data[1].resourceType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1802839009308199118, guid: 48700c7e390112040b29ade98e8a035f, type: 3}
       propertyPath: m_Name
       value: RewardDropper
