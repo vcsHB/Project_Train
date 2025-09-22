@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: Tower_RocketLauncher
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 6
-  iconSprite: {fileID: 659980345, guid: d012b231cb9183140acba8b171ce53b0, type: 3}
+  iconSprite: {fileID: 233719379, guid: ecd111835268f8145baf7af454dc1a0a, type: 3}
   dataName: "\uB85C\uCF13"
   details:
     entries:

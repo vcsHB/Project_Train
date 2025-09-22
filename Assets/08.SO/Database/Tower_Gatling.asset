@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: Tower_Gatling
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 5
-  iconSprite: {fileID: -1219010162, guid: b2dbc5c26c063d54da06ce31604ec35b, type: 3}
+  iconSprite: {fileID: -1147046352, guid: ecd111835268f8145baf7af454dc1a0a, type: 3}
   dataName: "\uAC8C\uD2C0\uB9C1"
   details:
     entries:

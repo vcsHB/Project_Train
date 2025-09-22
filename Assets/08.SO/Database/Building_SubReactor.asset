@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: Building_SubReactor
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 7
-  iconSprite: {fileID: -90736862, guid: d012b231cb9183140acba8b171ce53b0, type: 3}
+  iconSprite: {fileID: 1592719161, guid: ecd111835268f8145baf7af454dc1a0a, type: 3}
   dataName: "\uBCF4\uC870 \uB9AC\uC561\uD130"
   details:
     entries:

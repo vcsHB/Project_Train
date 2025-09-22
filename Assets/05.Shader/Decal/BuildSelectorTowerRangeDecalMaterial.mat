@@ -44,7 +44,7 @@ Material:
     - _DrawOrder: 0
     - _EdgeWidth: 30
     - _GridWidth: 0.037
-    - _IgnoreRadiusRatio: 0.311
+    - _IgnoreRadiusRatio: 0.047
     - _Radius: 26.1
     - _Tiling: 1
     m_Colors:
