@@ -6,7 +6,7 @@ namespace Project_Train.Combat.ProjectileSystem
     public class TargetProjectile : Projectile
     {
         private float _currentLifeTime = 0f;
-
+        private Vector3 _cachedTargetPosition;
         public override void OnPop()
         {
             base.OnPop();
@@ -34,10 +34,19 @@ namespace Project_Train.Combat.ProjectileSystem
                 return;
             }
             float ratio = _currentLifeTime / _lifeTime;
-            transform.position = Vector3.Lerp(_originPosition, _forceTargetTrm.position, ratio);
+
+            if (_forceTargetTrm)
+            {
+                transform.position = Vector3.Lerp(_originPosition, _forceTargetTrm.position, ratio);
+                _cachedTargetPosition = _forceTargetTrm.position;
+			}
+            else
+            {
+				transform.position = Vector3.Lerp(_originPosition, _cachedTargetPosition, ratio);
+			}
 
 
-        }
+		}
 
         private void HandleProjectileArrive()
         {
