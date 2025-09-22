@@ -348,7 +348,7 @@ MonoBehaviour:
   _wheelB: {fileID: 9099493600362778400}
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
 --- !u!114 &8707434115941424287
 MonoBehaviour:
   m_ObjectHideFlags: 0
