@@ -1,27 +1,29 @@
 using Project_Train.RailSystem;
 using UnityEngine;
 
-namespace Project_Train
+namespace Project_Train.RailSystem
 {
     public class Wheel : MonoBehaviour
     {
-        [HideInInspector] public float speed;
+        private ICar _ownerCar;
+        
         public Rail CurrentRail { get; private set; }
         private float _progress = 0f;
         private bool _isReversedRail = false;
         private bool _isInitialized = false;
 		private Vector3 _cachedPreiousDirection;
 
-		public void Initialize(Rail startRail, Transform carTransform)
+		public void Initialize(Rail startRail, ICar ownerCar)
         {
-            CurrentRail = startRail;
-
-			InitializeProgress(startRail, carTransform);
+            this.CurrentRail = startRail;
+            this._ownerCar = ownerCar;
+            
+			InitializeProgress(startRail, ownerCar);
 
             _isInitialized = true;
 		}
 
-        private void InitializeProgress(Rail rail, Transform carTransform)
+        private void InitializeProgress(Rail rail, ICar ownerCar)
         {
             Vector3 wheelPosInRailSpace = transform.position - rail.transform.position - RailMath.railOffset;
 
@@ -29,7 +31,7 @@ namespace Project_Train
 
             _progress = RailMath.GetTForQuadraticBezier(p0, p1, p2, wheelPosInRailSpace);
 
-            if (_progress < 0f || _progress > 1f)
+            if (_progress is < 0f or > 1f)
             {
                 float distToStart = Vector3.Distance(wheelPosInRailSpace, p0);
                 float distToEnd = Vector3.Distance(wheelPosInRailSpace, p2);
@@ -48,17 +50,17 @@ namespace Project_Train
             else
             {
                 Vector3 tangent = RailMath.GetQuadraticBezierTangent(p0, p1, p2, _progress);
-                float dot = Vector3.Dot(tangent, carTransform.forward);
+                float dot = Vector3.Dot(tangent, ownerCar.transform.forward);
                 _isReversedRail = dot < 0;
             }
         }
 
         void Update()
         {
-            if (Mathf.Approximately(speed, 0f) || !_isInitialized || CurrentRail == null) return;
+            if (Mathf.Approximately(_ownerCar.CurrentSpeed, 0f) || !_isInitialized || CurrentRail == null) return;
 
             float railLengthApproximation = RailMath.RailLength;
-            float step = (speed / railLengthApproximation) * Time.deltaTime;
+            float step = (_ownerCar.CurrentSpeed / railLengthApproximation) * Time.deltaTime;
             _progress += _isReversedRail ? -step : step;
 
             if (_progress >= 1f && !_isReversedRail)
@@ -111,7 +113,7 @@ namespace Project_Train
 
         private void TransitionToNextRail()
         {
-            if (CurrentRail == null) return;
+            if (null ==CurrentRail) return;
 
             Vector3 exitPoint = _isReversedRail ? CurrentRail.StartPos : CurrentRail.EndPos;
 
@@ -119,10 +121,9 @@ namespace Project_Train
 
             CurrentRail = nextRail;
 
-            if (nextRail == null)
+            if (null == nextRail)
             {
                 Debug.LogWarning($"End of the line at {exitPoint}. Stopping wheel.", this);
-                speed = 0; // 레일이 없으면 정지
                 return;
             }
 
@@ -139,7 +140,6 @@ namespace Project_Train
             else
             {
                 Debug.LogError($"Could not find a connecting rail at {exitPoint}. Stopping wheel.", this);
-                speed = 0; // 연결되는 레일을 찾을 수 없으면 정지
                 CurrentRail = null;
             }
         }

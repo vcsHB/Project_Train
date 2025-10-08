@@ -1,4 +1,3 @@
-using Project_Train.Combat.CasterSystem;
 using Project_Train.Combat.CasterSystem.HitBody;
 using Project_Train.RailSystem;
 using UnityEngine;
@@ -6,7 +5,7 @@ using UnityEngine.Events;
 
 namespace Project_Train.Combat.TrainSystem
 {
-	public abstract class CarBase : MonoBehaviour
+	public abstract class CarBase : MonoBehaviour, ICar
 	{
 		public UnityEvent OnCrashEvent;
 		[Header("Train PositionSet")]
@@ -20,6 +19,8 @@ namespace Project_Train.Combat.TrainSystem
 
 		public abstract float TargetSpeed { get; protected set; }
 		public float SpeedStack { get; set; }
+		public float CurrentSpeed { get; private set; }
+		
 		public bool IsRunning { get; private set; }
 		public Rail CurrentRail => _wheelB.CurrentRail;
 
@@ -42,8 +43,8 @@ namespace Project_Train.Combat.TrainSystem
 			_health = GetComponent<Health>();
 			_health.OnDieEvent.AddListener(OnDie);
 
-			_wheelA.Initialize(startRail, transform);
-			_wheelB.Initialize(startRail, transform);
+			_wheelA.Initialize(startRail, this);
+			_wheelB.Initialize(startRail, this);
 
 			_trainSpawner = trainSpawner;
 
@@ -152,7 +153,7 @@ namespace Project_Train.Combat.TrainSystem
 			if (null == headCar) return;
 			IsRunning = headCar.SpeedStack > 0;
 			var finalSpeed = IsRunning ? headCar.SpeedStack : 0.1f;
-			_wheelA.speed = _wheelB.speed = finalSpeed;
+			CurrentSpeed = finalSpeed;
 		}
 
 		private void VisualMove()
