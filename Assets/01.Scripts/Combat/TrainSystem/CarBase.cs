@@ -64,6 +64,7 @@ namespace Project_Train.Combat.TrainSystem
 				HandleTrainCrash(); // Arrive To EndPoint => Reactor
 			}
 
+			// The middle of the train was destroyed.
 			if (IsHeadCar && this != headCar)
 			{
 				SpeedStack = 0f;
