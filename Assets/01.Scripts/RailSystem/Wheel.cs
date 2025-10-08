@@ -57,6 +57,11 @@ namespace Project_Train.RailSystem
 
         void Update()
         {
+            Move();
+        }
+
+        private void Move()
+        {
             if (Mathf.Approximately(_ownerCar.CurrentSpeed, 0f) || !_isInitialized || CurrentRail == null) return;
 
             float railLengthApproximation = RailMath.RailLength;
